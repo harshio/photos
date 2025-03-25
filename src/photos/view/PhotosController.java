@@ -56,7 +56,7 @@ public class PhotosController {
 			if(usersList.contains(userName.getText())){
 				registeredUser = true;
 			}
-			if(userName.getText().equals("admin")){
+			if(userName.getText().equals("admin") && registeredUser){
 				loader = new FXMLLoader(getClass().getResource("/photos/view/Admin.fxml"));
 				root = loader.load();
 			}
