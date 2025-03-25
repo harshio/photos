@@ -14,7 +14,6 @@ public class StockController {
 
     @FXML
     public void initialize() {
-        // Assuming "data" is at the root of your project (same level as src/)
         for (int i = 1; i <= 5; i++) {
             File imageFile = new File("data/stock" + i + ".jpg");
             if (imageFile.exists()) {
