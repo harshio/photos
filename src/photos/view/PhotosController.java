@@ -60,6 +60,10 @@ public class PhotosController {
 				loader = new FXMLLoader(getClass().getResource("/photos/view/Admin.fxml"));
 				root = loader.load();
 			}
+			else if(userName.getText().equals("stock") && registeredUser){
+				loader = new FXMLLoader(getClass().getResource("/photos/view/Stock.fxml"));
+				root = loader.load();
+			}
 			else if(registeredUser){
 				loader = new FXMLLoader(getClass().getResource("/photos/view/Bulk.fxml"));
 				root = loader.load();
