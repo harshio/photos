@@ -44,7 +44,7 @@ public class PhotosController {
 	 * adding and deleting their corresponding strings from usersList.
 	*/
 
-	public static ObservableList<String> usersList = FXCollections.observableArrayList();
+	public static ObservableList<String> usersList = FXCollections.observableArrayList("admin", "stock");
 	
 	/*This is for loading pages directly from login*/
 	public void goToApplication(ActionEvent e){
