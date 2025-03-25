@@ -17,7 +17,7 @@ import java.util.ArrayList;
 //We're going to define the actions of all the buttons present in the main window
 //Please note that each window that is not part of the main window needs its own controller class
 
-//Tomorrow I'm gonna update the Admin Page to have a separate Return to Login Page button and remove the logic that loads the login page from the createUser and deleteUser methods
+//A few days from now I'm gonna update the Admin Page to have a separate Return to Login Page button and remove the logic that loads the login page from the createUser and deleteUser methods
 //I don't care about the other pages having a Return to Login Page button yet, because only the Admin and Login pages are near-complete at this stage
 //Also tomorrow I'm gonna start and hopefully complete work on the "stock" page
 
