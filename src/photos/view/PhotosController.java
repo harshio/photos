@@ -9,8 +9,8 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
-import java.io.IOException;
 import javafx.collections.*;
+import java.io.*;
 //import javafx.scene.control.ListView; this import probably won't be used in this class but I'm paranoid
 
 //We're going to define the actions of all the buttons present in the main window
