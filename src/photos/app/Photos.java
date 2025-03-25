@@ -11,6 +11,7 @@ public class Photos extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		// TODO Auto-generated method stub
+        photos.view.PhotosController.loadUsersList();
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("/photos/view/Login.fxml"));
 		GridPane root = (GridPane)loader.load();

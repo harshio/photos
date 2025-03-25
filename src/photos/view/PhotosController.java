@@ -12,6 +12,7 @@ import javafx.stage.Stage;
 import javafx.collections.*;
 import java.io.*;
 //import javafx.scene.control.ListView; this import probably won't be used in this class but I'm paranoid
+import java.util.ArrayList;
 
 //We're going to define the actions of all the buttons present in the main window
 //Please note that each window that is not part of the main window needs its own controller class
@@ -107,6 +108,7 @@ public class PhotosController {
 		String newUser = newUserName.getText();
 		if (!newUser.isEmpty() && !usersList.contains(newUser)) {
 			usersList.add(newUser);
+			saveUsersList();
 		}
 		try{
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/photos/view/Login.fxml"));
@@ -127,6 +129,7 @@ public class PhotosController {
 		String userToDelete = deadUserName.getText();
 		if (!userToDelete.isEmpty() && usersList.contains(userToDelete)) {
 			usersList.remove(userToDelete);
+			saveUsersList();
 		}
 		try{
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/photos/view/Login.fxml"));
@@ -140,5 +143,26 @@ public class PhotosController {
 		catch (IOException ex) {
             ex.printStackTrace(); // Optional: replace with GUI error dialog
         }
-	}	
+	}
+	
+	public static void saveUsersList() {
+		try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("usersList.ser"))) {
+			out.writeObject(new ArrayList<>(usersList)); // Convert ObservableList to ArrayList
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
+// Load usersList from disk
+	public static void loadUsersList() {
+		File file = new File("usersList.ser");
+		if (!file.exists()) return; // Don't load if file doesn't exist
+
+		try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(file))) {
+			ArrayList<String> list = (ArrayList<String>) in.readObject();
+			usersList.setAll(list); // Update ObservableList with loaded data
+		} catch (IOException | ClassNotFoundException e) {
+			e.printStackTrace();
+		}
+	}
 }
