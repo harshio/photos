@@ -61,7 +61,6 @@ public class PhotosController {
 				loader = new FXMLLoader(getClass().getResource("/photos/view/Admin.fxml"));
 				root = loader.load();
 			}
-			//so far it's just pictures, need to learn how to place the photos in a clickable album of sorts
 			else if(userName.getText().equals("stock") && registeredUser){
 				loader = new FXMLLoader(getClass().getResource("/photos/view/TrueStockPage.fxml"));
 				root = loader.load();
