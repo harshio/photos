@@ -180,7 +180,7 @@ public class PhotosController {
 			Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			stage.setScene(new Scene(root));
 			//For stage.setTitle(), we'll make sure to properly if-condition this one and only this one later.
-			stage.setTitle("Dummy");
+			stage.setTitle("Album");
 			stage.show();
 		}
 		catch (IOException ex) {
