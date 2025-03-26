@@ -10,6 +10,7 @@
     xmlns:fx="http://javafx.com/fxml/1"
     fx:controller="photos.view.PhotosController"
     vgap="10" hgap="10">
+    <Text text="Album(s)" GridPane.rowIndex="0"/>
     <Button fx:id="loadStockPage" text="stock"  GridPane.rowIndex="1" onAction="#loadStockPage"/>
     <padding>
         <Insets top="10" right="10" bottom="10" left="10"/>
