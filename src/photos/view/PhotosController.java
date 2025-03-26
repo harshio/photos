@@ -29,6 +29,7 @@ public class PhotosController {
 	@FXML Button deleteUser; //will have function in here called deleteUser()
 	@FXML TextField newUserName;
 	@FXML TextField deadUserName;
+	@FXML Button loadStockPage;
 
 	/*We can use userName.getText() to retrieve the string typed in by the user.
 	 * If it's "admin", we'll load the scene for that specific case, which is basically
@@ -62,7 +63,7 @@ public class PhotosController {
 			}
 			//so far it's just pictures, need to learn how to place the photos in a clickable album of sorts
 			else if(userName.getText().equals("stock") && registeredUser){
-				loader = new FXMLLoader(getClass().getResource("/photos/view/Stock.fxml"));
+				loader = new FXMLLoader(getClass().getResource("/photos/view/TrueStockPage.fxml"));
 				root = loader.load();
 			}
 			else if(registeredUser){
@@ -169,5 +170,21 @@ public class PhotosController {
 		} catch (IOException | ClassNotFoundException e) {
 			e.printStackTrace();
 		}
+	}
+
+	//Load stock page
+	public void loadStockPage(ActionEvent event){
+		try{
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/photos/view/Stock.fxml"));
+			Parent root = loader.load();
+			Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+			stage.setScene(new Scene(root));
+			//For stage.setTitle(), we'll make sure to properly if-condition this one and only this one later.
+			stage.setTitle("Dummy");
+			stage.show();
+		}
+		catch (IOException ex) {
+            ex.printStackTrace(); // Optional: replace with GUI error dialog
+        }
 	}
 }
