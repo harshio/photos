@@ -1,0 +1,14 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+      
+      {
+        "type": "java",
+        "name": "Launch JavaFX App",
+        "request": "launch",
+        "mainClass": "photos.app.Photos", //Changed demo below to cw
+        "vmArgs": "--module-path /Users/cw/javafx-sdk-21.0.6/lib --add-modules javafx.controls,javafx.fxml"
+      }
+    ]
+  }
+  

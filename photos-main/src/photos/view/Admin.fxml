@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+
+<GridPane
+    xmlns="http://javafx.com/javafx/11"
+    xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="photos.view.PhotosController"
+    vgap="10" hgap="10">
+    <!--We'll put onActions on all the buttons for functions displayAllUsers(), createUser(), deleteUser()-->
+    <Text text="Admin" GridPane.rowIndex="0"/>
+    <Button fx:id="displayAllUsers" text="List all users"  GridPane.rowIndex="1" onAction="#displayAllUsers"/>
+    <Text text="Create User" GridPane.rowIndex="3"/>
+    <TextField fx:id="newUserName" text="Write username of user to be created here." GridPane.columnIndex = "1" GridPane.rowIndex = "3"/>
+    <Button fx:id="createUser" text="Create a user" GridPane.rowIndex="4" onAction="#createUser"/>
+    <Text text="Delete User" GridPane.rowIndex="6"/>
+    <TextField fx:id="deadUserName" text="Write username of user to be deleted here." GridPane.columnIndex = "1" GridPane.rowIndex = "6"/>
+    <Button fx:id="deleteUser" text="Delete a user" GridPane.rowIndex="7" onAction="#deleteUser"/>
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
+</GridPane>

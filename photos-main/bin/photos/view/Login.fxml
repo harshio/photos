@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+
+<GridPane
+    xmlns="http://javafx.com/javafx/11"
+    xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="photos.view.PhotosController"
+    vgap="10" hgap="10">
+
+    <Text text="Log In" GridPane.valignment="TOP"/>
+    <!--We'll add an event listener to the button (onAction attribute in xml) after we get the UI right-->
+    <Button fx:id="login" text="Log In" GridPane.columnIndex="1" GridPane.rowIndex="1" onAction="#goToApplication"/>
+    
+    <TextField fx:id="userName" prefColumnCount="10" promptText="Write username here." GridPane.rowIndex="1"/>
+
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
+</GridPane>
