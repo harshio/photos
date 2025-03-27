@@ -161,7 +161,7 @@ public class PhotosController {
 // Load usersList from disk
 	public static void loadUsersList() {
 		File file = new File("usersList.ser");
-		if (!file.exists()) return; // Don't load if file doesn't exist
+		if (!file.exists()) return; // Don't load if file doesn't exist, which it shouldn't at the beginning of the first starting of the application
 
 		try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(file))) {
 			ArrayList<String> list = (ArrayList<String>) in.readObject();
