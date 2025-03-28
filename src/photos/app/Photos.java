@@ -11,7 +11,7 @@ public class Photos extends Application {
 	@Override
 	public void start(Stage primaryStage) throws Exception {
 		// TODO Auto-generated method stub
-        photos.controller.PhotosController.loadUsersList(); //seems our app literally starts by reading from the disk
+        photos.model.Users.loadUsersList(); //seems our app literally starts by reading from the disk
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("/photos/view/Login.fxml"));
 		GridPane root = (GridPane)loader.load();

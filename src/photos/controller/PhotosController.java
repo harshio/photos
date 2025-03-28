@@ -45,7 +45,7 @@ public class PhotosController {
 	 * adding and deleting their corresponding strings from usersList.
 	*/
 
-	public static ObservableList<String> usersList = FXCollections.observableArrayList("admin", "stock");
+	//public static ObservableList<String> usersList = FXCollections.observableArrayList("admin", "stock");
 	
 	/*This is for loading pages directly from login*/
 	public void goToApplication(ActionEvent e){
@@ -54,7 +54,7 @@ public class PhotosController {
 			FXMLLoader loader;
 			Parent root;
 			boolean registeredUser = false;
-			if(usersList.contains(userName.getText())){
+			if(photos.model.Users.usersList.contains(userName.getText())){
 				registeredUser = true;
 			}
 			if(userName.getText().equals("admin") && registeredUser){
@@ -96,7 +96,7 @@ public class PhotosController {
             ListViewController controller = loader.getController();
 
             // Pass in the users list (assumed to be initialized)
-            controller.setUsersList(usersList);
+            controller.setUsersList(photos.model.Users.usersList);
 
             // Create and show a new stage
             Stage listStage = new Stage();
@@ -111,9 +111,9 @@ public class PhotosController {
 	/*This is so that the admin user can create new users*/
 	public void createUser(ActionEvent e){
 		String newUser = newUserName.getText();
-		if (!newUser.isEmpty() && !usersList.contains(newUser)) {
-			usersList.add(newUser);
-			saveUsersList();
+		if (!newUser.isEmpty() && !photos.model.Users.usersList.contains(newUser)) {
+			photos.model.Users.usersList.add(newUser);
+			photos.model.Users.saveUsersList();
 		}
 		try{
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/photos/view/Login.fxml"));
@@ -132,9 +132,9 @@ public class PhotosController {
 	/*This is so that the admin user can delete users */
 	public void deleteUser(ActionEvent event) {
 		String userToDelete = deadUserName.getText();
-		if (!userToDelete.isEmpty() && usersList.contains(userToDelete)) {
-			usersList.remove(userToDelete);
-			saveUsersList();
+		if (!userToDelete.isEmpty() && photos.model.Users.usersList.contains(userToDelete)) {
+			photos.model.Users.usersList.remove(userToDelete);
+			photos.model.Users.saveUsersList();
 		}
 		try{
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/photos/view/Login.fxml"));
@@ -148,27 +148,6 @@ public class PhotosController {
 		catch (IOException ex) {
             ex.printStackTrace(); // Optional: replace with GUI error dialog
         }
-	}
-	
-	public static void saveUsersList() {
-		try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("usersList.ser"))) {
-			out.writeObject(new ArrayList<>(usersList)); // Convert ObservableList to ArrayList
-		} catch (IOException e) {
-			e.printStackTrace();
-		}
-	}
-
-// Load usersList from disk
-	public static void loadUsersList() {
-		File file = new File("usersList.ser");
-		if (!file.exists()) return; // Don't load if file doesn't exist, which it shouldn't at the beginning of the first starting of the application
-
-		try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(file))) {
-			ArrayList<String> list = (ArrayList<String>) in.readObject();
-			usersList.setAll(list); // Update ObservableList with loaded data
-		} catch (IOException | ClassNotFoundException e) {
-			e.printStackTrace();
-		}
 	}
 
 	//Load stock page
