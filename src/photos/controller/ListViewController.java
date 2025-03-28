@@ -1,4 +1,4 @@
-package photos.view;
+package photos.controller;
 
 import javafx.fxml.FXML;
 import javafx.scene.control.ListView;

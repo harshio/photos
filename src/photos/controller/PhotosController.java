@@ -1,4 +1,4 @@
-package photos.view;
+package photos.controller;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
