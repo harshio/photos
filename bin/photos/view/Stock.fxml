@@ -4,7 +4,7 @@
 
 <HBox xmlns="http://javafx.com/javafx"
       xmlns:fx="http://javafx.com/fxml"
-      fx:controller="photos.view.StockController"
+      fx:controller="photos.controller.StockController"
       fx:id="imageContainer"
       spacing="15"
       alignment="CENTER"

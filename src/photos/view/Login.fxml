@@ -8,7 +8,7 @@
 <GridPane
     xmlns="http://javafx.com/javafx/11"
     xmlns:fx="http://javafx.com/fxml/1"
-    fx:controller="photos.view.PhotosController"
+    fx:controller="photos.controller.PhotosController"
     vgap="10" hgap="10">
 
     <Text text="Log In" GridPane.valignment="TOP"/>
