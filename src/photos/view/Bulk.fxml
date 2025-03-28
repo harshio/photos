@@ -11,7 +11,7 @@
     fx:controller="photos.controller.PhotosController"
     vgap="10" hgap="10">
 
-    <Text text="Bulk" GridPane.valignment="TOP"/>
+    <Text text="Your Albums" GridPane.valignment="TOP"/>
 
     <padding>
         <Insets top="10" right="10" bottom="10" left="10"/>
