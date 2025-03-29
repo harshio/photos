@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+
+<GridPane
+    xmlns="http://javafx.com/javafx/11"
+    xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="photos.controller.AlbumController"
+    vgap="10" hgap="10">
+<!--should make it BulkController after I add the onActions-->
+    <VBox fx:id="photoList" spacing="5" GridPane.rowIndex="3">
+    <!-- dynamically added Labels will appear here -->
+    </VBox>
+    <Button fx:id = "leave" text="Leave Album" GridPane.rowIndex="0" onAction = "#leaveAlbum"/>
+    <Button fx:id = "add" text = "Add (Upload) Photo" GridPane.rowIndex="1" onAction="#uploadPhoto"/>
+    <Button fx:id = "delete" text = "Delete Album" GridPane.rowIndex = "2" onAction = "#deleteAlbum"/>
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
+</GridPane>

@@ -66,6 +66,7 @@ public class PhotosController {
 				root = loader.load();
 			}
 			else if(registeredUser){
+				photos.model.Users.currentUser = userName.getText();
 				loader = new FXMLLoader(getClass().getResource("/photos/view/Bulk.fxml"));
 				root = loader.load();
 			}
@@ -112,8 +113,9 @@ public class PhotosController {
 	public void createUser(ActionEvent e){
 		String newUser = newUserName.getText();
 		if (!newUser.isEmpty() && !photos.model.Users.usersList.contains(newUser)) {
-			photos.model.Users.usersList.add(newUser);
+			photos.model.Users.addUser(newUser);
 			photos.model.Users.saveUsersList();
+			photos.model.Users.saveUserAlbums();
 		}
 		try{
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/photos/view/Login.fxml"));
@@ -133,8 +135,9 @@ public class PhotosController {
 	public void deleteUser(ActionEvent event) {
 		String userToDelete = deadUserName.getText();
 		if (!userToDelete.isEmpty() && photos.model.Users.usersList.contains(userToDelete)) {
-			photos.model.Users.usersList.remove(userToDelete);
+			photos.model.Users.removeUser(userToDelete);
 			photos.model.Users.saveUsersList();
+			photos.model.Users.saveUserAlbums();
 		}
 		try{
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/photos/view/Login.fxml"));

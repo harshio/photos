@@ -8,11 +8,13 @@
 <GridPane
     xmlns="http://javafx.com/javafx/11"
     xmlns:fx="http://javafx.com/fxml/1"
-    fx:controller="photos.controller.PhotosController"
+    fx:controller="photos.controller.BulkController"
     vgap="10" hgap="10">
-
-    <Text text="Your Albums" GridPane.valignment="TOP"/>
-
+<!--should make it BulkController after I add the onActions-->
+    <Text text="Your Album(s)" GridPane.rowIndex="0"/>
+    <Button fx:id = "createButton" text = "Create" GridPane.rowIndex="1" onAction="#createAlbum"/>
+    <VBox fx:id="buttonContainer" xmlns:fx="http://javafx.com/fxml" GridPane.rowIndex="2" spacing="5">
+</VBox>
     <padding>
         <Insets top="10" right="10" bottom="10" left="10"/>
     </padding>
