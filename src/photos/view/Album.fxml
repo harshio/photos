@@ -11,9 +11,16 @@
     fx:controller="photos.controller.AlbumController"
     vgap="10" hgap="10">
 <!--should make it BulkController after I add the onActions-->
-    <VBox fx:id="photoList" spacing="5" GridPane.rowIndex="3">
+    <!--VBox fx:id="photoList" spacing="5" GridPane.rowIndex="3"-->
     <!-- dynamically added Labels will appear here -->
-    </VBox>
+    <!--/VBox-->
+    <StackPane fx:id="slideContainer" GridPane.rowIndex="3" prefHeight="150" prefWidth="200" />
+
+    <HBox spacing="10" alignment="CENTER" GridPane.rowIndex="4">
+        <Button fx:id="prevButton" text="Previous" onAction="#handlePrev"/>
+        <Button fx:id="nextButton" text="Next" onAction="#handleNext"/>
+    </HBox>
+
     <Button fx:id = "leave" text="Leave Album" GridPane.rowIndex="0" onAction = "#leaveAlbum"/>
     <Button fx:id = "add" text = "Add (Upload) Photo" GridPane.rowIndex="1" onAction="#uploadPhoto"/>
     <Button fx:id = "delete" text = "Delete Album" GridPane.rowIndex = "2" onAction = "#deleteAlbum"/>

@@ -2,6 +2,7 @@ package photos.controller;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -29,6 +30,14 @@ public class AlbumController {
     @FXML Button delete;
     @FXML
     private VBox photoList;
+    @FXML
+    private StackPane slideContainer;
+    @FXML
+    private Button prevButton, nextButton;
+
+    private ArrayList<ImageView> slides = new ArrayList<>();
+    private int currentIndex = 0;
+
 
     public void initialize(){
         Set<String> albumPhotos = photos.model.Users.userAlbums
@@ -36,7 +45,7 @@ public class AlbumController {
             .get(Users.currentAlbum);
 
         if (albumPhotos == null) return;
-        photoList.getChildren().clear();
+        slides.clear();
 
         Platform.runLater(() -> {
             for (String path : albumPhotos) {
@@ -49,7 +58,11 @@ public class AlbumController {
                     loadInOptions(e);
                 });
             
-                photoList.getChildren().add(imageView);
+                slides.add(imageView);
+            }
+
+            if (!slides.isEmpty()) {
+                slideContainer.getChildren().setAll(slides.get(currentIndex));
             }
         });
         
@@ -110,7 +123,9 @@ public class AlbumController {
                 photos.model.Users.currentPhoto = photoPath;
                 loadInOptions(ev);
             });
-            photoList.getChildren().add(imageView);
+            slides.add(imageView);
+            currentIndex = slides.size() - 1; // Show the new image
+            slideContainer.getChildren().setAll(imageView);
             photos.model.Users.addPhoto(photos.model.Users.currentUser, photos.model.Users.currentAlbum, path);
             photos.model.Users.saveUserAlbums();
             System.out.println("Added photo: " + path);
@@ -133,5 +148,22 @@ public class AlbumController {
             ex.printStackTrace(); // Optional: replace with GUI error dialog
         }
     }
+
+    @FXML
+    private void handleNext(ActionEvent e) {
+        if (currentIndex < slides.size() - 1) {
+            currentIndex++;
+            slideContainer.getChildren().setAll(slides.get(currentIndex));
+        }
+    }
+
+    @FXML
+    private void handlePrev(ActionEvent e) {
+        if (currentIndex > 0) {
+            currentIndex--;
+            slideContainer.getChildren().setAll(slides.get(currentIndex));
+        }
+    }
+
 
 }
