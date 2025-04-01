@@ -28,7 +28,7 @@ public class Users {
     public static String currentPhoto = null;
     public static String currentUser = null;
     public static ObservableList<String> photoPaths = FXCollections.observableArrayList();
-    public static Map<String, Map<String, Set<String>>> userAlbums = new HashMap<>();
+    public static Map<String, Map<String, Set<Photo>>> userAlbums = new HashMap<>();
     static{
         initializeUserAlbums();
     }
@@ -69,7 +69,22 @@ public class Users {
     }
 
     public static void addPhoto(String username, String albumName, String photoPath) {
-        userAlbums.get(username).get(albumName).add(photoPath);
+        Set<Photo> photos = userAlbums.get(username).get(albumName);
+        if (photos == null) return;
+
+        photos.add(new Photo(photoPath));
+    }
+
+    public static void addDate(String username, String albumName, String photoPath, String date){
+        Set<Photo> photos = userAlbums.get(username).get(albumName);
+        if (photos == null) return;
+    
+        for (Photo p : photos) {
+            if (p.getPath().equals(photoPath)) {
+                p.addDate(date);
+                break;
+            }
+        }
     }
 
     public static void addUser(String username) {
@@ -95,7 +110,7 @@ public class Users {
             return;
         }
     
-        Map<String, Set<String>> albums = userAlbums.get(username);
+        Map<String, Set<Photo>> albums = userAlbums.get(username);
         if (!albums.containsKey(albumName)) {
             System.out.println("Album '" + albumName + "' does not exist for user '" + username + "'.");
             return;
@@ -106,25 +121,10 @@ public class Users {
     }
     
     public static void removePhoto(String username, String albumName, String photoPath) {
-        if (!userAlbums.containsKey(username)) {
-            System.out.println("User '" + username + "' does not exist.");
-            return;
-        }
-    
-        Map<String, Set<String>> albums = userAlbums.get(username);
-        if (!albums.containsKey(albumName)) {
-            System.out.println("Album '" + albumName + "' does not exist for user '" + username + "'.");
-            return;
-        }
-    
-        Set<String> photos = albums.get(albumName);
-        if (!photos.contains(photoPath)) {
-            System.out.println("Photo '" + photoPath + "' not found in album '" + albumName + "'.");
-            return;
-        }
-    
-        photos.remove(photoPath);
-        System.out.println("Photo '" + photoPath + "' removed from album '" + albumName + "'.");
+        Set<Photo> photos = userAlbums.get(username).get(albumName);
+        if (photos == null) return;
+
+        photos.remove(new Photo(photoPath));
     }
 
     public static void saveUserAlbums() {
@@ -147,7 +147,7 @@ public class Users {
         }
 
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(file))) {
-            userAlbums = (Map<String, Map<String, Set<String>>>) in.readObject();
+            userAlbums = (Map<String, Map<String, Set<Photo>>>) in.readObject();
             System.out.println("userAlbums loaded successfully.");
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();

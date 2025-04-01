@@ -21,6 +21,7 @@ import javafx.scene.image.ImageView;
 import javafx.scene.input.MouseEvent;
 
 import java.io.*;
+import java.nio.file.Files;
 //import javafx.scene.control.ListView; this import probably won't be used in this class but I'm paranoid
 import java.util.ArrayList;
 import java.util.Set;
@@ -35,12 +36,12 @@ public class AlbumController {
     @FXML
     private Button prevButton, nextButton;
 
-    private ArrayList<ImageView> slides = new ArrayList<>();
+    private ArrayList<VBox> slides = new ArrayList<>();
     private int currentIndex = 0;
 
 
     public void initialize(){
-        Set<String> albumPhotos = photos.model.Users.userAlbums
+        Set<photos.model.Photo> albumPhotos = photos.model.Users.userAlbums
             .get(Users.currentUser)
             .get(Users.currentAlbum);
 
@@ -48,17 +49,35 @@ public class AlbumController {
         slides.clear();
 
         Platform.runLater(() -> {
-            for (String path : albumPhotos) {
-                final String photoPath = path; // capture correctly
+            for (photos.model.Photo photo : albumPhotos) {
+                final String photoPath = photo.getPath(); // capture correctly
                 Image image = new Image(new File(photoPath).toURI().toString(), 100, 100, true, true, true);
                 ImageView imageView = new ImageView(image);
+
+                File file = new File(photoPath);
+                String modifiedTime;
+                try {
+                    modifiedTime = "Date taken: " +
+                        Files.getLastModifiedTime(file.toPath()).toInstant()
+                            .atZone(java.time.ZoneId.systemDefault())
+                            .format(java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+                } catch (IOException ex) {
+                    modifiedTime = "Date taken: (unavailable)";
+                }
+                photos.model.Users.addDate(photos.model.Users.currentUser, photos.model.Users.currentAlbum, photoPath, modifiedTime);
+                photos.model.Users.saveUserAlbums();
+                Label dateLabel = new Label(modifiedTime);
+
+                // Wrap in VBox
+                VBox slide = new VBox(5, imageView, dateLabel);
+                slide.setStyle("-fx-alignment: center;");
             
                 imageView.setOnMouseClicked(e -> {
                     photos.model.Users.currentPhoto = photoPath;
                     loadInOptions(e);
                 });
             
-                slides.add(imageView);
+                slides.add(slide);
             }
 
             if (!slides.isEmpty()) {
@@ -119,13 +138,28 @@ public class AlbumController {
             Image image = new Image(new File(path).toURI().toString(), 100, 100, true, true, true);
             ImageView imageView = new ImageView(image);
             final String photoPath = path;
+            String modifiedTime;
+            try {
+                modifiedTime = "Date taken: " +
+                    Files.getLastModifiedTime(new File(photoPath).toPath()).toInstant()
+                        .atZone(java.time.ZoneId.systemDefault())
+                        .format(java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+            } catch (IOException ex) {
+                modifiedTime = "Date taken: (unavailable)";
+            }
+            photos.model.Users.addDate(photos.model.Users.currentUser, photos.model.Users.currentAlbum, photoPath, modifiedTime);
+            photos.model.Users.saveUserAlbums();
+            Label dateLabel = new Label(modifiedTime);
+            
+            VBox slide = new VBox(5, imageView, dateLabel);
+            slide.setStyle("-fx-alignment: center;");
             imageView.setOnMouseClicked(ev -> {
                 photos.model.Users.currentPhoto = photoPath;
                 loadInOptions(ev);
             });
-            slides.add(imageView);
+            slides.add(slide);
             currentIndex = slides.size() - 1; // Show the new image
-            slideContainer.getChildren().setAll(imageView);
+            slideContainer.getChildren().setAll(slide);
             photos.model.Users.addPhoto(photos.model.Users.currentUser, photos.model.Users.currentAlbum, path);
             photos.model.Users.saveUserAlbums();
             System.out.println("Added photo: " + path);
