@@ -24,6 +24,7 @@ import java.io.*;
 import java.nio.file.Files;
 //import javafx.scene.control.ListView; this import probably won't be used in this class but I'm paranoid
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 public class AlbumController {
     @FXML Button leave;
@@ -64,12 +65,14 @@ public class AlbumController {
                 } catch (IOException ex) {
                     modifiedTime = "Date taken: (unavailable)";
                 }
+                String trueTime = modifiedTime.substring(12);
+                photos.model.Users.addRealDate(photos.model.Users.currentUser, photos.model.Users.currentAlbum, photoPath, trueTime);
                 photos.model.Users.addDate(photos.model.Users.currentUser, photos.model.Users.currentAlbum, photoPath, modifiedTime);
                 photos.model.Users.saveUserAlbums();
                 Label dateLabel = new Label(modifiedTime);
-
+                Label caption = new Label(photos.model.Users.getCaption(photos.model.Users.currentUser, photos.model.Users.currentAlbum, photoPath));
                 // Wrap in VBox
-                VBox slide = new VBox(5, imageView, dateLabel);
+                VBox slide = new VBox(5, imageView, dateLabel, caption);
                 slide.setStyle("-fx-alignment: center;");
             
                 imageView.setOnMouseClicked(e -> {
@@ -147,10 +150,11 @@ public class AlbumController {
             } catch (IOException ex) {
                 modifiedTime = "Date taken: (unavailable)";
             }
+            String trueTime = modifiedTime.substring(12);
+            photos.model.Users.addRealDate(photos.model.Users.currentUser, photos.model.Users.currentAlbum, photoPath, trueTime);
             photos.model.Users.addDate(photos.model.Users.currentUser, photos.model.Users.currentAlbum, photoPath, modifiedTime);
             photos.model.Users.saveUserAlbums();
             Label dateLabel = new Label(modifiedTime);
-            
             VBox slide = new VBox(5, imageView, dateLabel);
             slide.setStyle("-fx-alignment: center;");
             imageView.setOnMouseClicked(ev -> {

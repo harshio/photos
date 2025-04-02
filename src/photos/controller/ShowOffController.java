@@ -12,15 +12,21 @@ import javafx.stage.Stage;
 import photos.model.Users;
 import javafx.collections.*;
 import java.io.*;
+import javafx.scene.control.Label;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import javafx.scene.image.Image;
 
 
 //import javafx.scene.control.ListView; this import probably won't be used in this class but I'm paranoid
 import java.util.ArrayList;
+import java.util.Set;
 public class ShowOffController {
     @FXML
     private ImageView largeImageView;
+
+    @FXML
+    private VBox tagBox;
 
     public void initialize() {
         System.out.println("ShowOffController initialized");
@@ -32,6 +38,21 @@ public class ShowOffController {
             if (file.exists()) {
                 Image fullImage = new Image(file.toURI().toString());
                 largeImageView.setImage(fullImage);
+            }
+        }
+
+        Set<photos.model.Photo> albumPhotos = photos.model.Users.userAlbums
+            .get(Users.currentUser)
+            .get(Users.currentAlbum);
+        
+        for(photos.model.Photo photo: albumPhotos){
+            if(photo.getPath().equals(Users.currentPhoto)){
+                Set<String> tags = photo.getTags();
+                for(String tag: tags){
+                    Label tagLabel = new Label(tag);
+                    tagBox.getChildren().add(tagLabel);
+                }
+                break;
             }
         }
     }

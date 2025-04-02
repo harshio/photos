@@ -15,7 +15,7 @@ import java.util.ArrayList;
 public class CreateAlbumController {
     @FXML TextField albumName;
     @FXML Button createAlbum;
-
+    
     public void createAlbum(ActionEvent e){
         try{
             String name = albumName.getText().trim();

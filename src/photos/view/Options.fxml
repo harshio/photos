@@ -13,6 +13,17 @@
 <!--should make it BulkController after I add the onActions-->
     <Button fx:id = "delete" text="Delete Photo" GridPane.rowIndex="0" onAction = "#deletePhoto"/>
     <Button fx:id = "display" text = "Display Photo" GridPane.rowIndex="1" onAction = "#displayPhoto"/>
+    <TextField fx:id = "newTag" text = "Write whatever tag you want here." GridPane.rowIndex="2"/>
+    <Button fx:id = "addTag" text = "Add tag" GridPane.rowIndex="2" GridPane.columnIndex="1" onAction = "#addTag"/>
+    <TextField fx:id="dying" text = "Write down the tag you want to be deleted here." GridPane.rowIndex="3"/>
+    <Button fx:id = "dead" text = "Delete tag" GridPane.rowIndex="3" GridPane.columnIndex="1" onAction="#deleteTag"/>
+    <TextField fx:id = "newCaption" text = "Write whatever caption you want here." GridPane.rowIndex="4"/>
+    <Button fx:id = "addCaption" text = "Add caption" GridPane.rowIndex="4" GridPane.columnIndex="1" onAction="#addCaption"/>
+    <Text fx:id="addCaptionMessage" text="" GridPane.rowIndex="4" GridPane.columnIndex="2"/>
+    <TextField fx:id = "differentCaption" text = "Write the new caption here." GridPane.rowIndex="5"/>
+    <Button fx:id = "changeCaption" text= "Change caption" GridPane.rowIndex="5" GridPane.columnIndex="1" onAction="#changeCaption"/>
+    <Text fx:id="changeCaptionMessage" text="" GridPane.rowIndex="5" GridPane.columnIndex="2"/>
+    <Button fx:id = "loadInAlbum" text="Back to Album Page" GridPane.rowIndex="6" onAction="#loadInAlbum"/>
     <padding>
         <Insets top="10" right="10" bottom="10" left="10"/>
     </padding>

@@ -87,6 +87,86 @@ public class Users {
         }
     }
 
+    public static void addRealDate(String username, String albumName, String photoPath, String date){
+        Set<Photo> photos = userAlbums.get(username).get(albumName);
+        if (photos == null) return;
+    
+        for (Photo p : photos) {
+            if (p.getPath().equals(photoPath)) {
+                p.addRealDate(date);
+                break;
+            }
+        }
+    }
+
+    public static void addTag(String username, String albumName, String photoPath, String tag){
+        Set<Photo> photos = userAlbums.get(username).get(albumName);
+        if (photos == null) return;
+
+        for(Photo p : photos){
+            if(p.getPath().equals(photoPath)){
+                p.addTag(tag);
+                break;
+            }
+        }
+    }
+
+    public static void removeTag(String username, String albumName, String photoPath, String tag){
+        Set<Photo> photos = userAlbums.get(username).get(albumName);
+        if (photos == null) return;
+
+        for(Photo p : photos){
+            if(p.getPath().equals(photoPath)){
+                Set<String> tags = p.getTags();
+                if(tags == null) return;
+
+                for(String t: tags){
+                    if(t.equals(tag)){
+                        p.removeTag(tag);
+                        break;
+                    }
+                }
+                break;
+            }
+        }
+    }
+
+    public static void addCaption(String username, String albumName, String photoPath, String caption){
+        Set<Photo> photos = userAlbums.get(username).get(albumName);
+        if (photos == null) return;
+
+        for(Photo p : photos){
+            if(p.getPath().equals(photoPath)){
+                p.setCaption(caption);
+                break;
+            }
+        }
+    }
+
+    public static String getCaption(String username, String albumName, String photoPath){
+        Set<Photo> photos = userAlbums.get(username).get(albumName);
+        if (photos == null) return "";
+
+        for(Photo p : photos){
+            if(p.getPath().equals(photoPath)){
+                return p.getCaption();
+            }
+        }
+        return "";
+    }
+
+    public static void removeCaption(String username, String albumName, String photoPath){
+        Set<Photo> photos = userAlbums.get(username).get(albumName);
+        if (photos == null) return;
+
+        for(Photo p : photos){
+            if(p.getPath().equals(photoPath)){
+                p.removeCaption();
+                break;
+            }
+        }
+    }
+
     public static void addUser(String username) {
         if (!usersList.contains(username)) {
             usersList.add(username); 

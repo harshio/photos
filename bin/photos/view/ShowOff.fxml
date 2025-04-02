@@ -4,6 +4,8 @@
 <?import javafx.scene.text.Text?>
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.VBox?>
+
 
 <GridPane xmlns="http://javafx.com/javafx/11"
           xmlns:fx="http://javafx.com/fxml/1"
@@ -16,6 +18,10 @@
                GridPane.rowIndex="1"
                fitWidth="600"
                preserveRatio="true" />
+
+    <VBox fx:id="tagBox" spacing="5" GridPane.rowIndex="2">
+    </VBox>
+
     <padding>
         <Insets top="10" right="10" bottom="10" left="10"/>
     </padding>
