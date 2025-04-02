@@ -106,6 +106,13 @@ public class AlbumController {
 
         Set<photos.model.Photo> albumPhotos = album.getPhotos();
 
+        if (albumPhotos == null || albumPhotos.isEmpty()) {
+            System.out.println("No photos in album — skipping date calculations.");
+            loadBulkView(e); // 👈 reuse your scene load logic
+            return;
+        }
+        
+
         Calendar oldest = null;
         Calendar newest = null;
 
@@ -251,5 +258,18 @@ public class AlbumController {
         }
     }
 
+    private void loadBulkView(ActionEvent e) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/photos/view/Bulk.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+            stage.setScene(new Scene(root));
+            stage.setTitle("Bulk View");
+            stage.show();
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }
+    
 
 }

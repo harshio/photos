@@ -30,7 +30,7 @@ public class Users {
     public static String currentAlbum = null;
     public static String currentPhoto = null;
     public static String currentUser = null;
-    //we'll have to include one more field here for storing a set of tagtype strings that were added in by the user
+    //we'll have to include one more hash map here for storing a set of tagtype strings that were added in by the user
     //we'll probably have to make another .ser file lol, cus I'm not refactoring the code again
     public static ObservableList<String> photoPaths = FXCollections.observableArrayList();
     public static Map<String, Map<String, Album>> userAlbums = new HashMap<>();
