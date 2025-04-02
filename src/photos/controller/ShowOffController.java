@@ -28,9 +28,13 @@ public class ShowOffController {
     @FXML
     private VBox tagBox;
 
-    public void initialize() {
+    public void initialize() {       
         System.out.println("ShowOffController initialized");
         System.out.println("Users.currentPhoto = " + Users.currentPhoto);
+
+        if (!tagBox.getChildren().isEmpty()) {
+            tagBox.getChildren().clear();
+        } 
 
         String photoPath = Users.currentPhoto;
         if (photoPath != null && !photoPath.isEmpty()) {
