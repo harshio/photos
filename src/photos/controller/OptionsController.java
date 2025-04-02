@@ -30,6 +30,9 @@ public class OptionsController {
     private Text addCaptionMessage;
     @FXML
     private Text changeCaptionMessage;
+    @FXML Button locationButton;
+    @FXML Button nameButton;
+    @FXML Button occasionButton;
 
     public void displayPhoto(ActionEvent e){
         System.out.println("I'm a debugging message");
@@ -105,7 +108,7 @@ public class OptionsController {
         }
     }
 
-    public void changeCaption(){
+    public void changeCaption(ActionEvent e){
         if(!photos.model.Users.getCaption(photos.model.Users.currentUser, photos.model.Users.currentAlbum, photos.model.Users.currentPhoto).equals("")){
             photos.model.Users.removeCaption(photos.model.Users.currentUser, photos.model.Users.currentAlbum, photos.model.Users.currentPhoto);
             photos.model.Users.addCaption(photos.model.Users.currentUser, photos.model.Users.currentAlbum, photos.model.Users.currentPhoto, differentCaption.getText());
@@ -117,5 +120,10 @@ public class OptionsController {
             changeCaptionMessage.setText("Please create a caption first");
             differentCaption.setText("Write the new caption here.");
         }
+    }
+
+    public void placeType(ActionEvent e){
+        Button clicked = (Button) e.getSource();
+        newTag.setText(clicked.getText() + ", ");
     }
 }

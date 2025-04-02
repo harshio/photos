@@ -24,6 +24,10 @@
     <Button fx:id = "changeCaption" text= "Change caption" GridPane.rowIndex="5" GridPane.columnIndex="1" onAction="#changeCaption"/>
     <Text fx:id="changeCaptionMessage" text="" GridPane.rowIndex="5" GridPane.columnIndex="2"/>
     <Button fx:id = "loadInAlbum" text="Back to Album Page" GridPane.rowIndex="6" onAction="#loadInAlbum"/>
+    <Text text="Here's some useful tag types" GridPane.rowIndex="8"/>
+    <Button fx:id="locationButton" text="location" GridPane.rowIndex="9" onAction="#placeType"/>
+    <Button fx:id="nameButton" text="name" GridPane.rowIndex="10" onAction="#placeType"/>
+    <Button fx:id="occasionButton" text="occasion" GridPane.rowIndex="11" onAction="#placeType"/>
     <padding>
         <Insets top="10" right="10" bottom="10" left="10"/>
     </padding>
