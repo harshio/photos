@@ -55,23 +55,15 @@ public class Photo implements Serializable {
         dates.add(date);
     }
 
-    public Set<Calendar> getRealDates(){
-        return realDates;
+    // In Photo.java
+    public void addRealDate(Calendar calendar) {
+        calendar.set(Calendar.MILLISECOND, 0);
+        realDates.add(calendar);
     }
 
-    public void addRealDate(String date){
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        try{
-            Date date1 = sdf.parse(date);
-            Calendar calendar = Calendar.getInstance();
-            calendar.setTime(date1);
-            calendar.set(Calendar.MILLISECOND, 0);
-            realDates.add(calendar);
-        }
-        catch(ParseException e){
-            System.out.println("Failed to parse date: " + date);
-            e.printStackTrace();
-        }
+
+    public Set<Calendar> getRealDates(){
+        return realDates;
     }
 
     public Set<String> getTags() {

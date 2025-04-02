@@ -6,7 +6,10 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
+import java.util.Date;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 
 import javafx.collections.FXCollections;
@@ -95,20 +98,44 @@ public class Users {
         }
     }
 
-    public static void addRealDate(String username, String albumName, String photoPath, String date){
+    public static void addRealDate(String username, String albumName, String photoPath, String dateStr) {
         Album album = userAlbums.get(username).get(albumName);
-        if (album == null) return;
+        if (album == null){
+            System.out.println("Album is empty?");
+            return;
+        } 
         Set<Photo> photos = album.getPhotos();
+        if (photos == null) {
+            System.out.println("Photo set is empty?");
+            return;
+        }
+        if(photos.isEmpty()){
+            System.out.println("Real but empty?");
+            return;
+        }
+        try {
+            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+            Date parsedDate = sdf.parse(dateStr);
+            Calendar calendar = Calendar.getInstance();
+            calendar.setTime(parsedDate);
+            for (Photo p : photos) {
+                System.out.println("Comparing: " + p.getPath() + " == " + photoPath);
+                System.out.println("Looking for photo path match...");
+                System.out.println(" → p.getPath(): " + p.getPath());
+                System.out.println(" → photoPath : " + photoPath);
 
-        if (photos == null) return;
-    
-        for (Photo p : photos) {
-            if (p.getPath().equals(photoPath)) {
-                p.addRealDate(date);
-                break;
+                if (p.getPath().equals(photoPath)) {
+                    System.out.println("Match found! Adding calendar.");
+                    p.addRealDate(calendar); // ✅ now using the Calendar-based method
+                    break;
+                }
             }
+        } catch (Exception e) {
+            System.out.println("Failed to parse and store date for photo: " + photoPath);
+            e.printStackTrace();
         }
     }
+
 
     public static void addTag(String username, String albumName, String photoPath, String tag){
         Album album = userAlbums.get(username).get(albumName);

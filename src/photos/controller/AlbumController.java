@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.Parent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import photos.model.Photo;
 import photos.model.Users;
 import javafx.application.Platform;
 import javafx.collections.*;
@@ -22,8 +23,10 @@ import javafx.scene.input.MouseEvent;
 
 import java.io.*;
 import java.nio.file.Files;
+import java.text.SimpleDateFormat;
 //import javafx.scene.control.ListView; this import probably won't be used in this class but I'm paranoid
 import java.util.ArrayList;
+import java.util.Calendar;
 import java.util.List;
 import java.util.Set;
 public class AlbumController {
@@ -94,6 +97,47 @@ public class AlbumController {
     }
 
     public void leaveAlbum(ActionEvent e){
+        //we have to calculate oldest date and newest date in here
+        photos.model.Album album = photos.model.Users.userAlbums
+        .get(photos.model.Users.currentUser)
+        .get(photos.model.Users.currentAlbum);
+
+        if (album == null) return;
+
+        Set<photos.model.Photo> albumPhotos = album.getPhotos();
+
+        Calendar oldest = null;
+        Calendar newest = null;
+
+        for (photos.model.Photo photo : albumPhotos) {
+            Set<Calendar> realDates = photo.getRealDates();
+            for (Calendar date : realDates) {
+                if (oldest == null || date.before(oldest)) {
+                    oldest = (Calendar) date.clone();
+                }
+                if (newest == null || date.after(newest)) {
+                    newest = (Calendar) date.clone();
+                }
+            }
+        }
+
+        System.out.println("Checking for realDates in album: " + Users.currentAlbum);
+        for (Photo p : albumPhotos) {
+            System.out.println("Photo: " + p.getPath());
+            for (Calendar c : p.getRealDates()) {
+                System.out.println(" - RealDate: " + c.getTime());
+            }
+        }
+
+
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        String oldestStr = sdf.format(oldest.getTime());
+        String newestStr = sdf.format(newest.getTime());
+        album.setOldestDate(oldestStr);
+        album.setNewestDate(newestStr);
+
+        photos.model.Users.saveUserAlbums();
+
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/photos/view/Bulk.fxml"));
             Parent root = loader.load();
@@ -154,7 +198,7 @@ public class AlbumController {
                 modifiedTime = "Date taken: (unavailable)";
             }
             String trueTime = modifiedTime.substring(12);
-            photos.model.Users.addRealDate(photos.model.Users.currentUser, photos.model.Users.currentAlbum, photoPath, trueTime);
+            System.out.println("Calling addRealDate for: " + photoPath + " with " + trueTime);
             photos.model.Users.addDate(photos.model.Users.currentUser, photos.model.Users.currentAlbum, photoPath, modifiedTime);
             photos.model.Users.saveUserAlbums();
             Label dateLabel = new Label(modifiedTime);
@@ -168,6 +212,7 @@ public class AlbumController {
             currentIndex = slides.size() - 1; // Show the new image
             slideContainer.getChildren().setAll(slide);
             photos.model.Users.addPhoto(photos.model.Users.currentUser, photos.model.Users.currentAlbum, path);
+            photos.model.Users.addRealDate(photos.model.Users.currentUser, photos.model.Users.currentAlbum, photoPath, trueTime);
             photos.model.Users.saveUserAlbums();
             System.out.println("Added photo: " + path);
         } else {

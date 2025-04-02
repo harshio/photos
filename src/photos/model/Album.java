@@ -19,8 +19,8 @@ public class Album implements Serializable {
 
     public Album() {
         this.photos = new HashSet<>();
-        this.oldestDate = "";
-        this.newestDate = "";
+        this.oldestDate = "Unknown";
+        this.newestDate = "Unknown";
     }
     
     public Set<Photo> getPhotos() {

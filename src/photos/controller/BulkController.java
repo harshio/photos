@@ -1,6 +1,7 @@
 package photos.controller;
 
 import javafx.scene.control.Button;
+import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
 import javafx.event.ActionEvent;
@@ -27,14 +28,27 @@ public class BulkController {
 
         buttonContainer.getChildren().clear(); // clear previous buttons (if any)
 
-        for (String albumName : albums.keySet()) {
-            Button albumButton = new Button(albumName);
+        for (Map.Entry<String, photos.model.Album> entry : albums.entrySet()) {
+            String albumName = entry.getKey();
+            photos.model.Album album = entry.getValue();
+        
+        
+            Button albumButton = new Button(albumName); // just the album name
+
+            Label dateLabel = new Label("(" + album.getOldestDate() + " → " + album.getNewestDate() + ")");
+            dateLabel.setStyle("-fx-font-size: 11px; -fx-text-fill: gray;");
+
+            Label number = new Label("Photos stored: "+album.getSize());
+            dateLabel.setStyle("-fx-font-size: 11px; -fx-text-fill: gray;");
+
+            VBox albumBox = new VBox(5); // or whatever spacing you prefer
+            albumBox.getChildren().addAll(albumButton, dateLabel, number);
             albumButton.setOnAction(e -> {
                 Users.currentAlbum = albumName;
                 loadInAlbum(e); // Replace with your album-opening method
             });
 
-            buttonContainer.getChildren().add(albumButton);
+            buttonContainer.getChildren().add(albumBox);
         }
         
     }
