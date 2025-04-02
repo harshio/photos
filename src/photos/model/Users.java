@@ -27,8 +27,10 @@ public class Users {
     public static String currentAlbum = null;
     public static String currentPhoto = null;
     public static String currentUser = null;
+    //we'll have to include one more field here for storing a set of tagtype strings that were added in by the user
+    //we'll probably have to make another .ser file lol, cus I'm not refactoring the code again
     public static ObservableList<String> photoPaths = FXCollections.observableArrayList();
-    public static Map<String, Map<String, Set<Photo>>> userAlbums = new HashMap<>();
+    public static Map<String, Map<String, Album>> userAlbums = new HashMap<>();
     static{
         initializeUserAlbums();
     }
@@ -65,18 +67,24 @@ public class Users {
 
     public static void createAlbum(String username, String albumName) {
         userAlbums.computeIfAbsent(username, k -> new HashMap<>())
-                  .putIfAbsent(albumName, new HashSet<>());
+                  .putIfAbsent(albumName, new Album());
     }
 
     public static void addPhoto(String username, String albumName, String photoPath) {
-        Set<Photo> photos = userAlbums.get(username).get(albumName);
+        Album album = userAlbums.get(username).get(albumName);
+        if (album == null) return;
+        Set<Photo> photos = album.getPhotos();
+
         if (photos == null) return;
 
         photos.add(new Photo(photoPath));
     }
 
     public static void addDate(String username, String albumName, String photoPath, String date){
-        Set<Photo> photos = userAlbums.get(username).get(albumName);
+        Album album = userAlbums.get(username).get(albumName);
+        if (album == null) return;
+        Set<Photo> photos = album.getPhotos();
+
         if (photos == null) return;
     
         for (Photo p : photos) {
@@ -88,7 +96,10 @@ public class Users {
     }
 
     public static void addRealDate(String username, String albumName, String photoPath, String date){
-        Set<Photo> photos = userAlbums.get(username).get(albumName);
+        Album album = userAlbums.get(username).get(albumName);
+        if (album == null) return;
+        Set<Photo> photos = album.getPhotos();
+
         if (photos == null) return;
     
         for (Photo p : photos) {
@@ -100,7 +111,10 @@ public class Users {
     }
 
     public static void addTag(String username, String albumName, String photoPath, String tag){
-        Set<Photo> photos = userAlbums.get(username).get(albumName);
+        Album album = userAlbums.get(username).get(albumName);
+        if (album == null) return;
+        Set<Photo> photos = album.getPhotos();
+
         if (photos == null) return;
 
         for(Photo p : photos){
@@ -112,7 +126,10 @@ public class Users {
     }
 
     public static void removeTag(String username, String albumName, String photoPath, String tag){
-        Set<Photo> photos = userAlbums.get(username).get(albumName);
+        Album album = userAlbums.get(username).get(albumName);
+        if (album == null) return;
+        Set<Photo> photos = album.getPhotos();
+
         if (photos == null) return;
 
         for(Photo p : photos){
@@ -132,7 +149,10 @@ public class Users {
     }
 
     public static void addCaption(String username, String albumName, String photoPath, String caption){
-        Set<Photo> photos = userAlbums.get(username).get(albumName);
+        Album album = userAlbums.get(username).get(albumName);
+        if (album == null) return;
+        Set<Photo> photos = album.getPhotos();
+
         if (photos == null) return;
 
         for(Photo p : photos){
@@ -144,7 +164,10 @@ public class Users {
     }
 
     public static String getCaption(String username, String albumName, String photoPath){
-        Set<Photo> photos = userAlbums.get(username).get(albumName);
+        Album album = userAlbums.get(username).get(albumName);
+        if (album == null) return "";
+        Set<Photo> photos = album.getPhotos();
+
         if (photos == null) return "";
 
         for(Photo p : photos){
@@ -156,7 +179,10 @@ public class Users {
     }
 
     public static void removeCaption(String username, String albumName, String photoPath){
-        Set<Photo> photos = userAlbums.get(username).get(albumName);
+        Album album = userAlbums.get(username).get(albumName);
+        if (album == null) return;
+        Set<Photo> photos = album.getPhotos();
+
         if (photos == null) return;
 
         for(Photo p : photos){
@@ -190,7 +216,7 @@ public class Users {
             return;
         }
     
-        Map<String, Set<Photo>> albums = userAlbums.get(username);
+        Map<String, Album> albums = userAlbums.get(username);
         if (!albums.containsKey(albumName)) {
             System.out.println("Album '" + albumName + "' does not exist for user '" + username + "'.");
             return;
@@ -201,7 +227,9 @@ public class Users {
     }
     
     public static void removePhoto(String username, String albumName, String photoPath) {
-        Set<Photo> photos = userAlbums.get(username).get(albumName);
+        Album album = userAlbums.get(username).get(albumName);
+        if (album == null) return;
+        Set<Photo> photos = album.getPhotos();
         if (photos == null) return;
 
         photos.remove(new Photo(photoPath));
@@ -227,7 +255,7 @@ public class Users {
         }
 
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(file))) {
-            userAlbums = (Map<String, Map<String, Set<Photo>>>) in.readObject();
+            userAlbums = (Map<String, Map<String, Album>>) in.readObject();
             System.out.println("userAlbums loaded successfully.");
         } catch (IOException | ClassNotFoundException e) {
             e.printStackTrace();

@@ -22,7 +22,7 @@ public class BulkController {
     @FXML
     private VBox buttonContainer;
     public void initialize(){
-        Map<String, Set<photos.model.Photo>> albums = Users.userAlbums.get(Users.currentUser);
+        Map<String, photos.model.Album> albums = Users.userAlbums.get(Users.currentUser);
         if (albums == null) return;
 
         buttonContainer.getChildren().clear(); // clear previous buttons (if any)

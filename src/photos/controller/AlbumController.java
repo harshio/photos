@@ -42,9 +42,12 @@ public class AlbumController {
 
 
     public void initialize(){
-        Set<photos.model.Photo> albumPhotos = photos.model.Users.userAlbums
-            .get(Users.currentUser)
-            .get(Users.currentAlbum);
+        photos.model.Album album = photos.model.Users.userAlbums
+                                                    .get(Users.currentUser)
+                                                    .get(Users.currentAlbum);
+        if (album == null) return;
+        Set<photos.model.Photo> albumPhotos = album.getPhotos();
+
 
         if (albumPhotos == null) return;
         slides.clear();

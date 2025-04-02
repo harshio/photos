@@ -41,9 +41,12 @@ public class ShowOffController {
             }
         }
 
-        Set<photos.model.Photo> albumPhotos = photos.model.Users.userAlbums
+        photos.model.Album album = photos.model.Users.userAlbums
             .get(Users.currentUser)
             .get(Users.currentAlbum);
+        if (album == null) return;
+        Set<photos.model.Photo> albumPhotos = album.getPhotos();
+
         
         for(photos.model.Photo photo: albumPhotos){
             if(photo.getPath().equals(Users.currentPhoto)){

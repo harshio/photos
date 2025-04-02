@@ -13,10 +13,11 @@ public class Photo implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private String path;
-    private Set<String> dates;
+    private Set<String> dates; //I guess this didn't need to be a set but it's not like users can add dates so it doesn't matter
+    //storing date display messages
     private Set<String> tags;
     private String caption;
-    private Set<Calendar> realDates;
+    private Set<Calendar> realDates; //storing dates we'll use for comparison
 
     public Photo(String path) {
         this.path = path;
