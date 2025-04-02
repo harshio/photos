@@ -4,31 +4,37 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.text.*?>
 <?import javafx.geometry.*?>
+<ScrollPane xmlns="http://javafx.com/javafx/11"
+            xmlns:fx="http://javafx.com/fxml/1"
+            fx:controller="photos.controller.OptionsController"
+            fitToWidth="true">
+    <GridPane
+        xmlns="http://javafx.com/javafx/11"
+        xmlns:fx="http://javafx.com/fxml/1"
+        vgap="10" hgap="10">
+    <!--should make it BulkController after I add the onActions-->
+        <Button fx:id = "delete" text="Delete Photo" GridPane.rowIndex="0" onAction = "#deletePhoto"/>
+        <Button fx:id = "display" text = "Display Photo" GridPane.rowIndex="1" onAction = "#displayPhoto"/>
+        <TextField fx:id = "newTag" text = "Write whatever tag you want here." GridPane.rowIndex="2"/>
+        <Button fx:id = "addTag" text = "Add tag" GridPane.rowIndex="2" GridPane.columnIndex="1" onAction = "#addTag"/>
+        <TextField fx:id="dying" text = "Write down the tag you want to be deleted here." GridPane.rowIndex="3"/>
+        <Button fx:id = "dead" text = "Delete tag" GridPane.rowIndex="3" GridPane.columnIndex="1" onAction="#deleteTag"/>
+        <TextField fx:id = "newCaption" text = "Write whatever caption you want here." GridPane.rowIndex="4"/>
+        <Button fx:id = "addCaption" text = "Add caption" GridPane.rowIndex="4" GridPane.columnIndex="1" onAction="#addCaption"/>
+        <Text fx:id="addCaptionMessage" text="" GridPane.rowIndex="4" GridPane.columnIndex="2"/>
+        <TextField fx:id = "differentCaption" text = "Write the new caption here." GridPane.rowIndex="5"/>
+        <Button fx:id = "changeCaption" text= "Change caption" GridPane.rowIndex="5" GridPane.columnIndex="1" onAction="#changeCaption"/>
+        <Text fx:id="changeCaptionMessage" text="" GridPane.rowIndex="5" GridPane.columnIndex="2"/>
+        <Button fx:id = "loadInAlbum" text="Back to Album Page" GridPane.rowIndex="6" onAction="#loadInAlbum"/>
+        <Text text="Here's some useful tag types:" GridPane.rowIndex="8"/>
+        <VBox fx:id="tagTypeBox" spacing="5" GridPane.rowIndex="9" GridPane.columnSpan="3">
+        </VBox>
 
-<GridPane
-    xmlns="http://javafx.com/javafx/11"
-    xmlns:fx="http://javafx.com/fxml/1"
-    fx:controller="photos.controller.OptionsController"
-    vgap="10" hgap="10">
-<!--should make it BulkController after I add the onActions-->
-    <Button fx:id = "delete" text="Delete Photo" GridPane.rowIndex="0" onAction = "#deletePhoto"/>
-    <Button fx:id = "display" text = "Display Photo" GridPane.rowIndex="1" onAction = "#displayPhoto"/>
-    <TextField fx:id = "newTag" text = "Write whatever tag you want here." GridPane.rowIndex="2"/>
-    <Button fx:id = "addTag" text = "Add tag" GridPane.rowIndex="2" GridPane.columnIndex="1" onAction = "#addTag"/>
-    <TextField fx:id="dying" text = "Write down the tag you want to be deleted here." GridPane.rowIndex="3"/>
-    <Button fx:id = "dead" text = "Delete tag" GridPane.rowIndex="3" GridPane.columnIndex="1" onAction="#deleteTag"/>
-    <TextField fx:id = "newCaption" text = "Write whatever caption you want here." GridPane.rowIndex="4"/>
-    <Button fx:id = "addCaption" text = "Add caption" GridPane.rowIndex="4" GridPane.columnIndex="1" onAction="#addCaption"/>
-    <Text fx:id="addCaptionMessage" text="" GridPane.rowIndex="4" GridPane.columnIndex="2"/>
-    <TextField fx:id = "differentCaption" text = "Write the new caption here." GridPane.rowIndex="5"/>
-    <Button fx:id = "changeCaption" text= "Change caption" GridPane.rowIndex="5" GridPane.columnIndex="1" onAction="#changeCaption"/>
-    <Text fx:id="changeCaptionMessage" text="" GridPane.rowIndex="5" GridPane.columnIndex="2"/>
-    <Button fx:id = "loadInAlbum" text="Back to Album Page" GridPane.rowIndex="6" onAction="#loadInAlbum"/>
-    <Text text="Here's some useful tag types" GridPane.rowIndex="8"/>
-    <Button fx:id="locationButton" text="location" GridPane.rowIndex="9" onAction="#placeType"/>
-    <Button fx:id="nameButton" text="name" GridPane.rowIndex="10" onAction="#placeType"/>
-    <Button fx:id="occasionButton" text="occasion" GridPane.rowIndex="11" onAction="#placeType"/>
-    <padding>
-        <Insets top="10" right="10" bottom="10" left="10"/>
-    </padding>
-</GridPane>
+        <Text text="Type in your own tag type: " GridPane.rowIndex="13"/>
+        <TextField fx:id="brandTag" text="e.g. emotion" GridPane.rowIndex="13" GridPane.columnIndex="1"/>
+        <Button fx:id="makeNewTag" text="Insert tag type" GridPane.rowIndex="13" GridPane.columnIndex="2" onAction="#insertTag"/>
+        <padding>
+            <Insets top="10" right="10" bottom="10" left="10"/>
+        </padding>
+    </GridPane>
+</ScrollPane>

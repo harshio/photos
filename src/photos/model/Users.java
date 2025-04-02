@@ -37,7 +37,39 @@ public class Users {
     static{
         initializeUserAlbums();
     }
-    //Well lookee here, we have all the stuff we need to create and eventually serialize that nested hashmap right here
+    public static Map<String, Set<String>> userTagTypes = new HashMap<>();
+    public static void initializeUserTagTypes(){
+        for (String username : usersList) {
+            userTagTypes.putIfAbsent(username, new HashSet<>());
+        }
+    }
+
+    public static void saveUserTagTypes() {
+        try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("userTagTypes.ser"))) {
+            out.writeObject(userTagTypes);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @SuppressWarnings("unchecked")
+    public static void loadUserTagTypes() {
+        File file = new File("userTagTypes.ser");
+        if (!file.exists()) return;
+
+        try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(file))) {
+            userTagTypes = (Map<String, Set<String>>) in.readObject();
+        } catch (IOException | ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static void addUserTagType(String username, String tagType){
+        if (username == null || tagType == null || tagType.isBlank()) return;
+
+        userTagTypes.computeIfAbsent(username, k -> new HashSet<>())
+                .add(tagType.toLowerCase());
+    }
 
 
     public static void saveUsersList() {

@@ -2,6 +2,7 @@ package photos.controller;
 
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
+import javafx.scene.layout.VBox;
 import javafx.scene.text.Text;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -10,10 +11,12 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
+import photos.model.Users;
 import javafx.collections.*;
 import java.io.*;
 //import javafx.scene.control.ListView; this import probably won't be used in this class but I'm paranoid
 import java.util.ArrayList;
+import java.util.Set;
 public class OptionsController {
     @FXML Button delete;
     @FXML Button display;
@@ -33,7 +36,25 @@ public class OptionsController {
     @FXML Button locationButton;
     @FXML Button nameButton;
     @FXML Button occasionButton;
+    @FXML private VBox tagTypeBox;
+    @FXML TextField brandTag;
+    @FXML Button makeNewTag;
 
+    public void initialize(){
+        tagTypeBox.getChildren().clear();
+        tagTypeBox.getChildren().add(makeTagButton("location"));
+        tagTypeBox.getChildren().add(makeTagButton("name"));
+        tagTypeBox.getChildren().add(makeTagButton("occasion"));
+        Set<String> tagTypes = Users.userTagTypes.get(Users.currentUser);
+
+        if (tagTypes != null) {
+            for (String tag : tagTypes) {
+                Button tagButton = new Button(tag);
+                tagButton.setOnAction(this::placeType); // reuse your existing method
+                tagTypeBox.getChildren().add(tagButton);
+            }
+        }
+    }
     public void displayPhoto(ActionEvent e){
         System.out.println("I'm a debugging message");
         try{
@@ -126,4 +147,21 @@ public class OptionsController {
         Button clicked = (Button) e.getSource();
         newTag.setText(clicked.getText() + ", ");
     }
+
+    public void insertTag(ActionEvent e){
+        Button insertedTag = new Button(brandTag.getText());
+        //Then we'll add it to the appropriate hashmap and save
+        photos.model.Users.addUserTagType(photos.model.Users.currentUser, brandTag.getText());
+        photos.model.Users.saveUserTagTypes();
+        insertedTag.setOnAction(this::placeType);
+        tagTypeBox.getChildren().add(insertedTag);
+        brandTag.setText("e.g. emotion");
+    }
+
+    private Button makeTagButton(String tag) {
+        Button tagButton = new Button(tag);
+        tagButton.setOnAction(this::placeType);
+        return tagButton;
+    }
+    
 }

@@ -13,6 +13,8 @@ public class Photos extends Application {
 		// TODO Auto-generated method stub
         photos.model.Users.loadUsersList(); //seems our app literally starts by reading from the disk
         photos.model.Users.loadUserAlbums();
+		photos.model.Users.loadUserTagTypes();
+		photos.model.Users.initializeUserTagTypes();
 		FXMLLoader loader = new FXMLLoader();
 		loader.setLocation(getClass().getResource("/photos/view/Login.fxml"));
 		GridPane root = (GridPane)loader.load();

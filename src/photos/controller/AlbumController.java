@@ -90,6 +90,7 @@ public class AlbumController {
             }
 
             if (!slides.isEmpty()) {
+                slideContainer.getChildren().clear();
                 slideContainer.getChildren().setAll(slides.get(currentIndex));
             }
         });
