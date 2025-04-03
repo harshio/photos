@@ -109,11 +109,27 @@ public class Users {
         Album album = userAlbums.get(username).get(albumName);
         if (album == null) return;
         Set<Photo> photos = album.getPhotos();
-
         if (photos == null) return;
 
-        photos.add(new Photo(photoPath));
+        Photo existing = findPhotoByPath(photoPath);
+        Photo toAdd = (existing != null) ? existing : new Photo(photoPath);
+        if (photos.contains(toAdd)) return;
+        photos.add(toAdd);
     }
+
+    public static Photo findPhotoByPath(String path) {
+        for (Map<String, Album> albums : userAlbums.values()) {
+            for (Album album : albums.values()) {
+                for (Photo photo : album.getPhotos()) {
+                    if (photo.getPath().equals(path)) {
+                        return photo;
+                    }
+                }
+            }
+        }
+        return null;
+    }
+    
 
     public static void addDate(String username, String albumName, String photoPath, String date){
         Album album = userAlbums.get(username).get(albumName);

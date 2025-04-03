@@ -100,11 +100,15 @@ public class PhotosController {
             // Pass in the users list (assumed to be initialized)
             controller.setUsersList(photos.model.Users.usersList);
 
+			Stage parentStage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+
             // Create and show a new stage
             Stage listStage = new Stage();
+			listStage.initOwner(parentStage);                      // 👈 this connects the two windows
+        	listStage.initModality(javafx.stage.Modality.WINDOW_MODAL);
             listStage.setScene(new Scene(listRoot));
             listStage.setTitle("All Users");
-            listStage.show();
+            listStage.showAndWait();
 
         } catch (IOException ex) {
             ex.printStackTrace(); // Optional: replace with GUI error dialog

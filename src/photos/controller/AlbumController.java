@@ -28,6 +28,7 @@ import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.List;
+import java.util.Map;
 import java.util.Set;
 public class AlbumController {
     @FXML Button leave;
@@ -216,6 +217,44 @@ public class AlbumController {
             Image image = new Image(new File(path).toURI().toString(), 100, 100, true, true, true);
             ImageView imageView = new ImageView(image);
             final String photoPath = path;
+            //Here is where we'll insert our new code for object reuse.
+            Photo existingPhoto = null;
+            String photoName = photoPath.substring(photoPath.lastIndexOf("/")+1);
+            //We'll look through all of userAlbums and see if the final portion of the path matches the final portion of some earlier saved path
+            for(Map<String, photos.model.Album> albums: photos.model.Users.userAlbums.values()){
+                for(photos.model.Album a: albums.values()){
+                    for(Photo p: a.getPhotos()){
+                        if(p.getPath().substring(p.getPath().lastIndexOf("/")+1).equals(photoName)){
+                            existingPhoto = p;
+                            break;
+                        }
+                    }
+                    if (existingPhoto != null) break;
+                }
+                if (existingPhoto != null) break;
+            }
+            //then we'll add that pre-existing photo object to this new album (note that photo duplication within an album is already banned, and should be banned)
+            if(existingPhoto != null){
+                photos.model.Users.addPhoto(photos.model.Users.currentUser, photos.model.Users.currentAlbum, existingPhoto.getPath());
+                photos.model.Users.saveUserAlbums();
+                //Then in here, we'll immediately add the photo and whatever the caption is below the photo
+                //We already have the correct imageView element, so we're good there. We'll make a new VBox here
+                String date = existingPhoto.getDates().iterator().next();
+                Label caption = new Label(existingPhoto.getCaption());
+                Label datey = new Label(date);
+                VBox slide = new VBox(5, imageView, datey, caption);
+                //Then we'll add it to slides
+                slide.setStyle("-fx-alignment: center;");
+                imageView.setOnMouseClicked(ev -> {
+                    photos.model.Users.currentPhoto = photoPath;
+                    loadInOptions(ev);
+                });
+                slides.add(slide);
+                currentIndex = slides.size() - 1; // Show the new image
+                slideContainer.getChildren().setAll(slide);
+                //Then we'll have to break out the code immediately 
+                return;
+            }
             String modifiedTime;
             try {
                 modifiedTime = "Date taken: " +
