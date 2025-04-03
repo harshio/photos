@@ -61,7 +61,8 @@ public class OptionsController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/photos/view/ShowOff.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
+            stage.getScene().setRoot(root);
+
             //For stage.setTitle(), we'll make sure to properly if-condition this one and only this one later.
             stage.setTitle("Dummy");
             stage.show();
@@ -79,7 +80,8 @@ public class OptionsController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/photos/view/Album.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
+            stage.getScene().setRoot(root);
+
             //For stage.setTitle(), we'll make sure to properly if-condition this one and only this one later.
             stage.setTitle("Dummy");
             stage.show();
@@ -106,7 +108,8 @@ public class OptionsController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/photos/view/Album.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
+            stage.getScene().setRoot(root);
+
             //For stage.setTitle(), we'll make sure to properly if-condition this one and only this one later.
             stage.setTitle("Dummy");
             stage.show();

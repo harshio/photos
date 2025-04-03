@@ -170,7 +170,7 @@ public class AlbumController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/photos/view/Bulk.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
+            stage.getScene().setRoot(root);
             //For stage.setTitle(), we'll make sure to properly if-condition this one and only this one later.
             stage.setTitle("Dummy");
             stage.show();
@@ -190,7 +190,7 @@ public class AlbumController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/photos/view/Bulk.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
+            stage.getScene().setRoot(root);
             stage.setTitle("Bulk View");
             stage.show();
         } catch (IOException ex) {
@@ -253,7 +253,7 @@ public class AlbumController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/photos/view/Options.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
+            stage.getScene().setRoot(root);
             //For stage.setTitle(), we'll make sure to properly if-condition this one and only this one later.
             stage.setTitle("Dummy");
             stage.show();
@@ -284,7 +284,7 @@ public class AlbumController {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/photos/view/Bulk.fxml"));
             Parent root = loader.load();
             Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-            stage.setScene(new Scene(root));
+            stage.getScene().setRoot(root);
             stage.setTitle("Bulk View");
             stage.show();
         } catch (IOException ex) {
