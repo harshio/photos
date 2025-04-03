@@ -221,17 +221,16 @@ public class AlbumController {
             final String photoPath = path;
             //Here is where we'll insert our new code for object reuse.
             Photo existingPhoto = null;
-            String photoName = photoPath.substring(photoPath.lastIndexOf("/")+1);
+            String photoName = photoPath;
             //We'll look through all of userAlbums and see if the final portion of the path matches the final portion of some earlier saved path
-            for(Map<String, photos.model.Album> albums: photos.model.Users.userAlbums.values()){
-                for(photos.model.Album a: albums.values()){
-                    for(Photo p: a.getPhotos()){
-                        if(p.getPath().substring(p.getPath().lastIndexOf("/")+1).equals(photoName)){
-                            existingPhoto = p;
-                            break;
-                        }
+            //Correction: apparently, object reuse only needs to be done within the same user
+            Map<String, photos.model.Album> albums = photos.model.Users.userAlbums.get(photos.model.Users.currentUser);
+            for(photos.model.Album a: albums.values()){
+                for(Photo p: a.getPhotos()){
+                    if(p.getPath().equals(photoName)){
+                        existingPhoto = p;
+                        break;
                     }
-                    if (existingPhoto != null) break;
                 }
                 if (existingPhoto != null) break;
             }
