@@ -55,6 +55,34 @@ public class OptionsController {
             }
         }
     }
+    public void refresh() {
+        tagTypeBox.getChildren().clear(); // Clear old tag buttons
+    
+        // Re-add default tag type buttons
+        tagTypeBox.getChildren().add(makeTagButton("location"));
+        tagTypeBox.getChildren().add(makeTagButton("name"));
+        tagTypeBox.getChildren().add(makeTagButton("occasion"));
+    
+        // Load user-defined tag types
+        Set<String> tagTypes = Users.userTagTypes.get(Users.currentUser);
+        if (tagTypes != null) {
+            for (String tag : tagTypes) {
+                Button tagButton = new Button(tag);
+                tagButton.setOnAction(this::placeType);
+                tagTypeBox.getChildren().add(tagButton);
+            }
+        }
+    
+        // Optionally clear text fields & messages
+        newTag.setText("Write whatever tag you want here.");
+        dying.setText("Write down the tag you want to be deleted here.");
+        newCaption.setText("Write whatever caption you want here.");
+        differentCaption.setText("Write the new caption here.");
+        addCaptionMessage.setText("");
+        changeCaptionMessage.setText("");
+        brandTag.setText("e.g. emotion");
+    }
+    
     public void displayPhoto(ActionEvent e){
         System.out.println("I'm a debugging message");
         try{

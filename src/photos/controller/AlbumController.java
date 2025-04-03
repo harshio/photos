@@ -44,6 +44,9 @@ public class AlbumController {
 
     private ArrayList<VBox> slides = new ArrayList<>();
     private int currentIndex = 0;
+    private Parent optionsRoot = null;
+    private FXMLLoader optionsLoader = null;
+
 
     public void initialize() {
         slideContainer.setVisible(false);
@@ -263,7 +266,6 @@ public class AlbumController {
             }
             String trueTime = modifiedTime.substring(12);
             System.out.println("Calling addRealDate for: " + photoPath + " with " + trueTime);
-            photos.model.Users.saveUserAlbums();
             VBox slide = new VBox(5, imageView);
             slide.setStyle("-fx-alignment: center;");
             imageView.setOnMouseClicked(ev -> {
@@ -284,17 +286,23 @@ public class AlbumController {
     }
 
     public void loadInOptions(MouseEvent e){
-        try{
-            FXMLLoader loader = new FXMLLoader(getClass().getResource("/photos/view/Options.fxml"));
-            Parent root = loader.load();
+        try {
+            if (optionsRoot == null) {
+                optionsLoader = new FXMLLoader(getClass().getResource("/photos/view/Options.fxml"));
+                optionsRoot = optionsLoader.load();
+            }
+    
+            // ✅ Refresh content for the currently selected photo
+            OptionsController controller = optionsLoader.getController();
+            controller.refresh();
+    
             Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-            stage.getScene().setRoot(root);
-            //For stage.setTitle(), we'll make sure to properly if-condition this one and only this one later.
+            stage.getScene().setRoot(optionsRoot);
             stage.setTitle("Dummy");
             stage.show();
-        }
-        catch (IOException ex) {
-            ex.printStackTrace(); // Optional: replace with GUI error dialog
+    
+        } catch (IOException ex) {
+            ex.printStackTrace();
         }
     }
 
