@@ -12,7 +12,7 @@
     vgap="10" hgap="10">
 <!--should make it BulkController after I add the onActions-->
     <Text text="Your Album(s)" GridPane.rowIndex="0"/>
-    <Text text="Click on the thumbnail pics in each album for all kinds of options!" GridPane.rowIndex="1"/>
+    <Text text="Click on the center of the thumbnail pics in each album for all kinds of options!" GridPane.rowIndex="1"/>
     <Button fx:id = "createButton" text = "Create" GridPane.rowIndex="2" onAction="#createAlbum"/>
     <VBox fx:id="buttonContainer" xmlns:fx="http://javafx.com/fxml" GridPane.rowIndex="3" spacing="5">
 </VBox>
