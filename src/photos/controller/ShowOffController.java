@@ -59,8 +59,9 @@ public class ShowOffController {
                     Label tagLabel = new Label(tag);
                     tagBox.getChildren().add(tagLabel);
                 }
-                tagBox.getChildren().add(new Label(photo.getCaption()));
-                tagBox.getChildren().add(new Label(photo.getDates().iterator().next()));
+                if(photo.getCaption() != null && !photo.getCaption().isEmpty()){
+                    tagBox.getChildren().add(new Label(photo.getCaption()));
+                }
                 break;
             }
         }
