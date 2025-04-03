@@ -11,7 +11,7 @@
     fx:controller="photos.controller.PhotosController"
     vgap="10" hgap="10">
 
-    <Text text="Log In" GridPane.valignment="TOP"/>
+    <Text text="Log In (Maximize window for full convenience)" GridPane.valignment="TOP"/>
     <!--We'll add an event listener to the button (onAction attribute in xml) after we get the UI right-->
     <Button fx:id="login" text="Log In" GridPane.columnIndex="1" GridPane.rowIndex="1" onAction="#goToApplication"/>
     
