@@ -36,33 +36,37 @@ public class AlbumController {
     @FXML
     private VBox photoList;
     @FXML
-    private StackPane slideContainer;
-    @FXML
     private Button prevButton, nextButton;
+    @FXML private VBox slideContainer;
+    @FXML private VBox loadingPane;
+
 
     private ArrayList<VBox> slides = new ArrayList<>();
     private int currentIndex = 0;
 
+    public void initialize() {
+        slideContainer.setVisible(false);
+        loadingPane.setVisible(true);
 
-    public void initialize(){
         photos.model.Album album = photos.model.Users.userAlbums
-                                                    .get(Users.currentUser)
-                                                    .get(Users.currentAlbum);
+            .get(Users.currentUser)
+            .get(Users.currentAlbum);
         if (album == null) return;
+    
         Set<photos.model.Photo> albumPhotos = album.getPhotos();
-
-
         if (albumPhotos == null) return;
+    
         slides.clear();
-
-        Platform.runLater(() -> {
+        slideContainer.getChildren().clear();
+    
+        new Thread(() -> {
+            ArrayList<VBox> tempSlides = new ArrayList<>();
+    
             for (photos.model.Photo photo : albumPhotos) {
-                final String photoPath = photo.getPath(); // capture correctly
-                Image image = new Image(new File(photoPath).toURI().toString(), 100, 100, true, true, true);
-                ImageView imageView = new ImageView(image);
-
+                final String photoPath = photo.getPath();
                 File file = new File(photoPath);
                 String modifiedTime;
+    
                 try {
                     modifiedTime = "Date taken: " +
                         Files.getLastModifiedTime(file.toPath()).toInstant()
@@ -71,31 +75,47 @@ public class AlbumController {
                 } catch (IOException ex) {
                     modifiedTime = "Date taken: (unavailable)";
                 }
+    
                 String trueTime = modifiedTime.substring(12);
-                photos.model.Users.addRealDate(photos.model.Users.currentUser, photos.model.Users.currentAlbum, photoPath, trueTime);
-                photos.model.Users.addDate(photos.model.Users.currentUser, photos.model.Users.currentAlbum, photoPath, modifiedTime);
-                photos.model.Users.saveUserAlbums();
+    
+                // Only update real date if not already present
+                if (photo.getRealDates() == null || photo.getRealDates().isEmpty()) {
+                    Users.addRealDate(Users.currentUser, Users.currentAlbum, photoPath, trueTime);
+                }
+                Users.addDate(Users.currentUser, Users.currentAlbum, photoPath, modifiedTime);
+    
                 Label dateLabel = new Label(modifiedTime);
-                Label caption = new Label(photos.model.Users.getCaption(photos.model.Users.currentUser, photos.model.Users.currentAlbum, photoPath));
-                // Wrap in VBox
-                VBox slide = new VBox(5, imageView, dateLabel, caption);
-                slide.setStyle("-fx-alignment: center;");
-            
+                Label caption = new Label(Users.getCaption(Users.currentUser, Users.currentAlbum, photoPath));
+    
+                Image image = new Image(file.toURI().toString(), 100, 100, true, true, true);
+                ImageView imageView = new ImageView(image);
                 imageView.setOnMouseClicked(e -> {
-                    photos.model.Users.currentPhoto = photoPath;
+                    Users.currentPhoto = photoPath;
                     loadInOptions(e);
                 });
-            
-                slides.add(slide);
+    
+                VBox slide = new VBox(5, imageView, dateLabel, caption);
+                slide.setStyle("-fx-alignment: center;");
+                tempSlides.add(slide);
             }
+    
+            // Save only once after all processing is done
+            Users.saveUserAlbums();
+    
+            // Switch to JavaFX thread for UI update
+            Platform.runLater(() -> {
+                slides.addAll(tempSlides);
+                if (!slides.isEmpty()) {
+                    slideContainer.getChildren().setAll(slides.get(currentIndex));
+                }
 
-            if (!slides.isEmpty()) {
-                slideContainer.getChildren().clear();
-                slideContainer.getChildren().setAll(slides.get(currentIndex));
-            }
-        });
-        
+                loadingPane.setVisible(false);
+                slideContainer.setVisible(true);
+            });
+        }).start();
     }
+    
+    
 
     public void leaveAlbum(ActionEvent e){
         //we have to calculate oldest date and newest date in here

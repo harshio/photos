@@ -14,7 +14,16 @@
     <!--VBox fx:id="photoList" spacing="5" GridPane.rowIndex="3"-->
     <!-- dynamically added Labels will appear here -->
     <!--/VBox-->
-    <StackPane fx:id="slideContainer" GridPane.rowIndex="3" prefHeight="150" prefWidth="200" />
+    <Text text="Please don't click on the image too fast or it will take forever to load." GridPane.rowIndex="2" GridPane.columnIndex = "1"/>
+    <StackPane GridPane.rowIndex="3" fx:id="mainDisplayPane" prefHeight="150" prefWidth="200">
+        <!-- Actual photo display container -->
+        <VBox fx:id="slideContainer" visible="false" alignment="CENTER" spacing="10"/>
+
+        <!-- Loading overlay -->
+        <VBox fx:id="loadingPane" alignment="CENTER">
+            <Label text="Loading album..." />
+        </VBox>
+    </StackPane>
 
     <HBox spacing="10" alignment="CENTER" GridPane.rowIndex="4">
         <Button fx:id="prevButton" text="Previous" onAction="#handlePrev"/>
