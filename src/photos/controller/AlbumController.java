@@ -85,7 +85,6 @@ public class AlbumController {
                 }
                 Users.addDate(Users.currentUser, Users.currentAlbum, photoPath, modifiedTime);
     
-                Label dateLabel = new Label(modifiedTime);
                 Label caption = new Label(Users.getCaption(Users.currentUser, Users.currentAlbum, photoPath));
     
                 Image image = new Image(file.toURI().toString(), 100, 100, true, true, true);
@@ -95,7 +94,7 @@ public class AlbumController {
                     loadInOptions(e);
                 });
     
-                VBox slide = new VBox(5, imageView, dateLabel, caption);
+                VBox slide = new VBox(5, imageView, caption);
                 slide.setStyle("-fx-alignment: center;");
                 tempSlides.add(slide);
             }
@@ -239,10 +238,8 @@ public class AlbumController {
                 photos.model.Users.saveUserAlbums();
                 //Then in here, we'll immediately add the photo and whatever the caption is below the photo
                 //We already have the correct imageView element, so we're good there. We'll make a new VBox here
-                String date = existingPhoto.getDates().iterator().next();
                 Label caption = new Label(existingPhoto.getCaption());
-                Label datey = new Label(date);
-                VBox slide = new VBox(5, imageView, datey, caption);
+                VBox slide = new VBox(5, imageView, caption);
                 //Then we'll add it to slides
                 slide.setStyle("-fx-alignment: center;");
                 imageView.setOnMouseClicked(ev -> {
@@ -266,10 +263,8 @@ public class AlbumController {
             }
             String trueTime = modifiedTime.substring(12);
             System.out.println("Calling addRealDate for: " + photoPath + " with " + trueTime);
-            photos.model.Users.addDate(photos.model.Users.currentUser, photos.model.Users.currentAlbum, photoPath, modifiedTime);
             photos.model.Users.saveUserAlbums();
-            Label dateLabel = new Label(modifiedTime);
-            VBox slide = new VBox(5, imageView, dateLabel);
+            VBox slide = new VBox(5, imageView);
             slide.setStyle("-fx-alignment: center;");
             imageView.setOnMouseClicked(ev -> {
                 photos.model.Users.currentPhoto = photoPath;
@@ -280,6 +275,7 @@ public class AlbumController {
             slideContainer.getChildren().setAll(slide);
             photos.model.Users.addPhoto(photos.model.Users.currentUser, photos.model.Users.currentAlbum, path);
             photos.model.Users.addRealDate(photos.model.Users.currentUser, photos.model.Users.currentAlbum, photoPath, trueTime);
+            photos.model.Users.addDate(photos.model.Users.currentUser, photos.model.Users.currentAlbum, photoPath, modifiedTime);
             photos.model.Users.saveUserAlbums();
             System.out.println("Added photo: " + path);
         } else {
