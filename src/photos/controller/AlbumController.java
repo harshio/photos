@@ -220,23 +220,23 @@ public class AlbumController {
             ImageView imageView = new ImageView(image);
             final String photoPath = path;
             //Here is where we'll insert our new code for object reuse.
-            Photo existingPhoto = null;
-            String photoName = photoPath;
-            //We'll look through all of userAlbums and see if the final portion of the path matches the final portion of some earlier saved path
-            //Correction: apparently, object reuse only needs to be done within the same user
-            Map<String, photos.model.Album> albums = photos.model.Users.userAlbums.get(photos.model.Users.currentUser);
-            for(photos.model.Album a: albums.values()){
-                for(Photo p: a.getPhotos()){
-                    if(p.getPath().equals(photoName) && Users.currentUser.equals(p.getOwner())){
-                        existingPhoto = p;
-                        break;
-                    }
-                }
-                if (existingPhoto != null) break;
-            }
+            Photo existingPhoto = Users.findPhotoInUserAlbums(Users.currentUser, photoPath);
             //then we'll add that pre-existing photo object to this new album (note that photo duplication within an album is already banned, and should be banned)
             if(existingPhoto != null){
-                photos.model.Users.addPhoto(photos.model.Users.currentUser, photos.model.Users.currentAlbum, existingPhoto.getPath());
+                Users.addExistingPhoto(Users.currentUser, Users.currentAlbum, existingPhoto);
+                String modifiedTime;
+                try {
+                    modifiedTime = "Date taken: " +
+                        Files.getLastModifiedTime(new File(photoPath).toPath()).toInstant()
+                            .atZone(java.time.ZoneId.systemDefault())
+                            .format(java.time.format.DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss"));
+                } catch (IOException ex) {
+                    modifiedTime = "Date taken: (unavailable)";
+                }
+                String trueTime = modifiedTime.substring(12);
+
+                Users.addRealDate(Users.currentUser, Users.currentAlbum, photoPath, trueTime);
+                Users.addDate(Users.currentUser, Users.currentAlbum, photoPath, modifiedTime);
                 photos.model.Users.saveUserAlbums();
                 //Then in here, we'll immediately add the photo and whatever the caption is below the photo
                 //We already have the correct imageView element, so we're good there. We'll make a new VBox here

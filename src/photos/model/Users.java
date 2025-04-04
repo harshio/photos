@@ -105,6 +105,14 @@ public class Users {
                   .putIfAbsent(albumName, new Album());
     }
 
+    public static void addExistingPhoto(String username, String albumName, Photo photo) {
+        Album album = userAlbums.get(username).get(albumName);
+        if (album != null && !album.getPhotos().contains(photo)) {
+            album.getPhotos().add(photo);
+        }
+    }
+    
+
     public static void addPhoto(String username, String albumName, String photoPath) {
         Album album = userAlbums.get(username).get(albumName);
         if (album == null) return;
@@ -124,7 +132,27 @@ public class Users {
 
         if (photos.contains(toAdd)) return;
         photos.add(toAdd);
+        System.out.println("Adding photo to album: " + toAdd.getPath());
+        System.out.println("Photo owner: " + toAdd.getOwner());
+        System.out.println("Album contains photo: " + photos.contains(toAdd));
+        System.out.println("Album size after add: " + photos.size());
+
     }
+    
+
+    public static Photo findPhotoInUserAlbums(String username, String photoPath) {
+        Map<String, Album> albums = userAlbums.get(username);
+        if (albums == null) return null;
+        for (Album album : albums.values()) {
+            for (Photo photo : album.getPhotos()) {
+                if (photo.getPath().equals(photoPath)) {
+                    return photo;
+                }
+            }
+        }
+        return null;
+    }
+    
 
     public static Photo findPhotoByPath(String path) {
         for (Map<String, Album> albums : userAlbums.values()) {
