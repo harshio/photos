@@ -90,7 +90,7 @@ public class AlbumController {
     
                 Label caption = new Label(Users.getCaption(Users.currentUser, Users.currentAlbum, photoPath));
     
-                Image image = new Image(file.toURI().toString(), 100, 100, true, true, true);
+                Image image = new Image(file.toURI().toString(), 100, 100, true, true, false);
                 ImageView imageView = new ImageView(image);
                 imageView.setOnMouseClicked(e -> {
                     Users.currentPhoto = photoPath;
@@ -216,7 +216,7 @@ public class AlbumController {
             String path = selectedFile.getAbsolutePath();
             photos.model.Users.photoPaths.add(path);
 
-            Image image = new Image(new File(path).toURI().toString(), 100, 100, true, true, true);
+            Image image = new Image(new File(path).toURI().toString(), 100, 100, true, true, false);
             ImageView imageView = new ImageView(image);
             final String photoPath = path;
             //Here is where we'll insert our new code for object reuse.
