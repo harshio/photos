@@ -13,6 +13,7 @@ public class Photo implements Serializable {
     private static final long serialVersionUID = 1L;
 
     private String path;
+    private String owner;
     private Set<String> dates; //I guess this didn't need to be a set but it's not like users can add dates so it doesn't matter
     //storing date display messages
     private Set<String> tags;
@@ -25,7 +26,17 @@ public class Photo implements Serializable {
         this.tags = new HashSet<>();
         this.caption = "";
         this.realDates = new HashSet<>();
+        this.owner = "";
     }
+
+    public void setOwner(String owner) {
+        this.owner = owner;
+    }
+    
+    public String getOwner() {
+        return owner;
+    }
+    
 
     public String getPath() {
         return path;

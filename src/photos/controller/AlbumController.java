@@ -227,7 +227,7 @@ public class AlbumController {
             Map<String, photos.model.Album> albums = photos.model.Users.userAlbums.get(photos.model.Users.currentUser);
             for(photos.model.Album a: albums.values()){
                 for(Photo p: a.getPhotos()){
-                    if(p.getPath().equals(photoName)){
+                    if(p.getPath().equals(photoName) && Users.currentUser.equals(p.getOwner())){
                         existingPhoto = p;
                         break;
                     }

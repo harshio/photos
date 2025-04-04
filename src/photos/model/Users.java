@@ -108,11 +108,20 @@ public class Users {
     public static void addPhoto(String username, String albumName, String photoPath) {
         Album album = userAlbums.get(username).get(albumName);
         if (album == null) return;
+
         Set<Photo> photos = album.getPhotos();
         if (photos == null) return;
 
         Photo existing = findPhotoByPath(photoPath);
-        Photo toAdd = (existing != null) ? existing : new Photo(photoPath);
+        Photo toAdd;
+
+        if (existing != null && username.equals(existing.getOwner())) {
+            toAdd = existing; // reuse only if same user
+        } else {
+            toAdd = new Photo(photoPath);
+            toAdd.setOwner(username); // set owner for new photo
+        }
+
         if (photos.contains(toAdd)) return;
         photos.add(toAdd);
     }
