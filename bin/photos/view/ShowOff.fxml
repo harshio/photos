@@ -5,6 +5,8 @@
 <?import javafx.geometry.Insets?>
 <?import javafx.scene.layout.GridPane?>
 <?import javafx.scene.layout.VBox?>
+<?import javafx.scene.control.Button?>
+
 
 
 <GridPane xmlns="http://javafx.com/javafx/11"
@@ -13,13 +15,13 @@
           vgap="10" hgap="10">
 
     <Text text="Display" GridPane.rowIndex="0"/>
-
+    <Button fx:id="backToOptions" text="Back to Options" GridPane.rowIndex="1" onAction="#loadOptionsView"/>
     <ImageView fx:id="largeImageView"
-               GridPane.rowIndex="1"
+               GridPane.rowIndex="2"
                fitWidth="600"
                preserveRatio="true" />
 
-    <VBox fx:id="tagBox" spacing="5" GridPane.rowIndex="2">
+    <VBox fx:id="tagBox" spacing="5" GridPane.rowIndex="3">
     </VBox>
 
     <padding>

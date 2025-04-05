@@ -67,4 +67,24 @@ public class ShowOffController {
             }
         }
     }
+
+    @FXML
+    private void loadOptionsView(ActionEvent event) {
+        try {
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/photos/view/Options.fxml"));
+            Parent root = loader.load();
+
+            // Refresh if needed
+            OptionsController controller = loader.getController();
+            controller.refresh();
+
+            Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
+            stage.getScene().setRoot(root);
+            stage.setTitle("Options View");
+            stage.show();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
 }
