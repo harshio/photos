@@ -13,8 +13,9 @@
 <!--should make it BulkController after I add the onActions-->
     <Text text="Your Album(s)" GridPane.rowIndex="0"/>
     <Text text="Click on the thumbnail pics in each album for all kinds of options! (The negative space of each photo is non-clickable)" GridPane.rowIndex="1"/>
-    <Button fx:id = "createButton" text = "Create" GridPane.rowIndex="2" onAction="#createAlbum"/>
-    <VBox fx:id="buttonContainer" xmlns:fx="http://javafx.com/fxml" GridPane.rowIndex="3" spacing="5">
+    <Text text="This doesn't apply to images with non-transparent backgrounds." GridPane.rowIndex="2"/>
+    <Button fx:id = "createButton" text = "Create" GridPane.rowIndex="3" onAction="#createAlbum"/>
+    <VBox fx:id="buttonContainer" xmlns:fx="http://javafx.com/fxml" GridPane.rowIndex="4" spacing="5">
 </VBox>
     <padding>
         <Insets top="10" right="10" bottom="10" left="10"/>
