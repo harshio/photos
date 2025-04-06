@@ -38,13 +38,13 @@ public class PlacingController {
     private Photo foundPhoto;
 
     public void initialize(){
-        copyButton.setOnAction(e->create(e));
+        copyButton.setOnAction(e->copy(e));
         transferButton.setOnAction(e->transfer(e));
         errorMessage.setText("");
         returnButtons.getChildren().clear();
     }
 
-    public void create(ActionEvent e){
+    public void copy(ActionEvent e){
         Set<Photo> destPhotos = Users.userAlbums.get(Users.currentUser).get(DestinationController.destinationAlbum).getPhotos();
         for(Photo p: destPhotos){
             if(p.getPath().equals(Users.currentPhoto)){
