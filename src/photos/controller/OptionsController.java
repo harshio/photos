@@ -121,13 +121,13 @@ public class OptionsController {
     }
 
     public void addTag(ActionEvent e){
-        photos.model.Users.addTag(photos.model.Users.currentUser, photos.model.Users.currentAlbum, photos.model.Users.currentPhoto, newTag.getText().trim());
+        photos.model.Users.addTag(photos.model.Users.currentUser, photos.model.Users.currentAlbum, photos.model.Users.currentPhoto, newTag.getText().trim().toLowerCase());
         photos.model.Users.saveUserAlbums();
         newTag.setText("Write whatever tag you want here.");
     }
 
     public void deleteTag(ActionEvent e){
-        photos.model.Users.removeTag(photos.model.Users.currentUser, photos.model.Users.currentAlbum, photos.model.Users.currentPhoto, dying.getText().trim());
+        photos.model.Users.removeTag(photos.model.Users.currentUser, photos.model.Users.currentAlbum, photos.model.Users.currentPhoto, dying.getText().trim().toLowerCase());
         photos.model.Users.saveUserAlbums();
         dying.setText("Write down the tag you want to be deleted here.");
     }
