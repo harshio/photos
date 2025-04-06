@@ -77,6 +77,7 @@ public class PlacingController {
         }
 
         Users.addExistingPhoto(Users.currentUser, DestinationController.destinationAlbum, foundPhoto);
+        Users.saveUserAlbums();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/photos/view/Destination.fxml"));
             Parent root = loader.load();
@@ -123,6 +124,7 @@ public class PlacingController {
 
         Users.addExistingPhoto(Users.currentUser, DestinationController.destinationAlbum, foundPhoto);
         Users.removePhoto(Users.currentUser, Users.currentAlbum, Users.currentPhoto);
+        Users.saveUserAlbums();
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/photos/view/Album.fxml"));
             Parent root = loader.load();
