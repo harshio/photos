@@ -8,11 +8,11 @@
 <GridPane
     xmlns="http://javafx.com/javafx/11"
     xmlns:fx="http://javafx.com/fxml/1"
-    fx:controller="photos.controller.LogoutController"
+    fx:controller="photos.controller.DestinationController"
     vgap="10" hgap="10">
-
-    <Text text="Log Out" GridPane.rowIndex="0"/>
-    <Button fx:id="logOut" text="Log Out" GridPane.rowIndex="1" onAction="#logOut"/>
+    <VBox fx:id="albumButtons" xmlns:fx="http://javafx.com/fxml" GridPane.rowIndex="0" spacing="5">
+    </VBox>
+    <Button fx:id="backButton" text="Back to Options" GridPane.rowIndex="1" onAction="#backToOptions"/>
     <padding>
         <Insets top="10" right="10" bottom="10" left="10"/>
     </padding>

@@ -39,6 +39,7 @@ public class OptionsController {
     @FXML private VBox tagTypeBox;
     @FXML TextField brandTag;
     @FXML Button makeNewTag;
+    @FXML Button move;
 
     public void initialize(){
         tagTypeBox.getChildren().clear();
@@ -187,6 +188,22 @@ public class OptionsController {
         insertedTag.setOnAction(this::placeType);
         tagTypeBox.getChildren().add(insertedTag);
         brandTag.setText("e.g. emotion");
+    }
+
+    public void loadInDestination(ActionEvent e){
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/photos/view/Destination.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+            stage.getScene().setRoot(root);
+
+            //For stage.setTitle(), we'll make sure to properly if-condition this one and only this one later.
+            stage.setTitle("Dummy");
+            stage.show();
+        }
+        catch (IOException ex) {
+            ex.printStackTrace(); // Optional: replace with GUI error dialog
+        }
     }
 
     private Button makeTagButton(String tag) {

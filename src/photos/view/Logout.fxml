@@ -13,4 +13,7 @@
 
     <Text text="Log Out" GridPane.rowIndex="0"/>
     <Button fx:id="logOut" text="Log Out" GridPane.rowIndex="1" onAction="#logOut"/>
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
 </GridPane>

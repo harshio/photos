@@ -33,6 +33,7 @@
         <Text text="Type in your own tag type: " GridPane.rowIndex="13"/>
         <TextField fx:id="brandTag" text="e.g. emotion" GridPane.rowIndex="13" GridPane.columnIndex="1"/>
         <Button fx:id="makeNewTag" text="Insert tag type" GridPane.rowIndex="13" GridPane.columnIndex="2" onAction="#insertTag"/>
+        <Button fx:id="move" text="Copy/Transfer" GridPane.rowIndex="14" onAction="#loadInDestination"/>
         <padding>
             <Insets top="10" right="10" bottom="10" left="10"/>
         </padding>
