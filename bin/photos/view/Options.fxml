@@ -29,7 +29,7 @@
         <Text text="Here's some useful tag types:" GridPane.rowIndex="8"/>
         <VBox fx:id="tagTypeBox" spacing="5" GridPane.rowIndex="9" GridPane.columnSpan="3">
         </VBox>
-        <Text text="Ensure that the format of your tag is name, followed by a single comma, followed by a single space, followed by value." GridPane.rowIndex="11"/>
+        <Text text="Ensure that the format of your tag is name, comma, then value." GridPane.rowIndex="11"/>
         <Text text="Type in your own tag type: " GridPane.rowIndex="13"/>
         <TextField fx:id="brandTag" text="e.g. emotion" GridPane.rowIndex="14" GridPane.columnIndex="0"/>
         <Button fx:id="makeNewTag" text="Insert tag type" GridPane.rowIndex="14" GridPane.columnIndex="1" onAction="#insertTag"/>
