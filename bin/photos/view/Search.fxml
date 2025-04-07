@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.text.*?>
+<?import javafx.geometry.*?>
+
+<GridPane
+    xmlns="http://javafx.com/javafx/11"
+    xmlns:fx="http://javafx.com/fxml/1"
+    fx:controller="photos.controller.SearchController"
+    vgap="10" hgap="10">
+    <Text text="Search for photos by date: " GridPane.rowIndex="0"/>
+    <TextField fx:id="dateQuery" promptText= "mm/dd/yyyy - mm/dd/yyyy" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+    <Text fx:id="errorDate" text="" GridPane.rowIndex="0" GridPane.columnIndex="2"/>
+    <Button fx:id="searchDate" text = "Search" GridPane.rowIndex="1" onAction="#searchByDate"/>
+    <Text text="Search for photos by tags: " GridPane.rowIndex="2"/>
+    <TextField fx:id="tagQuery" promptText= "location=Nevada AND person=Monterey" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+    <Text fx:id="errorTag" text="" GridPane.rowIndex="2" GridPane.columnIndex="2"/>
+    <Button fx:id="searchTag" text = "Search" GridPane.rowIndex="3" onAction="#searchByTag"/>
+    <VBox fx:id="slidesAndButton" xmlns:fx="http://javafx.com/fxml" GridPane.rowIndex="5" spacing="5">
+    </VBox>
+    <VBox fx:id="createButton" xmlns:fx="http://javafx.com/fxml" GridPane.rowIndex="10" spacing="5">
+    </VBox>
+    <Button fx:id="returnButton" text="Return to Home" GridPane.rowIndex="12" onAction="#returnToHome"/>    
+    <padding>
+        <Insets top="10" right="10" bottom="10" left="10"/>
+    </padding>
+</GridPane>

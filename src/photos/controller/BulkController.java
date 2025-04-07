@@ -23,6 +23,7 @@ public class BulkController {
     @FXML
     private VBox buttonContainer;
     @FXML Button logOut;
+    @FXML Button searchButton;
     public void initialize(){
         Map<String, photos.model.Album> albums = Users.userAlbums.get(Users.currentUser);
         if (albums == null) return;
@@ -52,6 +53,22 @@ public class BulkController {
             buttonContainer.getChildren().add(albumBox);
         }
         
+    }
+
+    public void loadInSearch(ActionEvent e){
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/photos/view/Search.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+            stage.getScene().setRoot(root);
+
+            //For stage.setTitle(), we'll make sure to properly if-condition this one and only this one later.
+            stage.setTitle("Dummy");
+            stage.show();
+        }
+        catch (IOException ex) {
+            ex.printStackTrace(); // Optional: replace with GUI error dialog
+        }
     }
 
     public void logOut(ActionEvent e){

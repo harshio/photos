@@ -121,13 +121,21 @@ public class OptionsController {
     }
 
     public void addTag(ActionEvent e){
-        photos.model.Users.addTag(photos.model.Users.currentUser, photos.model.Users.currentAlbum, photos.model.Users.currentPhoto, newTag.getText().trim().toLowerCase());
+        String[] properTags = newTag.getText().split(",");
+        String tagName = properTags[0].trim();
+        String tagValue = properTags[1].trim();
+        String bestFormat = tagName + ", " + tagValue;
+        photos.model.Users.addTag(photos.model.Users.currentUser, photos.model.Users.currentAlbum, photos.model.Users.currentPhoto, bestFormat.trim().toLowerCase());
         photos.model.Users.saveUserAlbums();
         newTag.setText("Write whatever tag you want here.");
     }
 
     public void deleteTag(ActionEvent e){
-        photos.model.Users.removeTag(photos.model.Users.currentUser, photos.model.Users.currentAlbum, photos.model.Users.currentPhoto, dying.getText().trim().toLowerCase());
+        String[] properTags = dying.getText().split(",");
+        String tagName = properTags[0].trim();
+        String tagValue = properTags[1].trim();
+        String bestFormat = tagName + ", " + tagValue;
+        photos.model.Users.removeTag(photos.model.Users.currentUser, photos.model.Users.currentAlbum, photos.model.Users.currentPhoto, bestFormat.trim().toLowerCase());
         photos.model.Users.saveUserAlbums();
         dying.setText("Write down the tag you want to be deleted here.");
     }
