@@ -57,6 +57,10 @@ public class SearchController {
         createButton.getChildren().clear();
         slides.clear();
         searchResults.clear();
+        errorTag.setText("");
+        errorDate.setText("");
+        tagQuery.setText("");
+        dateQuery.setText("");
     }
     
 
@@ -94,6 +98,7 @@ public class SearchController {
         searchResults.clear();
         errorTag.setText("");
         errorDate.setText("");
+        tagQuery.setText("");
         String dateRequest = dateQuery.getText().trim();
         //Let's do what we did with tag and list off a bunch of failure branches
         if(!dateRequest.matches("\\d{2}/\\d{2}/\\d{4}\\s*-\\s*\\d{2}/\\d{2}/\\d{4}")){
@@ -189,6 +194,7 @@ public class SearchController {
         searchResults.clear();
         errorTag.setText("");
         errorDate.setText("");
+        dateQuery.setText("");
         String tagRequest = tagQuery.getText().trim().toLowerCase();
         //If there's 0 "="s, you fail (write errorTag.setText("Invalid String") write tagQuery.setText("") write return;)
         if(!tagRequest.contains("=")){
