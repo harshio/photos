@@ -15,4 +15,7 @@
       <Button fx:id="quitButton"
             text="Quit Application"
             onAction="#quitApplication" />
+      <Button fx:id="returnButton"
+            text="Return to Stock Album Page"
+            onAction="#loadInStockPage"/>
 </HBox>
