@@ -34,6 +34,7 @@
         <TextField fx:id="brandTag" text="e.g. emotion" GridPane.rowIndex="14" GridPane.columnIndex="0"/>
         <Button fx:id="makeNewTag" text="Insert tag type" GridPane.rowIndex="14" GridPane.columnIndex="1" onAction="#insertTag"/>
         <Button fx:id="move" text="Copy/Transfer" GridPane.rowIndex="15" onAction="#loadInDestination"/>
+        <Button fx:id="quitButton" text="Quit Application" GridPane.rowIndex="16" onAction="#quitApplication"/>
         <padding>
             <Insets top="10" right="10" bottom="10" left="10"/>
         </padding>

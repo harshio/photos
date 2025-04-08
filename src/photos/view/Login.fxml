@@ -16,7 +16,7 @@
     <Button fx:id="login" text="Log In" GridPane.columnIndex="1" GridPane.rowIndex="1" onAction="#goToApplication"/>
     
     <TextField fx:id="userName" prefColumnCount="10" promptText="Write username here." GridPane.rowIndex="1"/>
-
+    <Button fx:id="quitButton" text="Quit Application" GridPane.rowIndex="2" onAction="#quitApplication"/>
     <padding>
         <Insets top="10" right="10" bottom="10" left="10"/>
     </padding>

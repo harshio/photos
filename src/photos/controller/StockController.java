@@ -1,6 +1,9 @@
 package photos.controller;
 
+import javafx.application.Platform;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
 import javafx.scene.layout.HBox;
@@ -11,6 +14,7 @@ public class StockController {
 
     @FXML
     private HBox imageContainer;
+    @FXML Button quitButton;
 
     @FXML
     public void initialize() {
@@ -28,6 +32,14 @@ public class StockController {
                 System.out.println("Image file not found: " + imageFile.getAbsolutePath());
             }
         }
+    }
+
+    public void quitApplication(ActionEvent e){
+        photos.model.Users.saveUsersList();
+        photos.model.Users.saveUserAlbums();
+        photos.model.Users.saveUserTagTypes();
+        Platform.exit();
+        System.exit(0);
     }
 }
 

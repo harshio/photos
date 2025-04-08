@@ -10,6 +10,7 @@ import javafx.scene.Scene;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
 import photos.model.Users;
+import javafx.application.Platform;
 import javafx.collections.*;
 import java.io.*;
 import javafx.scene.control.Label;
@@ -27,6 +28,7 @@ public class ShowOffController {
 
     @FXML
     private VBox tagBox;
+    @FXML Button quitButton;
 
     public void initialize() {       
         System.out.println("ShowOffController initialized");
@@ -66,6 +68,14 @@ public class ShowOffController {
                 break;
             }
         }
+    }
+
+    public void quitApplication(ActionEvent e){
+        photos.model.Users.saveUsersList();
+        photos.model.Users.saveUserAlbums();
+        photos.model.Users.saveUserTagTypes();
+        Platform.exit();
+        System.exit(0);
     }
 
     @FXML

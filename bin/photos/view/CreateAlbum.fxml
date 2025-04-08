@@ -14,6 +14,7 @@
     <Text text="Album name: " GridPane.rowIndex="0"/>
     <TextField fx:id = "albumName" text = "write down an album name" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
     <Button fx:id = "createAlbum" text = "Create" GridPane.rowIndex = "1" onAction="#createAlbum"/>
+    <Button fx:id="quitButton" text="Quit Application" GridPane.rowIndex="2" onAction="#quitApplication"/>
     <padding>
         <Insets top="10" right="10" bottom="10" left="10"/>
     </padding>

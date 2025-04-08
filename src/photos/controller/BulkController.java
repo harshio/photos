@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
 import photos.model.Users;
+import javafx.application.Platform;
 import javafx.collections.*;
 import java.io.*;
 //import javafx.scene.control.ListView; this import probably won't be used in this class but I'm paranoid
@@ -24,6 +25,7 @@ public class BulkController {
     private VBox buttonContainer;
     @FXML Button logOut;
     @FXML Button searchButton;
+    @FXML Button quitButton;
     public void initialize(){
         Map<String, photos.model.Album> albums = Users.userAlbums.get(Users.currentUser);
         if (albums == null) return;
@@ -53,6 +55,14 @@ public class BulkController {
             buttonContainer.getChildren().add(albumBox);
         }
         
+    }
+
+    public void quitApplication(ActionEvent e){
+        photos.model.Users.saveUsersList();
+        photos.model.Users.saveUserAlbums();
+        photos.model.Users.saveUserTagTypes();
+        Platform.exit();
+        System.exit(0);
     }
 
     public void loadInSearch(ActionEvent e){

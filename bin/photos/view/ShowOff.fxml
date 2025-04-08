@@ -23,7 +23,7 @@
 
     <VBox fx:id="tagBox" spacing="5" GridPane.rowIndex="3">
     </VBox>
-
+    <Button fx:id="quitButton" text="Quit Application" GridPane.rowIndex="4" onAction="#quitApplication"/>
     <padding>
         <Insets top="10" right="10" bottom="10" left="10"/>
     </padding>

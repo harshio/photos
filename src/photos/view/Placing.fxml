@@ -15,6 +15,7 @@
     <Text fx:id="errorMessage" text="" GridPane.rowIndex="2"/>
     <VBox fx:id="returnButtons" xmlns:fx="http://javafx.com/fxml" GridPane.rowIndex="3" spacing="5">
     </VBox>
+    <Button fx:id="quitButton" text="Quit Application" GridPane.rowIndex="4" onAction="#quitApplication"/>
     <padding>
         <Insets top="10" right="10" bottom="10" left="10"/>
     </padding>

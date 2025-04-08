@@ -12,6 +12,7 @@ import javafx.scene.Scene;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
 import photos.model.Users;
+import javafx.application.Platform;
 import javafx.collections.*;
 import java.io.*;
 //import javafx.scene.control.ListView; this import probably won't be used in this class but I'm paranoid
@@ -40,7 +41,7 @@ public class OptionsController {
     @FXML TextField brandTag;
     @FXML Button makeNewTag;
     @FXML Button move;
-
+    @FXML Button quitButton;
     public void initialize(){
         tagTypeBox.getChildren().clear();
         tagTypeBox.getChildren().add(makeTagButton("location"));
@@ -56,6 +57,15 @@ public class OptionsController {
             }
         }
     }
+
+    public void quitApplication(ActionEvent e){
+        photos.model.Users.saveUsersList();
+        photos.model.Users.saveUserAlbums();
+        photos.model.Users.saveUserTagTypes();
+        Platform.exit();
+        System.exit(0);
+    }
+    
     public void refresh() {
         tagTypeBox.getChildren().clear(); // Clear old tag buttons
     

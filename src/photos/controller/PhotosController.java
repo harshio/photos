@@ -9,6 +9,7 @@ import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.Parent;
 import javafx.stage.Stage;
+import javafx.application.Platform;
 import javafx.collections.*;
 import java.io.*;
 //import javafx.scene.control.ListView; this import probably won't be used in this class but I'm paranoid
@@ -30,6 +31,7 @@ public class PhotosController {
 	@FXML TextField newUserName;
 	@FXML TextField deadUserName;
 	@FXML Button loadStockPage;
+	@FXML Button quitButton;
 
 	/*We can use userName.getText() to retrieve the string typed in by the user.
 	 * If it's "admin", we'll load the scene for that specific case, which is basically
@@ -87,6 +89,14 @@ public class PhotosController {
 			d.printStackTrace();
 		}
 	}
+
+	public void quitApplication(ActionEvent e){
+        photos.model.Users.saveUsersList();
+        photos.model.Users.saveUserAlbums();
+        photos.model.Users.saveUserTagTypes();
+        Platform.exit();
+        System.exit(0);
+    }
 
 	/*This is for displaying all the users in the admin page */
 	public void displayAllUsers(ActionEvent e){

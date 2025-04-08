@@ -51,6 +51,7 @@ public class SearchController {
     private int currentIndex = 0;
     @FXML
     private VBox createButton;
+    @FXML Button quitButton;
 
     public void initialize(){
         slidesAndButton.getChildren().clear();
@@ -63,6 +64,13 @@ public class SearchController {
         dateQuery.setText("");
     }
     
+    public void quitApplication(ActionEvent e){
+        photos.model.Users.saveUsersList();
+        photos.model.Users.saveUserAlbums();
+        photos.model.Users.saveUserTagTypes();
+        Platform.exit();
+        System.exit(0);
+    }
 
     private Calendar parseDateStart(String dateStr) throws ParseException{
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");

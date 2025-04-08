@@ -20,6 +20,7 @@
     </VBox>
     <Text text="Would you like to search?" GridPane.rowIndex="7"/>
     <Button fx:id="searchButton" text="Search" GridPane.rowIndex="8" onAction="#loadInSearch"/>
+    <Button fx:id="quitButton" text="Quit Application" GridPane.rowIndex="9" onAction="#quitApplication"/>
     <padding>
         <Insets top="10" right="10" bottom="10" left="10"/>
     </padding>

@@ -32,7 +32,7 @@ public class DestinationController {
     private VBox albumButtons;
     @FXML Button backButton;
     public static String destinationAlbum;
-
+    @FXML Button quitButton;
     public void initialize(){
         Set<String> albumNames = Users.userAlbums.get(Users.currentUser).keySet();
         for(String album: albumNames){
@@ -53,6 +53,14 @@ public class DestinationController {
             });
             albumButtons.getChildren().add(b);
         }
+    }
+
+    public void quitApplication(ActionEvent e){
+        photos.model.Users.saveUsersList();
+        photos.model.Users.saveUserAlbums();
+        photos.model.Users.saveUserTagTypes();
+        Platform.exit();
+        System.exit(0);
     }
 
     public void backToOptions(ActionEvent e){

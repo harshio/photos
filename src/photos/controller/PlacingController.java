@@ -34,6 +34,7 @@ public class PlacingController {
     @FXML Text errorMessage;
     @FXML
     private VBox returnButtons;
+    @FXML Button quitButton;
 
     private Photo foundPhoto;
 
@@ -88,6 +89,14 @@ public class PlacingController {
         } catch (IOException ex) {
             ex.printStackTrace();
         }
+    }
+
+    public void quitApplication(ActionEvent e){
+        photos.model.Users.saveUsersList();
+        photos.model.Users.saveUserAlbums();
+        photos.model.Users.saveUserTagTypes();
+        Platform.exit();
+        System.exit(0);
     }
 
     public void transfer(ActionEvent e){

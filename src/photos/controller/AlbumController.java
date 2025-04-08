@@ -40,7 +40,7 @@ public class AlbumController {
     private Button prevButton, nextButton;
     @FXML private VBox slideContainer;
     @FXML private VBox loadingPane;
-
+    @FXML Button quitButton;
 
     private ArrayList<VBox> slides = new ArrayList<>();
     private int currentIndex = 0;
@@ -118,7 +118,13 @@ public class AlbumController {
         }).start();
     }
     
-    
+    public void quitApplication(ActionEvent e){
+        photos.model.Users.saveUsersList();
+        photos.model.Users.saveUserAlbums();
+        photos.model.Users.saveUserTagTypes();
+        Platform.exit();
+        System.exit(0);
+    }
 
     public void leaveAlbum(ActionEvent e){
         //we have to calculate oldest date and newest date in here

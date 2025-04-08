@@ -32,6 +32,7 @@
     <Button fx:id = "leave" text="Leave Album" GridPane.rowIndex="0" onAction = "#leaveAlbum"/>
     <Button fx:id = "add" text = "Add (Upload) Photo" GridPane.rowIndex="1" onAction="#uploadPhoto"/>
     <Button fx:id = "delete" text = "Delete Album" GridPane.rowIndex = "2" onAction = "#deleteAlbum"/>
+    <Button fx:id="quitButton" text="Quit Application" GridPane.rowIndex="5" onAction="#quitApplication"/>
     <padding>
         <Insets top="10" right="10" bottom="10" left="10"/>
     </padding>

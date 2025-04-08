@@ -19,6 +19,7 @@
     <Text text="Delete User" GridPane.rowIndex="6"/>
     <TextField fx:id="deadUserName" text="Write username of user to be deleted here." GridPane.columnIndex = "1" GridPane.rowIndex = "6"/>
     <Button fx:id="deleteUser" text="Delete a user" GridPane.rowIndex="7" onAction="#deleteUser"/>
+    <Button fx:id="quitButton" text="Quit Application" GridPane.rowIndex="8" onAction="#quitApplication"/>
     <padding>
         <Insets top="10" right="10" bottom="10" left="10"/>
     </padding>
