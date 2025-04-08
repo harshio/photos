@@ -14,12 +14,13 @@
     <Text text="Admin" GridPane.rowIndex="0"/>
     <Button fx:id="displayAllUsers" text="List all users"  GridPane.rowIndex="1" onAction="#displayAllUsers"/>
     <Text text="Create User" GridPane.rowIndex="3"/>
-    <TextField fx:id="newUserName" text="Write username of user to be created here." GridPane.columnIndex = "1" GridPane.rowIndex = "3"/>
+    <TextField fx:id="newUserName" promptText="Write username of user to be created here." GridPane.columnIndex = "1" GridPane.rowIndex = "3"/>
     <Button fx:id="createUser" text="Create a user" GridPane.rowIndex="4" onAction="#createUser"/>
     <Text text="Delete User" GridPane.rowIndex="6"/>
-    <TextField fx:id="deadUserName" text="Write username of user to be deleted here." GridPane.columnIndex = "1" GridPane.rowIndex = "6"/>
+    <TextField fx:id="deadUserName" promptText="Write username of user to be deleted here." GridPane.columnIndex = "1" GridPane.rowIndex = "6"/>
     <Button fx:id="deleteUser" text="Delete a user" GridPane.rowIndex="7" onAction="#deleteUser"/>
-    <Button fx:id="quitButton" text="Quit Application" GridPane.rowIndex="8" onAction="#quitApplication"/>
+    <Button fx:id="returnButton" text="Return to Log In" GridPane.rowIndex="8" onAction="#returnLog"/>
+    <Button fx:id="quitButton" text="Quit Application" GridPane.rowIndex="9" onAction="#quitApplication"/>
     <padding>
         <Insets top="10" right="10" bottom="10" left="10"/>
     </padding>

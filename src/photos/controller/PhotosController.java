@@ -32,6 +32,7 @@ public class PhotosController {
 	@FXML TextField deadUserName;
 	@FXML Button loadStockPage;
 	@FXML Button quitButton;
+	@FXML Button returnButton;
 
 	/*We can use userName.getText() to retrieve the string typed in by the user.
 	 * If it's "admin", we'll load the scene for that specific case, which is basically
@@ -98,6 +99,21 @@ public class PhotosController {
         System.exit(0);
     }
 
+	public void returnLog(ActionEvent e){
+		try{
+			FXMLLoader loader = new FXMLLoader(getClass().getResource("/photos/view/Login.fxml"));
+			Parent root = loader.load();
+			Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+			stage.getScene().setRoot(root);
+
+			stage.setTitle("Album");
+			stage.show();
+		}
+		catch (IOException ex) {
+            ex.printStackTrace(); // Optional: replace with GUI error dialog
+        }
+	}
+
 	/*This is for displaying all the users in the admin page */
 	public void displayAllUsers(ActionEvent e){
 		try {
@@ -132,19 +148,8 @@ public class PhotosController {
 			photos.model.Users.saveUsersList();
 			photos.model.Users.saveUserAlbums();
 		}
-		try{
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/photos/view/Login.fxml"));
-			Parent root = loader.load();
-			Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
-			stage.getScene().setRoot(root);
-
-			//For stage.setTitle(), we'll make sure to properly if-condition this one and only this one later.
-			stage.setTitle("Dummy");
-			stage.show();
-		}
-		catch (IOException ex) {
-            ex.printStackTrace(); // Optional: replace with GUI error dialog
-        }
+		newUserName.setText("");
+		deadUserName.setText("");
 	}
 	
 	/*This is so that the admin user can delete users */
@@ -155,19 +160,8 @@ public class PhotosController {
 			photos.model.Users.saveUsersList();
 			photos.model.Users.saveUserAlbums();
 		}
-		try{
-			FXMLLoader loader = new FXMLLoader(getClass().getResource("/photos/view/Login.fxml"));
-			Parent root = loader.load();
-			Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
-			stage.getScene().setRoot(root);
-
-			//For stage.setTitle(), we'll make sure to properly if-condition this one and only this one later.
-			stage.setTitle("Dummy");
-			stage.show();
-		}
-		catch (IOException ex) {
-            ex.printStackTrace(); // Optional: replace with GUI error dialog
-        }
+		newUserName.setText("");
+		deadUserName.setText("");
 	}
 
 	//Load stock page
