@@ -57,19 +57,19 @@ public class PhotosController {
 			FXMLLoader loader;
 			Parent root;
 			boolean registeredUser = false;
-			if(photos.model.Users.usersList.contains(userName.getText())){
+			if(photos.model.Users.usersList.contains(userName.getText().trim())){
 				registeredUser = true;
 			}
-			if(userName.getText().equals("admin") && registeredUser){
+			if(userName.getText().trim().equals("admin") && registeredUser){
 				loader = new FXMLLoader(getClass().getResource("/photos/view/Admin.fxml"));
 				root = loader.load();
 			}
-			else if(userName.getText().equals("stock") && registeredUser){
+			else if(userName.getText().trim().equals("stock") && registeredUser){
 				loader = new FXMLLoader(getClass().getResource("/photos/view/TrueStockPage.fxml"));
 				root = loader.load();
 			}
 			else if(registeredUser){
-				photos.model.Users.currentUser = userName.getText();
+				photos.model.Users.currentUser = userName.getText().trim();
 				loader = new FXMLLoader(getClass().getResource("/photos/view/Bulk.fxml"));
 				root = loader.load();
 			}
@@ -142,7 +142,7 @@ public class PhotosController {
 	}
 	/*This is so that the admin user can create new users*/
 	public void createUser(ActionEvent e){
-		String newUser = newUserName.getText();
+		String newUser = newUserName.getText().trim();
 		if (!newUser.isEmpty() && !photos.model.Users.usersList.contains(newUser)) {
 			photos.model.Users.addUser(newUser);
 			photos.model.Users.saveUsersList();
@@ -154,7 +154,7 @@ public class PhotosController {
 	
 	/*This is so that the admin user can delete users */
 	public void deleteUser(ActionEvent event) {
-		String userToDelete = deadUserName.getText();
+		String userToDelete = deadUserName.getText().trim();
 		if (!userToDelete.isEmpty() && photos.model.Users.usersList.contains(userToDelete)) {
 			photos.model.Users.removeUser(userToDelete);
 			photos.model.Users.saveUsersList();

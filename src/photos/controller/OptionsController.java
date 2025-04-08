@@ -65,7 +65,7 @@ public class OptionsController {
         Platform.exit();
         System.exit(0);
     }
-    
+
     public void refresh() {
         tagTypeBox.getChildren().clear(); // Clear old tag buttons
     
@@ -85,13 +85,13 @@ public class OptionsController {
         }
     
         // Optionally clear text fields & messages
-        newTag.setText("Write whatever tag you want here.");
-        dying.setText("Write down the tag you want to be deleted here.");
-        newCaption.setText("Write whatever caption you want here.");
-        differentCaption.setText("Write the new caption here.");
+        newTag.setText("");
+        dying.setText("");
+        newCaption.setText("");
+        differentCaption.setText("");
         addCaptionMessage.setText("");
         changeCaptionMessage.setText("");
-        brandTag.setText("e.g. emotion");
+        brandTag.setText("");
     }
     
     public void displayPhoto(ActionEvent e){
@@ -137,7 +137,7 @@ public class OptionsController {
         String bestFormat = tagName + ", " + tagValue;
         photos.model.Users.addTag(photos.model.Users.currentUser, photos.model.Users.currentAlbum, photos.model.Users.currentPhoto, bestFormat.trim().toLowerCase());
         photos.model.Users.saveUserAlbums();
-        newTag.setText("Write whatever tag you want here.");
+        newTag.setText("");
     }
 
     public void deleteTag(ActionEvent e){
@@ -147,7 +147,7 @@ public class OptionsController {
         String bestFormat = tagName + ", " + tagValue;
         photos.model.Users.removeTag(photos.model.Users.currentUser, photos.model.Users.currentAlbum, photos.model.Users.currentPhoto, bestFormat.trim().toLowerCase());
         photos.model.Users.saveUserAlbums();
-        dying.setText("Write down the tag you want to be deleted here.");
+        dying.setText("");
     }
 
     public void loadInAlbum(ActionEvent e){
@@ -171,11 +171,12 @@ public class OptionsController {
             photos.model.Users.addCaption(photos.model.Users.currentUser, photos.model.Users.currentAlbum, photos.model.Users.currentPhoto, newCaption.getText());
             photos.model.Users.saveUserAlbums();
             addCaptionMessage.setText("");
-            newCaption.setText("Write whatever caption you want here.");
+            changeCaptionMessage.setText("");
+            newCaption.setText("");
         }
         else{
             addCaptionMessage.setText("You already have a caption");
-            newCaption.setText("Write whatever caption you want here.");
+            newCaption.setText("");
         }
     }
 
@@ -184,12 +185,13 @@ public class OptionsController {
             photos.model.Users.removeCaption(photos.model.Users.currentUser, photos.model.Users.currentAlbum, photos.model.Users.currentPhoto);
             photos.model.Users.addCaption(photos.model.Users.currentUser, photos.model.Users.currentAlbum, photos.model.Users.currentPhoto, differentCaption.getText());
             photos.model.Users.saveUserAlbums();
+            addCaptionMessage.setText("");
             changeCaptionMessage.setText("");
-            differentCaption.setText("Write the new caption here.");
+            differentCaption.setText("");
         }
         else{
             changeCaptionMessage.setText("Please create a caption first");
-            differentCaption.setText("Write the new caption here.");
+            differentCaption.setText("");
         }
     }
 
@@ -199,13 +201,13 @@ public class OptionsController {
     }
 
     public void insertTag(ActionEvent e){
-        Button insertedTag = new Button(brandTag.getText());
+        Button insertedTag = new Button(brandTag.getText().trim());
         //Then we'll add it to the appropriate hashmap and save
-        photos.model.Users.addUserTagType(photos.model.Users.currentUser, brandTag.getText());
+        photos.model.Users.addUserTagType(photos.model.Users.currentUser, brandTag.getText().trim());
         photos.model.Users.saveUserTagTypes();
         insertedTag.setOnAction(this::placeType);
         tagTypeBox.getChildren().add(insertedTag);
-        brandTag.setText("e.g. emotion");
+        brandTag.setText("");
     }
 
     public void loadInDestination(ActionEvent e){
