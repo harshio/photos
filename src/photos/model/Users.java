@@ -149,10 +149,6 @@ public class Users {
 
         if (photos.contains(toAdd)) return;
         photos.add(toAdd);
-        System.out.println("Adding photo to album: " + toAdd.getPath());
-        System.out.println("Photo owner: " + toAdd.getOwner());
-        System.out.println("Album contains photo: " + photos.contains(toAdd));
-        System.out.println("Album size after add: " + photos.size());
 
     }
     
@@ -203,16 +199,13 @@ public class Users {
     public static void addRealDate(String username, String albumName, String photoPath, String dateStr) {
         Album album = userAlbums.get(username).get(albumName);
         if (album == null){
-            System.out.println("Album is empty?");
             return;
         } 
         Set<Photo> photos = album.getPhotos();
         if (photos == null) {
-            System.out.println("Photo set is empty?");
             return;
         }
         if(photos.isEmpty()){
-            System.out.println("Real but empty?");
             return;
         }
         try {
@@ -221,13 +214,8 @@ public class Users {
             Calendar calendar = Calendar.getInstance();
             calendar.setTime(parsedDate);
             for (Photo p : photos) {
-                System.out.println("Comparing: " + p.getPath() + " == " + photoPath);
-                System.out.println("Looking for photo path match...");
-                System.out.println(" → p.getPath(): " + p.getPath());
-                System.out.println(" → photoPath : " + photoPath);
 
                 if (p.getPath().equals(photoPath)) {
-                    System.out.println("Match found! Adding calendar.");
                     p.addRealDate(calendar); // ✅ now using the Calendar-based method
                     break;
                 }
@@ -336,26 +324,20 @@ public class Users {
         if (usersList.contains(username)) {
             usersList.remove(username);
             userAlbums.remove(username);
-            System.out.println("User '" + username + "' removed successfully.");
-        } else {
-            System.out.println("User '" + username + "' does not exist.");
         }
     }
     
     public static void removeAlbum(String username, String albumName) {
         if (!userAlbums.containsKey(username)) {
-            System.out.println("User '" + username + "' does not exist.");
             return;
         }
     
         Map<String, Album> albums = userAlbums.get(username);
         if (!albums.containsKey(albumName)) {
-            System.out.println("Album '" + albumName + "' does not exist for user '" + username + "'.");
             return;
         }
     
         albums.remove(albumName);
-        System.out.println("Album '" + albumName + "' removed for user '" + username + "'.");
     }
     
     public static void removePhoto(String username, String albumName, String photoPath) {
@@ -370,7 +352,6 @@ public class Users {
     public static void saveUserAlbums() {
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("userAlbums.ser"))) {
             out.writeObject(userAlbums);
-            System.out.println("userAlbums saved successfully.");
         } catch (IOException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -385,13 +366,11 @@ public class Users {
         File file = new File("userAlbums.ser");
         if (!file.exists()) {
             userAlbums = new HashMap<>();
-            System.out.println("No saved userAlbums found. Starting fresh.");
             return;
         }
 
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(file))) {
             userAlbums = (Map<String, Map<String, Album>>) in.readObject();
-            System.out.println("userAlbums loaded successfully.");
         } catch (IOException | ClassNotFoundException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");

@@ -32,8 +32,6 @@ public class ShowOffController {
     @FXML Button quitButton;
 
     public void initialize() {       
-        System.out.println("ShowOffController initialized");
-        System.out.println("Users.currentPhoto = " + Users.currentPhoto);
 
         if (!tagBox.getChildren().isEmpty()) {
             tagBox.getChildren().clear();

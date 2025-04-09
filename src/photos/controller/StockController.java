@@ -35,8 +35,6 @@ public class StockController {
                 imageView.setPreserveRatio(true);
 
                 imageContainer.getChildren().add(imageView);
-            } else {
-                System.out.println("Image file not found: " + imageFile.getAbsolutePath());
             }
         }
     }

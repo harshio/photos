@@ -139,7 +139,6 @@ public class AlbumController {
         Set<photos.model.Photo> albumPhotos = album.getPhotos();
 
         if (albumPhotos == null || albumPhotos.isEmpty()) {
-            System.out.println("No photos in album — skipping date calculations.");
             loadBulkView(e); // 👈 reuse your scene load logic
             return;
         }
@@ -157,14 +156,6 @@ public class AlbumController {
                 if (newest == null || date.after(newest)) {
                     newest = (Calendar) date.clone();
                 }
-            }
-        }
-
-        System.out.println("Checking for realDates in album: " + Users.currentAlbum);
-        for (Photo p : albumPhotos) {
-            System.out.println("Photo: " + p.getPath());
-            for (Calendar c : p.getRealDates()) {
-                System.out.println(" - RealDate: " + c.getTime());
             }
         }
 
@@ -291,7 +282,6 @@ public class AlbumController {
                 modifiedTime = "Date taken: (unavailable)";
             }
             String trueTime = modifiedTime.substring(12);
-            System.out.println("Calling addRealDate for: " + photoPath + " with " + trueTime);
             for (VBox existingSlide : slides) {
                 for (javafx.scene.Node node : existingSlide.getChildren()) {
                     if (node instanceof ImageView) {
@@ -316,9 +306,6 @@ public class AlbumController {
             photos.model.Users.addRealDate(photos.model.Users.currentUser, photos.model.Users.currentAlbum, photoPath, trueTime);
             photos.model.Users.addDate(photos.model.Users.currentUser, photos.model.Users.currentAlbum, photoPath, modifiedTime);
             photos.model.Users.saveUserAlbums();
-            System.out.println("Added photo: " + path);
-        } else {
-            System.out.println("No file selected.");
         }
     }
 

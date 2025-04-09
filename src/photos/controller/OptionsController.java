@@ -96,7 +96,6 @@ public class OptionsController {
     }
     
     public void displayPhoto(ActionEvent e){
-        System.out.println("I'm a debugging message");
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/photos/view/ShowOff.fxml"));
             Parent root = loader.load();
