@@ -14,6 +14,7 @@ import java.util.List;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Label;
 
 import java.util.HashMap;
@@ -48,7 +49,11 @@ public class Users {
         try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("userTagTypes.ser"))) {
             out.writeObject(userTagTypes);
         } catch (IOException e) {
-            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Failed to Load Page");
+            alert.setContentText("Something went wrong while loading the page.\nDetails: " + e.getMessage());
+            alert.showAndWait();
         }
     }
 
@@ -60,7 +65,11 @@ public class Users {
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(file))) {
             userTagTypes = (Map<String, Set<String>>) in.readObject();
         } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Failed to Load Page");
+            alert.setContentText("Something went wrong while loading the page.\nDetails: " + e.getMessage());
+            alert.showAndWait();
         }
     }
 
@@ -76,7 +85,11 @@ public class Users {
 		try (ObjectOutputStream out = new ObjectOutputStream(new FileOutputStream("usersList.ser"))) {
 			out.writeObject(new ArrayList<>(usersList)); // Convert ObservableList to ArrayList
 		} catch (IOException e) {
-			e.printStackTrace();
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Failed to Load Page");
+            alert.setContentText("Something went wrong while loading the page.\nDetails: " + e.getMessage());
+            alert.showAndWait();
 		}
 	}
 
@@ -89,7 +102,11 @@ public class Users {
 			ArrayList<String> list = (ArrayList<String>) in.readObject();
 			usersList.setAll(list); // Update ObservableList with loaded data
 		} catch (IOException | ClassNotFoundException e) {
-			e.printStackTrace();
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Failed to Load Page");
+            alert.setContentText("Something went wrong while loading the page.\nDetails: " + e.getMessage());
+            alert.showAndWait();
 		}
 	}
 //making our hashmap (first stage: making sure albums don't all get the same photos, second stage: serialization)
@@ -216,8 +233,11 @@ public class Users {
                 }
             }
         } catch (Exception e) {
-            System.out.println("Failed to parse and store date for photo: " + photoPath);
-            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Failed to Load Page");
+            alert.setContentText("Something went wrong while loading the page.\nDetails: " + e.getMessage());
+            alert.showAndWait();
         }
     }
 
@@ -352,8 +372,11 @@ public class Users {
             out.writeObject(userAlbums);
             System.out.println("userAlbums saved successfully.");
         } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("Error saving userAlbums.");
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Failed to Load Page");
+            alert.setContentText("Something went wrong while loading the page.\nDetails: " + e.getMessage());
+            alert.showAndWait();
         }
     }
 
@@ -370,9 +393,12 @@ public class Users {
             userAlbums = (Map<String, Map<String, Album>>) in.readObject();
             System.out.println("userAlbums loaded successfully.");
         } catch (IOException | ClassNotFoundException e) {
-            e.printStackTrace();
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Failed to Load Page");
+            alert.setContentText("Something went wrong while loading the page.\nDetails: " + e.getMessage());
+            alert.showAndWait();
             userAlbums = new HashMap<>();
-            System.out.println("Error loading userAlbums. Starting with an empty structure.");
         }
     }
 

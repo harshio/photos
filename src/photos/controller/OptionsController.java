@@ -1,5 +1,6 @@
 package photos.controller;
 
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.VBox;
@@ -107,7 +108,11 @@ public class OptionsController {
             stage.show();
         }
         catch (IOException ex) {
-            ex.printStackTrace(); // Optional: replace with GUI error dialog
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Failed to Load Page");
+            alert.setContentText("Something went wrong while loading the page.\nDetails: " + ex.getMessage());
+            alert.showAndWait(); 
         }
     }
 
@@ -126,7 +131,11 @@ public class OptionsController {
             stage.show();
         }
         catch (IOException ex) {
-            ex.printStackTrace(); // Optional: replace with GUI error dialog
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Failed to Load Page");
+            alert.setContentText("Something went wrong while loading the page.\nDetails: " + ex.getMessage());
+            alert.showAndWait();
         }
     }
 
@@ -162,7 +171,11 @@ public class OptionsController {
             stage.show();
         }
         catch (IOException ex) {
-            ex.printStackTrace(); // Optional: replace with GUI error dialog
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Failed to Load Page");
+            alert.setContentText("Something went wrong while loading the page.\nDetails: " + ex.getMessage());
+            alert.showAndWait();
         }
     }
 
@@ -222,7 +235,11 @@ public class OptionsController {
             stage.show();
         }
         catch (IOException ex) {
-            ex.printStackTrace(); // Optional: replace with GUI error dialog
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Failed to Load Page");
+            alert.setContentText("Something went wrong while loading the page.\nDetails: " + ex.getMessage());
+            alert.showAndWait();
         }
     }
 

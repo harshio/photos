@@ -1,5 +1,6 @@
 package photos.controller;
 
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.event.ActionEvent;
@@ -86,8 +87,11 @@ public class PhotosController {
             stage.show();
 		}
 		catch(IOException d){
-			//Note that eventually we have to make it so that errors display in the GUI and not in the console
-			d.printStackTrace();
+			Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setTitle("Error");
+			alert.setHeaderText("Failed to Load Page");
+			alert.setContentText("Something went wrong while loading the page.\nDetails: " + d.getMessage());
+			alert.showAndWait();
 		}
 	}
 
@@ -110,7 +114,11 @@ public class PhotosController {
 			stage.show();
 		}
 		catch (IOException ex) {
-            ex.printStackTrace(); // Optional: replace with GUI error dialog
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setTitle("Error");
+			alert.setHeaderText("Failed to Load Page");
+			alert.setContentText("Something went wrong while loading the page.\nDetails: " + ex.getMessage());
+			alert.showAndWait();
         }
 	}
 
@@ -137,7 +145,11 @@ public class PhotosController {
             listStage.showAndWait();
 
         } catch (IOException ex) {
-            ex.printStackTrace(); // Optional: replace with GUI error dialog
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setTitle("Error");
+			alert.setHeaderText("Failed to Load Page");
+			alert.setContentText("Something went wrong while loading the page.\nDetails: " + ex.getMessage());
+			alert.showAndWait();
         }
 	}
 	/*This is so that the admin user can create new users*/
@@ -176,7 +188,11 @@ public class PhotosController {
 			stage.show();
 		}
 		catch (IOException ex) {
-            ex.printStackTrace(); // Optional: replace with GUI error dialog
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+			alert.setTitle("Error");
+			alert.setHeaderText("Failed to Load Page");
+			alert.setContentText("Something went wrong while loading the page.\nDetails: " + ex.getMessage());
+			alert.showAndWait();// Optional: replace with GUI error dialog
         }
 	}
 }

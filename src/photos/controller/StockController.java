@@ -6,6 +6,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Node;
 import javafx.scene.Parent;
+import javafx.scene.control.Alert;
 import javafx.scene.control.Button;
 import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
@@ -51,7 +52,11 @@ public class StockController {
 			stage.show();
 		}
 		catch (IOException ex) {
-            ex.printStackTrace(); // Optional: replace with GUI error dialog
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Failed to Load Page");
+            alert.setContentText("Something went wrong while loading the page.\nDetails: " + ex.getMessage());
+            alert.showAndWait();
         }
     }
 
