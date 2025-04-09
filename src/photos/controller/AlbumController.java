@@ -193,7 +193,6 @@ public class AlbumController {
     }
 
     public void deleteAlbum(ActionEvent e){
-        Users.albumNames.remove(Users.currentAlbum);
         photos.model.Users.removeAlbum(photos.model.Users.currentUser, photos.model.Users.currentAlbum);
         photos.model.Users.saveUserAlbums();
         Users.currentAlbum = null;
@@ -227,7 +226,6 @@ public class AlbumController {
 
         if (selectedFile != null) {
             String path = selectedFile.getAbsolutePath();
-            photos.model.Users.photoPaths.add(path);
 
             Image image = new Image(new File(path).toURI().toString(), 100, 100, true, true, false);
             ImageView imageView = new ImageView(image);

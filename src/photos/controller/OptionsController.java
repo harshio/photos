@@ -116,7 +116,6 @@ public class OptionsController {
     }
 
     public void deletePhoto(ActionEvent e){
-        photos.model.Users.photoPaths.remove(photos.model.Users.currentPhoto);
         photos.model.Users.removePhoto(photos.model.Users.currentUser, photos.model.Users.currentAlbum, photos.model.Users.currentPhoto);
         photos.model.Users.saveUserAlbums();
         try{

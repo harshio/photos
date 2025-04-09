@@ -22,7 +22,6 @@ public class CreateAlbumController {
         try{
             String name = albumName.getText().trim();
             if (!name.isEmpty()) {
-                photos.model.Users.albumNames.add(name);
                 photos.model.Users.createAlbum(photos.model.Users.currentUser, name);
                 photos.model.Users.saveUserAlbums();
             }
