@@ -13,11 +13,11 @@ import javafx.application.Platform;
 import javafx.collections.*;
 import java.io.*;
 //import javafx.scene.control.ListView; this import probably won't be used in this class but I'm paranoid
+import java.util.ArrayList;
 /**
  * Controller for the album creation interface.
  * Allows users to input a name and create a new album.
  */
-import java.util.ArrayList;
 public class CreateAlbumController {
     @FXML TextField albumName;
     @FXML Button createAlbum;
