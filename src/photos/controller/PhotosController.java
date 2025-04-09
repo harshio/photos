@@ -74,8 +74,8 @@ public class PhotosController {
 				root = loader.load();
 			}
 			else{
-				loader = new FXMLLoader(getClass().getResource("/photos/view/Stupid.fxml"));
-				root = loader.load();
+				userName.setText("");
+				return;
 			}
 
 			Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
