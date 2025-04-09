@@ -20,6 +20,14 @@ import java.io.*;
 import java.util.ArrayList;
 import java.util.Map;
 import java.util.Set;
+/**
+ * Controller for the home page.
+ * Internally called BulkController cus it's
+ * the entry point for the bulk
+ * of the application. It allows users to
+ * open, view, and create albums, log out, search,
+ * and quit the application.
+ */
 public class BulkController {
     @FXML Button createButton;
     @FXML
@@ -27,6 +35,9 @@ public class BulkController {
     @FXML Button logOut;
     @FXML Button searchButton;
     @FXML Button quitButton;
+    /**Initializes the album list by creating buttons
+     * for each album.
+     */
     public void initialize(){
         Map<String, photos.model.Album> albums = Users.userAlbums.get(Users.currentUser);
         if (albums == null) return;
@@ -57,7 +68,10 @@ public class BulkController {
         }
         
     }
-
+    /**
+     * Saves user data and quits the application.
+     * @param e is the triggering event
+     */
     public void quitApplication(ActionEvent e){
         photos.model.Users.saveUsersList();
         photos.model.Users.saveUserAlbums();
@@ -65,7 +79,10 @@ public class BulkController {
         Platform.exit();
         System.exit(0);
     }
-
+    /**
+     * Opens the search interface.
+     * @param e is the triggering event.
+     */
     public void loadInSearch(ActionEvent e){
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/photos/view/Search.fxml"));
@@ -85,7 +102,10 @@ public class BulkController {
             alert.showAndWait();
         }
     }
-
+    /**
+     * Logs out the user and returns to the login page.
+     * @param e is the triggering event.
+     */
     public void logOut(ActionEvent e){
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/photos/view/Logout.fxml"));
@@ -105,6 +125,10 @@ public class BulkController {
             alert.showAndWait();
         }
     }
+    /**
+     * Opens the album creation page.
+     * @param e is the triggering event.
+     */
     public void createAlbum(ActionEvent e){
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/photos/view/CreateAlbum.fxml"));
@@ -124,7 +148,11 @@ public class BulkController {
             alert.showAndWait();
         }
     }
-
+    /**
+     * Opens a selected album and loads in Album.fxml
+     * to view said album.
+     * @param e is the triggering event
+     */
     public void loadInAlbum(ActionEvent e){
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/photos/view/Album.fxml"));

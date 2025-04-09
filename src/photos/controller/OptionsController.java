@@ -19,6 +19,13 @@ import java.io.*;
 //import javafx.scene.control.ListView; this import probably won't be used in this class but I'm paranoid
 import java.util.ArrayList;
 import java.util.Set;
+/**
+ * Controller for the photo options view,
+ * or Options.fxml. This controller provides
+ * functionality to add/remove captions and tags,
+ * view a photo in a fuller, separate display, and
+ * copy or transfer/move a photo to another album.
+ */
 public class OptionsController {
     @FXML Button delete;
     @FXML Button display;
@@ -43,6 +50,10 @@ public class OptionsController {
     @FXML Button makeNewTag;
     @FXML Button move;
     @FXML Button quitButton;
+    /**
+     * Initializes the tag type buttons dynamically based on the user's
+     * available tag types. Called automatically when the scene is loaded.
+     */
     public void initialize(){
         tagTypeBox.getChildren().clear();
         tagTypeBox.getChildren().add(makeTagButton("location"));
@@ -58,7 +69,10 @@ public class OptionsController {
             }
         }
     }
-
+    /**
+     * Quits the application after saving all user data
+     * @param e is the triggering event
+     */
     public void quitApplication(ActionEvent e){
         photos.model.Users.saveUsersList();
         photos.model.Users.saveUserAlbums();
@@ -66,7 +80,9 @@ public class OptionsController {
         Platform.exit();
         System.exit(0);
     }
-
+    /**
+     * Resets input fields and regenerates tag type buttons
+     */
     public void refresh() {
         tagTypeBox.getChildren().clear(); // Clear old tag buttons
     
@@ -94,7 +110,10 @@ public class OptionsController {
         changeCaptionMessage.setText("");
         brandTag.setText("");
     }
-    
+    /**
+     * Loads the fuller, separate photo display view.
+     * @param e is the triggering event
+     */
     public void displayPhoto(ActionEvent e){
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/photos/view/ShowOff.fxml"));
@@ -114,7 +133,12 @@ public class OptionsController {
             alert.showAndWait(); 
         }
     }
-
+    /**
+     * Deletes the currently viewed
+     * photo from the album and returns to the
+     * album page
+     * @param e is the triggering event
+     */
     public void deletePhoto(ActionEvent e){
         photos.model.Users.removePhoto(photos.model.Users.currentUser, photos.model.Users.currentAlbum, photos.model.Users.currentPhoto);
         photos.model.Users.saveUserAlbums();
@@ -136,7 +160,10 @@ public class OptionsController {
             alert.showAndWait();
         }
     }
-
+    /**
+     * Adds a tag to the current photo using the input from the tag field.
+     * @param e is the triggering event
+     */
     public void addTag(ActionEvent e){
         String[] properTags = newTag.getText().split(",");
         String tagName = properTags[0].trim();
@@ -146,7 +173,10 @@ public class OptionsController {
         photos.model.Users.saveUserAlbums();
         newTag.setText("");
     }
-
+    /**
+     * Removes a tag from the current photo usinng the input from the tag field.
+     * @param e is the triggering event
+     */
     public void deleteTag(ActionEvent e){
         String[] properTags = dying.getText().split(",");
         String tagName = properTags[0].trim();
@@ -156,7 +186,10 @@ public class OptionsController {
         photos.model.Users.saveUserAlbums();
         dying.setText("");
     }
-
+    /**
+     * Returns to the album page from the options screen.
+     * @param e is the triggering event.
+     */
     public void loadInAlbum(ActionEvent e){
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/photos/view/Album.fxml"));
@@ -176,7 +209,11 @@ public class OptionsController {
             alert.showAndWait();
         }
     }
-
+    /**
+     * Adds a caption to the currently selected photo,
+     * only if it doesn't already have one.
+     * @param e is the triggering event.
+     */
     public void addCaption(ActionEvent e){
         if(photos.model.Users.getCaption(photos.model.Users.currentUser, photos.model.Users.currentAlbum, photos.model.Users.currentPhoto).equals("")){
             photos.model.Users.addCaption(photos.model.Users.currentUser, photos.model.Users.currentAlbum, photos.model.Users.currentPhoto, newCaption.getText());
@@ -190,7 +227,11 @@ public class OptionsController {
             newCaption.setText("");
         }
     }
-
+    /**
+     * changes the caption of the current photo, only if one
+     * already exists of course.
+     * @param e is the triggering event.
+     */
     public void changeCaption(ActionEvent e){
         if(!photos.model.Users.getCaption(photos.model.Users.currentUser, photos.model.Users.currentAlbum, photos.model.Users.currentPhoto).equals("")){
             photos.model.Users.removeCaption(photos.model.Users.currentUser, photos.model.Users.currentAlbum, photos.model.Users.currentPhoto);
@@ -205,12 +246,19 @@ public class OptionsController {
             differentCaption.setText("");
         }
     }
-
+    /**
+     * Places the selected tag type in the newTag field prefix for
+     * user convenience.
+     * @param e is the triggering event.
+     */
     public void placeType(ActionEvent e){
         Button clicked = (Button) e.getSource();
         newTag.setText(clicked.getText() + ", ");
     }
-
+    /**
+     * adds a custom tag type to the user's tag list and UI.
+     * @param e is the triggering event.
+     */
     public void insertTag(ActionEvent e){
         Button insertedTag = new Button(brandTag.getText().trim());
         //Then we'll add it to the appropriate hashmap and save
@@ -220,7 +268,11 @@ public class OptionsController {
         tagTypeBox.getChildren().add(insertedTag);
         brandTag.setText("");
     }
-
+    /**
+     * Loads the destination album selection page for copying
+     * or transferring the currently selected photo.
+     * @param e is the triggering event.
+     */
     public void loadInDestination(ActionEvent e){
         try{
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/photos/view/Destination.fxml"));
@@ -240,7 +292,11 @@ public class OptionsController {
             alert.showAndWait();
         }
     }
-
+    /**
+     * Creates a new tag type button with an associated action
+     * @param tag is the name of the tag type
+     * @return a configured Button object
+     */
     private Button makeTagButton(String tag) {
         Button tagButton = new Button(tag);
         tagButton.setOnAction(this::placeType);

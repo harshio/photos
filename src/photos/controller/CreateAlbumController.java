@@ -13,11 +13,20 @@ import javafx.application.Platform;
 import javafx.collections.*;
 import java.io.*;
 //import javafx.scene.control.ListView; this import probably won't be used in this class but I'm paranoid
+/**
+ * Controller for the album creation interface.
+ * Allows users to input a name and create a new album.
+ */
 import java.util.ArrayList;
 public class CreateAlbumController {
     @FXML TextField albumName;
     @FXML Button createAlbum;
     @FXML Button quitButton;
+    /**
+     * Creates a new album with the user-specified name if valid and not a duplicate.
+     * Transitions to home page upon success.
+     * @param e is the triggering event.
+     */
     public void createAlbum(ActionEvent e){
         try{
             String name = albumName.getText().trim();
@@ -43,7 +52,10 @@ public class CreateAlbumController {
             alert.showAndWait();
         }
     }
-
+    /**
+     * Saves user data and quits the application.
+     * @param e is the triggering event.
+     */
     public void quitApplication(ActionEvent e){
         photos.model.Users.saveUsersList();
         photos.model.Users.saveUserAlbums();

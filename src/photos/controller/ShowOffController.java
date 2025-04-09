@@ -23,6 +23,12 @@ import javafx.scene.image.Image;
 //import javafx.scene.control.ListView; this import probably won't be used in this class but I'm paranoid
 import java.util.ArrayList;
 import java.util.Set;
+/**
+ * Controller for displaying a fuller, separate
+ * view of a selected photo. It shows the image, its caption, timestamp,
+ * and all associated tags. Provides navigation back to the options
+ * screen and allows quitting of the application.
+ */
 public class ShowOffController {
     @FXML
     private ImageView largeImageView;
@@ -30,7 +36,11 @@ public class ShowOffController {
     @FXML
     private VBox tagBox;
     @FXML Button quitButton;
-
+    /**
+     * Initializes the photo display by loading the image, caption, tags,
+     * and timestamp from the current photo reference. This method is automatically
+     * called when the view is loaded.
+     */
     public void initialize() {       
 
         if (!tagBox.getChildren().isEmpty()) {
@@ -68,7 +78,10 @@ public class ShowOffController {
             }
         }
     }
-
+    /**
+     * Saves user data to disk and quits application.
+     * @param e is the triggering event from the quitApplication button.
+     */
     public void quitApplication(ActionEvent e){
         photos.model.Users.saveUsersList();
         photos.model.Users.saveUserAlbums();
@@ -76,7 +89,12 @@ public class ShowOffController {
         Platform.exit();
         System.exit(0);
     }
-
+    /**
+     * Loads back in the options view (Option.fxml) where the user
+     * can edit photo tags and captions. Refreshes OptionsController
+     * before showing it.
+     * @param event is the triggering event
+     */
     @FXML
     private void loadOptionsView(ActionEvent event) {
         try {

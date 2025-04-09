@@ -33,6 +33,13 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+/**
+ * Controller associated with Album.fxml.
+ * Album.fxml is responsible for display of all photos in user album.
+ * It does so by formatting them as a manual slideshow.
+ * This class supports adding, deleting, and renaming albums,
+ * as well as navigating photo slides.
+ */
 public class AlbumController {
     @FXML Button leave;
     @FXML Button add;
@@ -53,7 +60,12 @@ public class AlbumController {
     private Parent optionsRoot = null;
     private FXMLLoader optionsLoader = null;
 
-
+    /**
+     * Initializes Album.fxml. Loads all photos 
+     * currently stored in the currently selected
+     * album and prepares the slideshow interface
+     * with next and previous buttons to help navigate.
+     */
     public void initialize() {
         slideContainer.setVisible(false);
         loadingPane.setVisible(true);
@@ -125,7 +137,10 @@ public class AlbumController {
             });
         }).start();
     }
-    
+    /**
+     * Saves data and cleanly quits the application.
+     * @param e is the triggering event
+     */
     public void quitApplication(ActionEvent e){
         photos.model.Users.saveUsersList();
         photos.model.Users.saveUserAlbums();
@@ -133,7 +148,10 @@ public class AlbumController {
         Platform.exit();
         System.exit(0);
     }
-
+    /**
+     * Navigates back to the home page and also saves the oldest and newest dates of the album.
+     * @param e is the triggering event.
+     */
     public void leaveAlbum(ActionEvent e){
         //we have to calculate oldest date and newest date in here
         photos.model.Album album = photos.model.Users.userAlbums
@@ -191,7 +209,10 @@ public class AlbumController {
             alert.showAndWait();
         }
     }
-
+    /**
+     * Deletes the current album and returns to the home page.
+     * @param e is the triggering event.
+     */
     public void deleteAlbum(ActionEvent e){
         photos.model.Users.removeAlbum(photos.model.Users.currentUser, photos.model.Users.currentAlbum);
         photos.model.Users.saveUserAlbums();
@@ -212,7 +233,12 @@ public class AlbumController {
             alert.showAndWait();
         }
     }
-
+    /**
+     * Handles uploading a new photo to the album,
+     * support both new and previously existing photos via
+     * object reuse.
+     * @param e is the triggering event
+     */
     @FXML
     public void uploadPhoto(ActionEvent e) {
         FileChooser fileChooser = new FileChooser();
@@ -312,7 +338,13 @@ public class AlbumController {
             photos.model.Users.saveUserAlbums();
         }
     }
-
+    /**
+     * Loads the Options.fxml page for the 
+     * selected photo, allowing tag and caption edits, along
+     * with photo deletion, photo copy/transfer, and so on and so forth.
+     * Will be elaborated on in the javadoc comments for OptionsController
+     * @param e is mouse click on a photo
+     */
     public void loadInOptions(MouseEvent e){
         try {
             if (optionsRoot == null) {
@@ -337,7 +369,10 @@ public class AlbumController {
             alert.showAndWait();
         }
     }
-
+    /**
+     * Shows next photo in album slideshow
+     * @param e is the triggering event
+     */
     @FXML
     private void handleNext(ActionEvent e) {
         if (currentIndex < slides.size() - 1) {
@@ -346,7 +381,10 @@ public class AlbumController {
             updateNavigationButtons();
         }
     }
-
+    /**
+     * Shows previous photo in album slideshow.
+     * @param e is the triggering event
+     */
     @FXML
     private void handlePrev(ActionEvent e) {
         if (currentIndex > 0) {
@@ -355,7 +393,10 @@ public class AlbumController {
             updateNavigationButtons();
         }
     }
-
+    /**
+     * Navigates to the home page.
+     * @param e is the triggering event
+     */
     private void loadBulkView(ActionEvent e) {
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/photos/view/Bulk.fxml"));
@@ -372,13 +413,19 @@ public class AlbumController {
             alert.showAndWait();
         }
     }
-    
+    /**
+     * Updates visibility of next/prev buttons based on slideshow position
+     */
     private void updateNavigationButtons() {
         boolean multipleSlides = slides.size() > 1;
         prevButton.setVisible(currentIndex > 0 && multipleSlides);
         nextButton.setVisible(currentIndex < slides.size() - 1 && multipleSlides);
     } 
-    
+    /**
+     * Renames current album if new name doesn't already exist.
+     * Updates user model and current album reference.
+     * @param e is the triggering event
+     */
     public void renameAlbum(ActionEvent e){
         String user = photos.model.Users.currentUser;
         String oldName = photos.model.Users.currentAlbum;

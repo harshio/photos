@@ -22,7 +22,10 @@ import java.util.ArrayList;
 //A few days from now I'm gonna update the Admin Page to have a separate Return to Login Page button and remove the logic that loads the login page from the createUser and deleteUser methods
 //I don't care about the other pages having a Return to Login Page button yet, because only the Admin and Login pages are near-complete at this stage
 //Also tomorrow I'm gonna start and hopefully complete work on the "stock" page
-
+/**
+ * Controller for the login, admin, and stock pages of the Photos application.
+ * Handles user login routing and admin user management, and navigation to stock and user pages.
+ */
 public class PhotosController {
 	@FXML Button login;
 	@FXML TextField userName;
@@ -52,6 +55,11 @@ public class PhotosController {
 	//public static ObservableList<String> usersList = FXCollections.observableArrayList("admin", "stock");
 	
 	/*This is for loading pages directly from login*/
+	/**
+	 * Handles the login logic and routes users to to the appropriate interface
+	 * (admin, stock, or normal home page) depending on input.
+	 * @param e is the triggering event from the login button.
+	 */
 	public void goToApplication(ActionEvent e){
 		try{
 			//For each branch, we'll create different loader and root objects
@@ -94,7 +102,10 @@ public class PhotosController {
 			alert.showAndWait();
 		}
 	}
-
+	/**
+	 * Saves all user data and exits the application cleanly.
+	 * @param e is the triggering event from the quit application button.
+	 */
 	public void quitApplication(ActionEvent e){
         photos.model.Users.saveUsersList();
         photos.model.Users.saveUserAlbums();
@@ -102,7 +113,10 @@ public class PhotosController {
         Platform.exit();
         System.exit(0);
     }
-
+	/**
+	 * Returns from the current view to the login page.
+	 * @param e is the triggering event.
+	 */
 	public void returnLog(ActionEvent e){
 		try{
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/photos/view/Login.fxml"));
@@ -123,6 +137,11 @@ public class PhotosController {
 	}
 
 	/*This is for displaying all the users in the admin page */
+	/**
+	 * Displays all users in a modal ListView via the Display.fxml
+	 * view. It is only accessible to the admin user.
+	 * @param e is the triggering event from the displayAllUsers button
+	 */
 	public void displayAllUsers(ActionEvent e){
 		try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/photos/view/Display.fxml"));
@@ -153,6 +172,11 @@ public class PhotosController {
         }
 	}
 	/*This is so that the admin user can create new users*/
+	/**
+	 * Creates a new user with the name entered in the associated text field.
+	 * Only allowed for admin user. Ignores blank or duplicate names.
+	 * @param e is the triggering event from the createUser button
+	 */
 	public void createUser(ActionEvent e){
 		String newUser = newUserName.getText().trim();
 		if (!newUser.isEmpty() && !photos.model.Users.usersList.contains(newUser)) {
@@ -163,8 +187,11 @@ public class PhotosController {
 		newUserName.setText("");
 		deadUserName.setText("");
 	}
-	
-	/*This is so that the admin user can delete users */
+	/**
+	 * Deletes the user specified in the associated text field.
+	 * Only allowed for admin user. Ignores blank or invalid names.
+	 * @param event is the triggering event from the deleteUser button.
+	 */
 	public void deleteUser(ActionEvent event) {
 		String userToDelete = deadUserName.getText().trim();
 		if (!userToDelete.isEmpty() && photos.model.Users.usersList.contains(userToDelete)) {
@@ -177,6 +204,11 @@ public class PhotosController {
 	}
 
 	//Load stock page
+	/**
+	 * It loads the stock album page associated with the Stock.fxml view.
+	 * Should be loaded from TrueStockPage.fxml
+	 * @param event is the triggering event from the loadStockPage button
+	 */
 	public void loadStockPage(ActionEvent event){
 		try{
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/photos/view/Stock.fxml"));

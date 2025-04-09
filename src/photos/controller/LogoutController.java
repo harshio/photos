@@ -14,9 +14,18 @@ import javafx.collections.*;
 import java.io.*;
 //import javafx.scene.control.ListView; this import probably won't be used in this class but I'm paranoid
 import java.util.ArrayList;
+/**
+ * Controller for the logout confirmation interface.
+ * Allows user to return to the login screen or quit the
+ * application entirely.
+ */
 public class LogoutController {
     @FXML Button logOut;
 	@FXML Button quitButton;
+	/**
+	 * Logs the user out by navigating back to the login screen.
+	 * @param e is the triggering event
+	 */
     public void logOut(ActionEvent e){
         try{
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/photos/view/Login.fxml"));
@@ -35,7 +44,10 @@ public class LogoutController {
 			alert.showAndWait(); 
         }
     }
-
+	/**
+	 * Saves the users' data and subsequently quits the application.
+	 * @param e is the triggering event.
+	 */
 	public void quitApplication(ActionEvent e){
         photos.model.Users.saveUsersList();
         photos.model.Users.saveUserAlbums();

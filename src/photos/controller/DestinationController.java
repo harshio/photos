@@ -28,12 +28,27 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+/**
+ * Controller for the destination album selection interface.
+ * Allows user to choose a target album for copying or moving a photo.
+ * Skips current album to avoid copying/moving within the same album
+ */
 public class DestinationController {
     @FXML
     private VBox albumButtons;
     @FXML Button backButton;
+    /**
+     * Static field to hold the name of the destination album
+     * selected by the user.
+     */
     public static String destinationAlbum;
     @FXML Button quitButton;
+    /**
+     * Initializes the destination album selection UI by
+     * populating a list of album buttons, excluding the currently
+     * open album. Each button, when clicked, sets the destination
+     * and transitions to the Copy/Transfer page
+     */
     public void initialize(){
         Set<String> albumNames = Users.userAlbums.get(Users.currentUser).keySet();
         for(String album: albumNames){
@@ -59,7 +74,10 @@ public class DestinationController {
             albumButtons.getChildren().add(b);
         }
     }
-
+    /**
+     * Saves user data and quits application.
+     * @param e is the triggering event.
+     */
     public void quitApplication(ActionEvent e){
         photos.model.Users.saveUsersList();
         photos.model.Users.saveUserAlbums();
@@ -67,7 +85,10 @@ public class DestinationController {
         Platform.exit();
         System.exit(0);
     }
-
+    /**
+     * Returns to the photo options screen (Option.fxml)
+     * @param e is the triggering event.
+     */
     public void backToOptions(ActionEvent e){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/photos/view/Options.fxml"));

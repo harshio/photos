@@ -36,6 +36,13 @@ import java.util.HashSet;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+/**
+ * Controller for the search interface.
+ * Allows users to search for photos by tag
+ * or date range, display matching photos as a
+ * slideshow, similar to how it is in the album view,
+ * and optionally save them into a brand new album.
+ */
 public class SearchController {
     @FXML Button searchTag;
     @FXML Button searchDate;
@@ -53,7 +60,10 @@ public class SearchController {
     @FXML
     private VBox createButton;
     @FXML Button quitButton;
-
+    /**
+     * Initializes the search UI by clearing inputs, messages, and
+     * previous search results
+     */
     public void initialize(){
         slidesAndButton.getChildren().clear();
         createButton.getChildren().clear();
@@ -64,7 +74,10 @@ public class SearchController {
         tagQuery.setText("");
         dateQuery.setText("");
     }
-    
+    /**
+     * saves user data and quits application
+     * @param e is the triggering event from the Quit Application button
+     */
     public void quitApplication(ActionEvent e){
         photos.model.Users.saveUsersList();
         photos.model.Users.saveUserAlbums();
@@ -72,7 +85,13 @@ public class SearchController {
         Platform.exit();
         System.exit(0);
     }
-
+    /**
+     * Parses a start date from user input and returns a Calendar object.
+     * Sets the time to the beginning of the day.
+     * @param dateStr the date string in MM/dd/yyyy format
+     * @return a Calendar set to the parsed start date
+     * @throws ParseException if the input is not a valid date
+     */
     private Calendar parseDateStart(String dateStr) throws ParseException{
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
         sdf.setLenient(false);
@@ -87,7 +106,13 @@ public class SearchController {
 
         return calendar;
     }
-
+    /**
+     * Parses an end date from user input and returns a Calendar object.
+     * Sets the time to the end of the day.
+     * @param dateStr the date string in MM/dd/yyyy format
+     * @return a Calendar set to the parsed end date
+     * @throws ParseException if the input is not a valid date
+     */
     private Calendar parseDateEnd(String dateStr) throws ParseException{
         SimpleDateFormat sdf = new SimpleDateFormat("MM/dd/yyyy");
         sdf.setLenient(false);
@@ -102,7 +127,11 @@ public class SearchController {
 
         return calendar;
     }
-
+    /**
+     * Searches all user albums for photos taken within a specified date range.
+     * Validates date format, updates the search results, and displays them. 
+     * @param e is the triggering event from the searchByDate button
+     */
     public void searchByDate(ActionEvent e){
         searchResults.clear();
         errorTag.setText("");
@@ -198,7 +227,12 @@ public class SearchController {
             createButton.getChildren().add(weirdAlbum);
         }
     }
-
+    /**
+     * Search for all albums associated with the current user for photos
+     * matching a single tag, or a combination of two tags using "and"/"or" logic.
+     * Validates the query format and updates the view.
+     * @param e is the triggering event from the searchByDate button.
+     */
     public void searchByTag(ActionEvent e){
         searchResults.clear();
         errorTag.setText("");
@@ -392,7 +426,13 @@ public class SearchController {
             createButton.getChildren().add(weirdAlbum);
         }
     }
-
+    /**
+     * Finds photos with the specified tag name and value from all albums
+     * associated with the current user.
+     * @param tagName is the tag type (name) to match
+     * @param tagValue is the tag value to match
+     * @return a set of photos matching the tag criteria.
+     */
     private Set<Photo> findTaggedPhotos(String tagName, String tagValue){
         Set<Photo> results = new HashSet<>();
         for (Album album : Users.userAlbums.get(Users.currentUser).values()) {
@@ -413,7 +453,11 @@ public class SearchController {
         }
         return results;
     }
-
+    /**
+     * Creates a new album from the current search results.
+     * Automatically names it "search compilation #n" and adds all results.
+     * @param e is the triggering event from the createAlbum button.
+     */
     public void createAlbum(ActionEvent e){
         //Start by initializing an album
         Album searchAlbum = new Album();
@@ -473,6 +517,10 @@ public class SearchController {
             alert.showAndWait();
         }
     }
+    /**
+     * Returns to the home page from the search screen.
+     * @param e is the triggering event from the return button
+     */
     public void returnToHome(ActionEvent e){
         try {
             FXMLLoader loader = new FXMLLoader(getClass().getResource("/photos/view/Bulk.fxml"));

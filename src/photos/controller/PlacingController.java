@@ -29,6 +29,12 @@ import java.util.Calendar;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+/**
+ * Controller for placing a photo into another album by
+ * copying or transferring it. This screen is shown after the user
+ * selects a destination album. Prevents duplicate placement and
+ * allows the user to return if the photo already exists.
+ */
 public class PlacingController {
     @FXML Button copyButton;
     @FXML Button transferButton;
@@ -38,14 +44,22 @@ public class PlacingController {
     @FXML Button quitButton;
 
     private Photo foundPhoto;
-
+    /**
+     * Initializes the controller by setting up button actions
+     * and clearing the return button area.
+     */
     public void initialize(){
         copyButton.setOnAction(e->copy(e));
         transferButton.setOnAction(e->transfer(e));
         errorMessage.setText("");
         returnButtons.getChildren().clear();
     }
-
+    /**
+     * Handles the "copy" action, adding the current photo to the
+     * destination album if it does not already exist there. Successfully
+     * prevents duplication.
+     * @param e is the triggering event from the copyButton.
+     */
     public void copy(ActionEvent e){
         Set<Photo> destPhotos = Users.userAlbums.get(Users.currentUser).get(DestinationController.destinationAlbum).getPhotos();
         for(Photo p: destPhotos){
@@ -99,7 +113,10 @@ public class PlacingController {
             alert.showAndWait();
         }
     }
-
+    /**
+     * saves user data to disk and quits application.
+     * @param e is the triggering event from the "Quit Application" button.
+     */
     public void quitApplication(ActionEvent e){
         photos.model.Users.saveUsersList();
         photos.model.Users.saveUserAlbums();
@@ -107,7 +124,11 @@ public class PlacingController {
         Platform.exit();
         System.exit(0);
     }
-
+    /**
+     * Handles the "transfer" action, moving the current photo from the 
+     * current album to the destination album. Also prevents duplicates.
+     * @param e is the triggering event from the transferButton
+     */
     public void transfer(ActionEvent e){
         Set<Photo> destPhotos = Users.userAlbums.get(Users.currentUser).get(DestinationController.destinationAlbum).getPhotos();
         for(Photo p: destPhotos){

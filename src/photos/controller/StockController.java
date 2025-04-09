@@ -15,14 +15,22 @@ import javafx.stage.Stage;
 
 import java.io.File;
 import java.io.IOException;
-
+/**
+ * Controller for the stock album view (Stock.fxml)
+ * Displays predefined stock photos.
+ * Provides navigation back to the main stock page and supports
+ * quitting the application.
+ */
 public class StockController {
 
     @FXML
     private HBox imageContainer;
     @FXML Button quitButton;
     @FXML Button returnButton;
-
+    /**
+     * Initializes the stock photo view by loading and displaying
+     * stock images stored in the data directory.
+     */
     @FXML
     public void initialize() {
         for (int i = 1; i <= 5; i++) {
@@ -38,7 +46,10 @@ public class StockController {
             }
         }
     }
-
+    /**
+     * Navigates to TrueStockPage.fxml that displays the stock album
+     * @param e is the triggering event
+     */
     public void loadInStockPage(ActionEvent e){
         try{
 			FXMLLoader loader = new FXMLLoader(getClass().getResource("/photos/view/TrueStockPage.fxml"));
@@ -57,7 +68,10 @@ public class StockController {
             alert.showAndWait();
         }
     }
-
+    /**
+     * saves user data to disk and quits application.
+     * @param e is the triggering event
+     */
     public void quitApplication(ActionEvent e){
         photos.model.Users.saveUsersList();
         photos.model.Users.saveUserAlbums();
