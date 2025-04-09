@@ -462,7 +462,7 @@ public class SearchController {
             Parent root = loader.load();
             Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
             stage.getScene().setRoot(root);
-            stage.setTitle("Bulk View");
+            stage.setTitle("Home Page");
             stage.show();
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -474,7 +474,7 @@ public class SearchController {
             Parent root = loader.load();
             Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
             stage.getScene().setRoot(root);
-            stage.setTitle("Bulk View");
+            stage.setTitle("Home Page");
             stage.show();
         } catch (IOException ex) {
             ex.printStackTrace();

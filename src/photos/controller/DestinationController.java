@@ -45,7 +45,7 @@ public class DestinationController {
                     Parent root = loader.load();
                     Stage stage = (Stage) albumButtons.getScene().getWindow();
                     stage.getScene().setRoot(root);
-                    stage.setTitle("Bulk View");
+                    stage.setTitle("Copy/Transfer Page");
                     stage.show();
                 } catch (IOException ex) {
                     ex.printStackTrace();
@@ -69,7 +69,7 @@ public class DestinationController {
             Parent root = loader.load();
             Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
             stage.getScene().setRoot(root);
-            stage.setTitle("Bulk View");
+            stage.setTitle("Options Page");
             stage.show();
         } catch (IOException ex) {
             ex.printStackTrace();

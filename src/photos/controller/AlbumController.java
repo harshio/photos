@@ -181,7 +181,7 @@ public class AlbumController {
             Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
             stage.getScene().setRoot(root);
             //For stage.setTitle(), we'll make sure to properly if-condition this one and only this one later.
-            stage.setTitle("Dummy");
+            stage.setTitle("Home Page");
             stage.show();
         }
         catch (IOException ex) {
@@ -200,7 +200,7 @@ public class AlbumController {
             Parent root = loader.load();
             Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
             stage.getScene().setRoot(root);
-            stage.setTitle("Bulk View");
+            stage.setTitle("Home Page");
             stage.show();
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -303,7 +303,7 @@ public class AlbumController {
     
             Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
             stage.getScene().setRoot(optionsRoot);
-            stage.setTitle("Dummy");
+            stage.setTitle("Options Page");
             stage.show();
     
         } catch (IOException ex) {
@@ -333,7 +333,7 @@ public class AlbumController {
             Parent root = loader.load();
             Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
             stage.getScene().setRoot(root);
-            stage.setTitle("Bulk View");
+            stage.setTitle("Home Page");
             stage.show();
         } catch (IOException ex) {
             ex.printStackTrace();

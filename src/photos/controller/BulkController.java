@@ -73,7 +73,7 @@ public class BulkController {
             stage.getScene().setRoot(root);
 
             //For stage.setTitle(), we'll make sure to properly if-condition this one and only this one later.
-            stage.setTitle("Dummy");
+            stage.setTitle("Search Page");
             stage.show();
         }
         catch (IOException ex) {
@@ -89,7 +89,7 @@ public class BulkController {
             stage.getScene().setRoot(root);
 
             //For stage.setTitle(), we'll make sure to properly if-condition this one and only this one later.
-            stage.setTitle("Dummy");
+            stage.setTitle("Logout Page");
             stage.show();
         }
         catch (IOException ex) {
@@ -104,7 +104,7 @@ public class BulkController {
             stage.getScene().setRoot(root);
 
             //For stage.setTitle(), we'll make sure to properly if-condition this one and only this one later.
-            stage.setTitle("Dummy");
+            stage.setTitle("Album Creation Page");
             stage.show();
         }
         catch (IOException ex) {
@@ -120,7 +120,7 @@ public class BulkController {
             stage.getScene().setRoot(root);
 
             //For stage.setTitle(), we'll make sure to properly if-condition this one and only this one later.
-            stage.setTitle("Dummy");
+            stage.setTitle("Album Page");
             stage.show();
         }
         catch (IOException ex) {

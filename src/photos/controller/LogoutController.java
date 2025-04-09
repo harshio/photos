@@ -23,7 +23,7 @@ public class LogoutController {
 			Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
 			stage.getScene().setRoot(root);
 
-			stage.setTitle("Album");
+			stage.setTitle("Login Page");
 			stage.show();
 		}
 		catch (IOException ex) {

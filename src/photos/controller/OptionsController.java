@@ -103,7 +103,7 @@ public class OptionsController {
             stage.getScene().setRoot(root);
 
             //For stage.setTitle(), we'll make sure to properly if-condition this one and only this one later.
-            stage.setTitle("Dummy");
+            stage.setTitle("Display of Photo");
             stage.show();
         }
         catch (IOException ex) {
@@ -122,7 +122,7 @@ public class OptionsController {
             stage.getScene().setRoot(root);
 
             //For stage.setTitle(), we'll make sure to properly if-condition this one and only this one later.
-            stage.setTitle("Dummy");
+            stage.setTitle("Album Page");
             stage.show();
         }
         catch (IOException ex) {
@@ -158,7 +158,7 @@ public class OptionsController {
             stage.getScene().setRoot(root);
 
             //For stage.setTitle(), we'll make sure to properly if-condition this one and only this one later.
-            stage.setTitle("Dummy");
+            stage.setTitle("Album Page");
             stage.show();
         }
         catch (IOException ex) {
@@ -218,7 +218,7 @@ public class OptionsController {
             stage.getScene().setRoot(root);
 
             //For stage.setTitle(), we'll make sure to properly if-condition this one and only this one later.
-            stage.setTitle("Dummy");
+            stage.setTitle("Page of Albums to Copy/Transfer to");
             stage.show();
         }
         catch (IOException ex) {

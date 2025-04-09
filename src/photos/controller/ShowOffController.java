@@ -90,7 +90,7 @@ public class ShowOffController {
 
             Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
             stage.getScene().setRoot(root);
-            stage.setTitle("Options View");
+            stage.setTitle("Options Page");
             stage.show();
         } catch (IOException e) {
             e.printStackTrace();

@@ -59,7 +59,7 @@ public class PlacingController {
                         Parent root = loader.load();
                         Stage stage = (Stage) copyButton.getScene().getWindow();
                         stage.getScene().setRoot(root);
-                        stage.setTitle("Bulk View");
+                        stage.setTitle("Page of Albums to Copy/Transfer to");
                         stage.show();
                     } catch (IOException ex) {
                         ex.printStackTrace();
@@ -84,7 +84,7 @@ public class PlacingController {
             Parent root = loader.load();
             Stage stage = (Stage) copyButton.getScene().getWindow();
             stage.getScene().setRoot(root);
-            stage.setTitle("Bulk View");
+            stage.setTitle("Page of Albums to Copy/Transfer to");
             stage.show();
         } catch (IOException ex) {
             ex.printStackTrace();
@@ -113,7 +113,7 @@ public class PlacingController {
                         Parent root = loader.load();
                         Stage stage = (Stage) copyButton.getScene().getWindow();
                         stage.getScene().setRoot(root);
-                        stage.setTitle("Bulk View");
+                        stage.setTitle("Page of Albums to Copy/Transfer to");
                         stage.show();
                     } catch (IOException ex) {
                         ex.printStackTrace();
@@ -139,7 +139,7 @@ public class PlacingController {
             Parent root = loader.load();
             Stage stage = (Stage) copyButton.getScene().getWindow();
             stage.getScene().setRoot(root);
-            stage.setTitle("Bulk View");
+            stage.setTitle("Album Page");
             stage.show();
         } catch (IOException ex) {
             ex.printStackTrace();

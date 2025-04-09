@@ -82,7 +82,7 @@ public class PhotosController {
             stage.getScene().setRoot(root);
 
 			//For stage.setTitle(), we'll make sure to properly if-condition this one and only this one later.
-            stage.setTitle("Dummy");
+            stage.setTitle("Home Page");
             stage.show();
 		}
 		catch(IOException d){
@@ -106,7 +106,7 @@ public class PhotosController {
 			Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
 			stage.getScene().setRoot(root);
 
-			stage.setTitle("Album");
+			stage.setTitle("Login Page");
 			stage.show();
 		}
 		catch (IOException ex) {
@@ -172,7 +172,7 @@ public class PhotosController {
 			Stage stage = (Stage) ((Node) event.getSource()).getScene().getWindow();
 			stage.getScene().setRoot(root);
 
-			stage.setTitle("Album");
+			stage.setTitle("Stock Album");
 			stage.show();
 		}
 		catch (IOException ex) {

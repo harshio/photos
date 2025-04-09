@@ -47,7 +47,7 @@ public class StockController {
 			Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
 			stage.getScene().setRoot(root);
 
-			stage.setTitle("Album");
+			stage.setTitle("Home Page");
 			stage.show();
 		}
 		catch (IOException ex) {
