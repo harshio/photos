@@ -5,6 +5,7 @@ import javafx.scene.control.Button;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.text.Text;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -13,6 +14,7 @@ import javafx.scene.Scene;
 import javafx.scene.Parent;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
+import photos.model.Album;
 import photos.model.Photo;
 import photos.model.Users;
 import javafx.application.Platform;
@@ -42,6 +44,9 @@ public class AlbumController {
     @FXML private VBox slideContainer;
     @FXML private VBox loadingPane;
     @FXML Button quitButton;
+    @FXML Button renameButton;
+    @FXML TextField newName;
+    @FXML Text errorMessage;
 
     private ArrayList<VBox> slides = new ArrayList<>();
     private int currentIndex = 0;
@@ -52,6 +57,7 @@ public class AlbumController {
     public void initialize() {
         slideContainer.setVisible(false);
         loadingPane.setVisible(true);
+        errorMessage.setText("");
 
         photos.model.Album album = photos.model.Users.userAlbums
             .get(Users.currentUser)
@@ -373,5 +379,29 @@ public class AlbumController {
         boolean multipleSlides = slides.size() > 1;
         prevButton.setVisible(currentIndex > 0 && multipleSlides);
         nextButton.setVisible(currentIndex < slides.size() - 1 && multipleSlides);
-    }    
+    } 
+    
+    public void renameAlbum(ActionEvent e){
+        String user = photos.model.Users.currentUser;
+        String oldName = photos.model.Users.currentAlbum;
+        String newAlbumName = newName.getText().trim();
+
+        Map<String, Album> albums = photos.model.Users.userAlbums.get(user);
+
+        if (albums.containsKey(newAlbumName)) {
+            //code to produce an error message
+            errorMessage.setText("An album with this name already exists in your album selection.");
+            return;
+        }
+
+        // Proceed with renaming
+        Album album = albums.get(oldName);
+        albums.put(newAlbumName, album);
+        albums.remove(oldName);
+        photos.model.Users.currentAlbum = newAlbumName;
+        photos.model.Users.saveUserAlbums();
+        newName.setText("");
+        errorMessage.setText("");
+
+    }
 }
