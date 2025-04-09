@@ -33,11 +33,10 @@
     <Button fx:id = "add" text = "Add (Upload) Photo" GridPane.rowIndex="1" onAction="#uploadPhoto"/>
     <Button fx:id = "delete" text = "Delete Album" GridPane.rowIndex = "2" onAction = "#deleteAlbum"/>
     <Button fx:id="quitButton" text="Quit Application" GridPane.rowIndex="5" onAction="#quitApplication"/>
-    <Text text="Note that except for when no photos are present in the album," GridPane.rowIndex="6"/>
-    <Text text="next and prev buttons only show up when strictly needed." GridPane.rowIndex="7"/>
-    <Text text="That's why single-photo albums have the prev and next buttons disappear," GridPane.rowIndex="8"/>
-    <Text text="and why the first photo always has the prev button gone" GridPane.rowIndex="9"/>
-    <Text text="and the last photo always has the next button gone." GridPane.rowIndex="10"/>
+    <Text text="Except for when no photos are present in the album," GridPane.rowIndex="6"/>
+    <Text text="next and prev buttons will only show up when strictly needed." GridPane.rowIndex="7"/>
+    <Text text="That's why single-photo albums have both prev and next buttons disappear." GridPane.rowIndex="8"/>
+    <Text text="In addition to other instances of disappearance of either button." GridPane.rowIndex="9"/>
     <padding>
         <Insets top="10" right="10" bottom="10" left="10"/>
     </padding>
