@@ -110,6 +110,7 @@ public class AlbumController {
                 slides.addAll(tempSlides);
                 if (!slides.isEmpty()) {
                     slideContainer.getChildren().setAll(slides.get(currentIndex));
+                    updateNavigationButtons();
                 }
 
                 loadingPane.setVisible(false);
@@ -246,6 +247,16 @@ public class AlbumController {
                 photos.model.Users.saveUserAlbums();
                 //Then in here, we'll immediately add the photo and whatever the caption is below the photo
                 //We already have the correct imageView element, so we're good there. We'll make a new VBox here
+                for (VBox existingSlide : slides) {
+                    for (javafx.scene.Node node : existingSlide.getChildren()) {
+                        if (node instanceof ImageView) {
+                            ImageView iv = (ImageView) node;
+                            if (iv.getImage().getUrl().equals(image.getUrl())) {
+                                return; // Photo already in slides
+                            }
+                        }
+                    }
+                }                
                 Label caption = new Label(existingPhoto.getCaption());
                 VBox slide = new VBox(5, imageView, caption);
                 //Then we'll add it to slides
@@ -257,6 +268,7 @@ public class AlbumController {
                 slides.add(slide);
                 currentIndex = slides.size() - 1; // Show the new image
                 slideContainer.getChildren().setAll(slide);
+                updateNavigationButtons();
                 //Then we'll have to break out the code immediately 
                 return;
             }
@@ -271,6 +283,16 @@ public class AlbumController {
             }
             String trueTime = modifiedTime.substring(12);
             System.out.println("Calling addRealDate for: " + photoPath + " with " + trueTime);
+            for (VBox existingSlide : slides) {
+                for (javafx.scene.Node node : existingSlide.getChildren()) {
+                    if (node instanceof ImageView) {
+                        ImageView iv = (ImageView) node;
+                        if (iv.getImage().getUrl().equals(image.getUrl())) {
+                            return; // Photo already in slides
+                        }
+                    }
+                }
+            }            
             VBox slide = new VBox(5, imageView);
             slide.setStyle("-fx-alignment: center;");
             imageView.setOnMouseClicked(ev -> {
@@ -280,6 +302,7 @@ public class AlbumController {
             slides.add(slide);
             currentIndex = slides.size() - 1; // Show the new image
             slideContainer.getChildren().setAll(slide);
+            updateNavigationButtons();
             photos.model.Users.addPhoto(photos.model.Users.currentUser, photos.model.Users.currentAlbum, path);
             photos.model.Users.addRealDate(photos.model.Users.currentUser, photos.model.Users.currentAlbum, photoPath, trueTime);
             photos.model.Users.addDate(photos.model.Users.currentUser, photos.model.Users.currentAlbum, photoPath, modifiedTime);
@@ -316,6 +339,7 @@ public class AlbumController {
         if (currentIndex < slides.size() - 1) {
             currentIndex++;
             slideContainer.getChildren().setAll(slides.get(currentIndex));
+            updateNavigationButtons();
         }
     }
 
@@ -324,6 +348,7 @@ public class AlbumController {
         if (currentIndex > 0) {
             currentIndex--;
             slideContainer.getChildren().setAll(slides.get(currentIndex));
+            updateNavigationButtons();
         }
     }
 
@@ -340,5 +365,9 @@ public class AlbumController {
         }
     }
     
-
+    private void updateNavigationButtons() {
+        boolean multipleSlides = slides.size() > 1;
+        prevButton.setVisible(currentIndex > 0 && multipleSlides);
+        nextButton.setVisible(currentIndex < slides.size() - 1 && multipleSlides);
+    }    
 }
