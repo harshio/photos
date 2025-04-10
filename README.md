@@ -1,3 +1,26 @@
 
 # photos
-The final project is in the main branch; Chloe's initial commit is in the second branch. Also note that, on MacOS, after closing the AlertDialog window, the main window of the application is not automatically refocused on. You'll probably notice that the code's still running; The application's probably hidden, still running, in some java folder. I don't know if this disclaimer is necessary, but I wanted to be cautious.
+The final project is in the main branch; Chloe's initial commit is in the second branch. Also note that, on MacOS, after closing the AlertDialog window, the main window of the application is not automatically refocused on. You'll probably notice that the code's still running; The application's probably hidden, still running, in some java folder. I don't know if this disclaimer is necessary, but I wanted to be cautious. Anyway, here's how to compile the code in case you don't have VSCode.
+
+First type:
+
+javac \
+--module-path /Users/demo/javafx-sdk-21.0.6/lib \
+--add-modules javafx.controls,javafx.fxml \
+-d out \
+$(find src -name "*.java")
+
+To create a directory called out where the compiled .class files are stored. Then type:
+
+cp -r src/photos/view out/photos/
+
+So that /photos/view/Login.fxml is available in the runtime classpath, then run the code with:
+
+java \
+--module-path /Users/demo/javafx-sdk-21.0.6/lib \
+--add-modules javafx.controls,javafx.fxml \
+-cp out \
+photos.app.Photos
+
+And the application should run without issue. You'll probably just need to compile one time and then you can just execute multiple times with the same .class files by repeatedly typing the third command into the terminal.
+
