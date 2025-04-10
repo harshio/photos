@@ -28,7 +28,7 @@ import java.util.Set;
  * view of a selected photo. It shows the image, its caption, timestamp,
  * and all associated tags. Provides navigation back to the options
  * screen and allows quitting of the application.
- * Authored by Chloe Wolohan.
+ * @author Chloe Wolohan
  */
 public class ShowOffController {
     /**

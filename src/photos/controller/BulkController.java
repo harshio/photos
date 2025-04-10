@@ -27,7 +27,7 @@ import java.util.Set;
  * of the application. It allows users to
  * open, view, and create albums, log out, search,
  * and quit the application.
- * Authored by Chloe Wolohan.
+ * @author Chloe Wolohan
  */
 public class BulkController {
     /**

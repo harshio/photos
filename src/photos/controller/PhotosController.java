@@ -25,7 +25,7 @@ import java.util.ArrayList;
 /**
  * Controller for the login, admin, and stock pages of the Photos application.
  * Handles user login routing and admin user management, and navigation to stock and user pages.
- * Authored by Chloe Wolohan.
+ * @author Chloe Wolohan
  */
 public class PhotosController {
 	/**

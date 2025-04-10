@@ -14,7 +14,7 @@ import java.util.Date;
  * photo tracks its owner, display dates, and real dates (Calendar)
  * for the sake of comparison. 
  * Implements Serializable for data persistence.
- * Authored by Chloe Wolohan.
+ * @author Chloe Wolohan
  */
 public class Photo implements Serializable {
     private static final long serialVersionUID = 1L;

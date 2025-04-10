@@ -10,7 +10,7 @@ import javafx.collections.ObservableList;
  * which is linked to the Admin page, which is where the view 
  * associated with this controller is loaded in. PhotosController
  * also provides the user data via {@link #setUsersList}
- * Authored by Harshi Oleti.
+ * @author Harshi Oleti
  */
 public class ListViewController {
     /**

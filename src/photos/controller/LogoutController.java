@@ -18,7 +18,7 @@ import java.util.ArrayList;
  * Controller for the logout confirmation interface.
  * Allows user to return to the login screen or quit the
  * application entirely.
- * Authored by Harshi Oleti.
+ * @author Harshi Oleti
  */
 public class LogoutController {
 	/**

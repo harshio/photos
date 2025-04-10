@@ -8,7 +8,7 @@ import javafx.stage.Stage;
 /**
  * This is where the photo application begins.
  * It initializes the users' data and launches the application.
- * Authored by Chloe Wolohan.
+ * @author Chloe Wolohan
  */
 public class Photos extends Application {
 	/**

@@ -17,7 +17,7 @@ import java.util.ArrayList;
 /**
  * Controller for the album creation interface.
  * Allows users to input a name and create a new album.
- * Authored by Harshi Oleti.
+ * @author Harshi Oleti
  */
 public class CreateAlbumController {
     /**

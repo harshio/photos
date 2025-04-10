@@ -39,7 +39,7 @@ import java.util.Set;
  * It does so by formatting them as a manual slideshow.
  * This class supports adding, deleting, and renaming albums,
  * as well as navigating photo slides.
- * Authored by Harshi Oleti.
+ * @author Harshi Oleti
  */
 public class AlbumController {
     /**

@@ -34,7 +34,7 @@ import java.util.Set;
  * copying or transferring it. This screen is shown after the user
  * selects a destination album. Prevents duplicate placement and
  * allows the user to return if the photo already exists.
- * Authored by Harshi Oleti.
+ * @author Harshi Oleti
  */
 public class PlacingController {
     /**

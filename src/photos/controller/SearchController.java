@@ -42,7 +42,7 @@ import java.util.Set;
  * or date range, display matching photos as a
  * slideshow, similar to how it is in the album view,
  * and optionally save them into a brand new album.
- * Authored by Harshi Oleti.
+ * @author Harshi Oleti
  */
 public class SearchController {
     /**

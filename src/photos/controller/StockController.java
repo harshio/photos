@@ -20,7 +20,7 @@ import java.io.IOException;
  * Displays predefined stock photos.
  * Provides navigation back to the main stock page and supports
  * quitting the application.
- * Authored by Harshi Oleti.
+ * @author Harshi Oleti
  */
 public class StockController {
     /**

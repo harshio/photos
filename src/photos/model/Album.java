@@ -15,7 +15,7 @@ import java.util.Date;
  * the oldest and newest dates of the collection of photos
  * in the album.
  * Implements Serializable for persistent storage.
- * Authored by Chloe Wolohan.
+ * @author Chloe Wolohan
  */
 public class Album implements Serializable {
     private static final long serialVersionUID = 1L;

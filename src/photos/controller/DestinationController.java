@@ -32,7 +32,7 @@ import java.util.Set;
  * Controller for the destination album selection interface.
  * Allows user to choose a target album for copying or moving a photo.
  * Skips current album to avoid copying/moving within the same album
- * Authored by Harshi Oleti.
+ * @author Harshi Oleti
  */
 public class DestinationController {
     /**

@@ -28,7 +28,7 @@ import java.util.Set;
  * Central model class for managing all user-related data, including
  * users list, albums and photos for each user, and user-defined tag types,
  * which are all serialized and deserialized here, for the purpose of data persistence.
- * Authored by Harshi Oleti.
+ * @author Harshi Oleti
  */
 public class Users {
     /**

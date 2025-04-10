@@ -25,7 +25,7 @@ import java.util.Set;
  * functionality to add/remove captions and tags,
  * view a photo in a fuller, separate display, and
  * copy or transfer/move a photo to another album.
- * Authored by Chloe Wolohan.
+ * @author Chloe Wolohan
  */
 public class OptionsController {
     /**
