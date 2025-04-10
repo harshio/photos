@@ -36,7 +36,7 @@
     <Button fx:id="renameButton" text="Rename Album" GridPane.rowIndex="5" onAction="#renameAlbum"/>
     <TextField fx:id="newName" promptText="Type in a new name" GridPane.rowIndex="6"/>
     <Text fx:id="errorMessage" text="" GridPane.rowIndex="6" GridPane.columnIndex="1"/>
-    <Text text="Except for when no photos are present in the album," GridPane.rowIndex="9"/>
+    <Text text="In here, except for when no photos are present in the album," GridPane.rowIndex="9"/>
     <Text text="next and prev buttons will only show up when strictly needed." GridPane.rowIndex="10"/>
     <Text text="That's why single-photo albums have both prev and next buttons disappear," GridPane.rowIndex="11"/>
     <Text text="and also why other instances of disappearance of either button occur." GridPane.rowIndex="12"/>
