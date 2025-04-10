@@ -10,7 +10,7 @@ javac \
 --module-path /ABSOLUTE/PATH/TO/javafx-sdk-21.0.6/lib \
 --add-modules javafx.controls,javafx.fxml \
 -d out \
-$(find src -name "*.java") (fill it in with your path)
+$(find src -name "*.java")
 
 to create a directory called out where the compiled .class files are stored. Then paste in:
 
