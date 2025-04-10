@@ -42,23 +42,69 @@ import java.util.Set;
  * or date range, display matching photos as a
  * slideshow, similar to how it is in the album view,
  * and optionally save them into a brand new album.
+ * Authored by Harshi Oleti.
  */
 public class SearchController {
+    /**
+     * Button that lets user search with one
+     * or two tags.
+     */
     @FXML Button searchTag;
+    /**
+     * Button that lets user search by date range.
+     */
     @FXML Button searchDate;
+    /**
+     * Error message for when user does an invalid tag query
+     */
     @FXML Text errorTag;
+    /**
+     * Error message for when user does invalid date query.
+     */
     @FXML Text errorDate;
+    /**
+     * Text field for where user inputs tag query.
+     */
     @FXML TextField tagQuery;
+    /**
+     * Text field for where user inputs date query.
+     */
     @FXML TextField dateQuery;
+    /**
+     * VBox for containing the slideshow.
+     */
     @FXML
     private VBox slidesAndButton;
+    /**
+     * Button that loads in home page.
+     */
     @FXML Button returnButton;
+    /**
+     * Current set of search results that is stored
+     * so code can know which set to make into an album
+     * if button is pressed.
+     */
     private Set<Photo> searchResults = new HashSet<>();
+    /**
+     * Global int that tracks the amount of search comp albums that are made.
+     */
     private int albumNumber = 1;
+    /**
+     * Dynamic list of VBox's used to help create the slideshow effect
+     */
     private ArrayList<VBox> slides = new ArrayList<>();
+    /**
+     * Global int that is used to display a certain "slide" (VBox) from the slideshow
+     */
     private int currentIndex = 0;
+    /**
+     * Button that is used to create an album from search results.
+     */
     @FXML
     private VBox createButton;
+    /**
+     * Button that saves user date and quits application.
+     */
     @FXML Button quitButton;
     /**
      * Initializes the search UI by clearing inputs, messages, and

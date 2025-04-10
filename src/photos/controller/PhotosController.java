@@ -25,17 +25,58 @@ import java.util.ArrayList;
 /**
  * Controller for the login, admin, and stock pages of the Photos application.
  * Handles user login routing and admin user management, and navigation to stock and user pages.
+ * Authored by Chloe Wolohan.
  */
 public class PhotosController {
+	/**
+	 * Button that conditionally logs in user.
+	 * If username is "admin", then loads in admin page,
+	 * if "stock" then loads in stock page, if anything that's
+	 * in the list of users that's displayed in the
+	 * admin page, then loads in normal application.
+	 */
 	@FXML Button login;
+	/**
+	 * Text field that user types their username in
+	 * to log in. The text value of this will be set to photos.model.Users.currentUser.
+	 */
 	@FXML TextField userName;
-	@FXML Button displayAllUsers; //will have function in here called displayAllUsers()
-	@FXML Button createUser; //will have function in here called createUser()
-	@FXML Button deleteUser; //will have function in here called deleteUser()
+	/**
+	 * Button in Admin.fxml that displays all
+	 * users in a ListViewDialog.
+	 */
+	@FXML Button displayAllUsers;
+	/**
+	 * Button in Admin.fxml that creates a user
+	 */
+	@FXML Button createUser;
+	/**
+	 * Button in Admin.fxml that deletes a user
+	 */
+	@FXML Button deleteUser; 
+	/**
+	 * Text field that admin user types new "usernames" into
+	 * when creating new users.
+	 */
 	@FXML TextField newUserName;
+	/**
+	 * Text field that admin user types existing "usernames" into
+	 * when deleting existing users. 
+	 */
 	@FXML TextField deadUserName;
+	/**
+	 * Button that loads in the Stock Album view (Stock.fxml), the button itself present in 
+	 * TrueStockPage.fxml
+	 */
 	@FXML Button loadStockPage;
+	/**
+	 * Button that saves user data and quits application.
+	 */
 	@FXML Button quitButton;
+	/**
+	 * Button in TrueStockPage.fxml and Admin.fxml that loads back in
+	 * Login.fxml
+	 */
 	@FXML Button returnButton;
 
 	/*We can use userName.getText() to retrieve the string typed in by the user.
@@ -54,7 +95,7 @@ public class PhotosController {
 
 	//public static ObservableList<String> usersList = FXCollections.observableArrayList("admin", "stock");
 	
-	/*This is for loading pages directly from login*/
+
 	/**
 	 * Handles the login logic and routes users to to the appropriate interface
 	 * (admin, stock, or normal home page) depending on input.
@@ -136,7 +177,7 @@ public class PhotosController {
         }
 	}
 
-	/*This is for displaying all the users in the admin page */
+	
 	/**
 	 * Displays all users in a modal ListView via the Display.fxml
 	 * view. It is only accessible to the admin user.
@@ -171,7 +212,7 @@ public class PhotosController {
 			alert.showAndWait();
         }
 	}
-	/*This is so that the admin user can create new users*/
+	
 	/**
 	 * Creates a new user with the name entered in the associated text field.
 	 * Only allowed for admin user. Ignores blank or duplicate names.
@@ -203,7 +244,7 @@ public class PhotosController {
 		deadUserName.setText("");
 	}
 
-	//Load stock page
+	
 	/**
 	 * It loads the stock album page associated with the Stock.fxml view.
 	 * Should be loaded from TrueStockPage.fxml

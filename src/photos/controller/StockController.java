@@ -20,12 +20,22 @@ import java.io.IOException;
  * Displays predefined stock photos.
  * Provides navigation back to the main stock page and supports
  * quitting the application.
+ * Authored by Harshi Oleti.
  */
 public class StockController {
-
+    /**
+     * HBox container containing five stock photos
+     * placed next to each other.
+     */
     @FXML
     private HBox imageContainer;
+    /**
+     * Button that saves user data and quits application.
+     */
     @FXML Button quitButton;
+    /**
+     * Button that loads back in TrueStockPage.fxml
+     */
     @FXML Button returnButton;
     /**
      * Initializes the stock photo view by loading and displaying
@@ -47,7 +57,7 @@ public class StockController {
         }
     }
     /**
-     * Navigates to TrueStockPage.fxml that displays the stock album
+     * Navigates to TrueStockPage.fxml that displays the stock album option button
      * @param e is the triggering event from the returnButton button
      */
     public void loadInStockPage(ActionEvent e){

@@ -18,9 +18,17 @@ import java.util.ArrayList;
  * Controller for the logout confirmation interface.
  * Allows user to return to the login screen or quit the
  * application entirely.
+ * Authored by Harshi Oleti.
  */
 public class LogoutController {
+	/**
+	 * Button that logs out the current user
+	 * and loads in Login.fxml
+	 */
     @FXML Button logOut;
+	/**
+	 * Button that saves user data and quits application.
+	 */
 	@FXML Button quitButton;
 	/**
 	 * Logs the user out by navigating back to the login screen.

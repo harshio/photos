@@ -13,17 +13,38 @@ import java.util.Date;
  * captions, tags and date of capture. Each
  * photo tracks its owner, display dates, and real dates (Calendar)
  * for the sake of comparison. 
- * Implements Serializable for serializing to a disk.
+ * Implements Serializable for data persistence.
+ * Authored by Chloe Wolohan.
  */
 public class Photo implements Serializable {
     private static final long serialVersionUID = 1L;
-
+    /**
+     * The file path of the photo.
+     * Used as a unique identifier and reference to its storage location.
+     */
     private String path;
+    /**
+     * The username of the person who owns the photo.
+     */
     private String owner;
-    private Set<String> dates; //I guess this didn't need to be a set but it's not like users can add dates so it doesn't matter
-    //storing date display messages
+    /**
+     * A set of human-readable date strings associated with the photo.
+     * Typically formatted dates for UI display. 100% of the time, this
+     * Set of String objects has 1 date string in it.
+     */
+    private Set<String> dates;
+    /**
+     * The set of tags attached to this photo.
+     */
     private Set<String> tags;
+    /**
+     * The user-defined caption for the photo.
+     */
     private String caption;
+    /**
+     * A set of real capture dates used for date-based comparisons.
+     * Stored as Calendar objects.
+     */
     private Set<Calendar> realDates; //storing dates we'll use for comparison
     /**
      * Constructs a new photo with the given file path.

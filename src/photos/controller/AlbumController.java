@@ -39,25 +39,72 @@ import java.util.Set;
  * It does so by formatting them as a manual slideshow.
  * This class supports adding, deleting, and renaming albums,
  * as well as navigating photo slides.
+ * Authored by Harshi Oleti.
  */
 public class AlbumController {
+    /**
+     * Button to leave the current album view and return
+     * to homepage.
+     */
     @FXML Button leave;
+    /**
+     * Button to upload/add a new photo to the current album.
+     */
     @FXML Button add;
+    /**
+     * Button to delete the current album.
+     */
     @FXML Button delete;
+    /**
+     * Container holding the list of photos in the current album.
+     */
     @FXML
     private VBox photoList;
+    /**
+     * Buttons to go back to the previous and next photo in the slideshow.
+     */
     @FXML
     private Button prevButton, nextButton;
+    /**
+     * The main container for displaying slideshow-style photo previews.
+     */
     @FXML private VBox slideContainer;
+    /**
+     * A placeholder pane shown while photos are being loaded in the background.
+     */
     @FXML private VBox loadingPane;
+    /**
+     * Button to quit the application and save data.
+     */
     @FXML Button quitButton;
+    /**
+     * Button to rename the current album.
+     */
     @FXML Button renameButton;
+    /**
+     * Text field to input the new album name while renaming
+     */
     @FXML TextField newName;
+    /**
+     * Text area used to display error messages to the user.
+     */
     @FXML Text errorMessage;
-
+    /**
+     * A dynamic list of VBox photo "slides" displayed in the slideshow.
+     */
     private ArrayList<VBox> slides = new ArrayList<>();
+    /**
+     * The current index of the photo being shown in the slideshow.
+     */
     private int currentIndex = 0;
+    /**
+     * A cached reference to the root node of the Options.fxml view,
+     * used when transitioning to the photo options.
+     */
     private Parent optionsRoot = null;
+    /**
+     * A cached FXMLLoader instance for loading the Options.fxml controller.
+     */
     private FXMLLoader optionsLoader = null;
 
     /**
@@ -343,7 +390,7 @@ public class AlbumController {
      * selected photo, allowing tag and caption edits, along
      * with photo deletion, photo copy/transfer, and so on and so forth.
      * Will be elaborated on in the javadoc comments for OptionsController
-     * @param e is mouse click on a photo
+     * @param e is mouse click on any of the thumbnail pics in the slideshow
      */
     public void loadInOptions(MouseEvent e){
         try {

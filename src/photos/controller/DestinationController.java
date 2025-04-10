@@ -32,16 +32,28 @@ import java.util.Set;
  * Controller for the destination album selection interface.
  * Allows user to choose a target album for copying or moving a photo.
  * Skips current album to avoid copying/moving within the same album
+ * Authored by Harshi Oleti.
  */
 public class DestinationController {
+    /**
+     * A dynamic VBox container for buttons for all
+     * albums except for the currently
+     * open one.
+     */
     @FXML
     private VBox albumButtons;
+    /**
+     * A button that loads back in the photo options page.
+     */
     @FXML Button backButton;
     /**
      * Static field to hold the name of the destination album
      * selected by the user.
      */
     public static String destinationAlbum;
+    /**
+     * A button that saves user data and quits the application.
+     */
     @FXML Button quitButton;
     /**
      * Initializes the destination album selection UI by

@@ -22,18 +22,34 @@ import java.util.Map;
 import java.util.Set;
 /**
  * Controller for the home page.
- * Internally called BulkController cus it's
+ * Internally called BulkController because it's
  * the entry point for the bulk
  * of the application. It allows users to
  * open, view, and create albums, log out, search,
  * and quit the application.
+ * Authored by Chloe Wolohan.
  */
 public class BulkController {
+    /**
+     * Button that triggers the creation of a new album.
+     */
     @FXML Button createButton;
+    /**
+     * VBox container that holds dynamically generated album buttons.
+     */
     @FXML
     private VBox buttonContainer;
+    /**
+     * Button that logs the user out and returns to the login screen.
+     */
     @FXML Button logOut;
+    /**
+     * Button that takes the user to the search interface.
+     */
     @FXML Button searchButton;
+    /**
+     * Button that saves user data and quits the application.
+     */
     @FXML Button quitButton;
     /**Initializes the album list by creating buttons
      * for each album.

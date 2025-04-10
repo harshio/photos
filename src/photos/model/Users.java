@@ -28,18 +28,40 @@ import java.util.Set;
  * Central model class for managing all user-related data, including
  * users list, albums and photos for each user, and user-defined tag types,
  * which are all serialized and deserialized here, for the purpose of data persistence.
+ * Authored by Harshi Oleti.
  */
 public class Users {
+    /**
+     * This is the list of all registered usernames in the system.
+     * It is observable and used for dynamically updating UI components.
+     */
     public static ObservableList<String> usersList = FXCollections.observableArrayList("admin", "stock");
+    /**
+     * The name of the album currently being viewed or edited.
+     * Used to track user navigation state.
+     */
     public static String currentAlbum = null;
+    /**
+     * The path of the photo currently being viewed or selected.
+     * Useful for actions like tagging or captioning.
+     */
     public static String currentPhoto = null;
+    /**
+     * The username of the user currently logged into the system.
+     */
     public static String currentUser = null;
-    //we'll have to include one more hash map here for storing a set of tagtype strings that were added in by the user
-    //we'll probably have to make another .ser file lol, cus I'm not refactoring the code again
+    /**
+     * A mapping of usernames to their corresponding albums.
+     * Each user maps to another map, where the album name maps to an Album object.
+     */
     public static Map<String, Map<String, Album>> userAlbums = new HashMap<>();
     static{
         initializeUserAlbums();
     }
+    /**
+     * A mapping of usernames to their custom-defined tag types.
+     * Helps enforce tag type constraints for each individual user.
+     */
     public static Map<String, Set<String>> userTagTypes = new HashMap<>();
     /**
      * Initializes the tag types map for each user.

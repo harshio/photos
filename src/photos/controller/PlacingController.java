@@ -34,15 +34,39 @@ import java.util.Set;
  * copying or transferring it. This screen is shown after the user
  * selects a destination album. Prevents duplicate placement and
  * allows the user to return if the photo already exists.
+ * Authored by Harshi Oleti.
  */
 public class PlacingController {
+    /**
+     * Button that allows user to
+     * copy photo in currently open album to
+     * earlier-specified destination album.
+     */
     @FXML Button copyButton;
+    /**
+     * Button that allows user to
+     * transfer/move photo in currently open album to
+     * earlier-specified destination album.
+     */
     @FXML Button transferButton;
+    /**
+     * Error message in case user messes up, usually when a duplicate
+     * photo is already present in destination album.
+     */
     @FXML Text errorMessage;
+    /**
+     * VBox that gets a dynamically placed return button when a duplicate
+     * photo is already present in destination album.
+     */
     @FXML
     private VBox returnButtons;
+    /**
+     * Button that saves user data and subsequently quits application.
+     */
     @FXML Button quitButton;
-
+    /**
+     * Pre-existing photo object that is placed in the destination album.
+     */
     private Photo foundPhoto;
     /**
      * Initializes the controller by setting up button actions

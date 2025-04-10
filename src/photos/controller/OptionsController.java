@@ -25,30 +25,82 @@ import java.util.Set;
  * functionality to add/remove captions and tags,
  * view a photo in a fuller, separate display, and
  * copy or transfer/move a photo to another album.
+ * Authored by Chloe Wolohan.
  */
 public class OptionsController {
+    /**
+     * Button to delete the currently selected photo
+     */
     @FXML Button delete;
+    /**
+     * Button to display the currently selected photo in a fuller, separate display.
+     */
     @FXML Button display;
+    /**
+     * Button to add a new tag to the currently selected photo.
+     */
     @FXML Button addTag;
+    /**
+     * Text field that the user types the tag into that the user wants to add to the currently selected photo.
+     */
     @FXML TextField newTag;
+    /**
+     * Button to delete an old tag from the currently selected photo.
+     */
     @FXML Button dead;
+    /**
+     * Text field that the user types the tag that the user wants to delete from the currently selected photo into.
+     */
     @FXML TextField dying;
+    /**
+     * Text field that the user types a caption into if the user's never added a caption to the currently selected photo before.
+     */
     @FXML TextField newCaption;
+    /**
+     * Button to add in a brand new caption.
+     */
     @FXML Button addCaption;
+    /**
+     * Text field that the user types a caption into if the user wants to change the pre-existing caption of the currently selected photo.
+     */
     @FXML TextField differentCaption;
+    /**
+     * Button to change the caption of the currently selected photo.
+     */
     @FXML Button changeCaption;
+    /**
+     * Button that loads in the album view.
+     */
     @FXML Button loadInAlbum;
+    /**
+     * Error message for attempting to add a caption when the user should really change it,
+     */
     @FXML 
     private Text addCaptionMessage;
+    /**
+     * Error message for attempting to change a caption when the user hasn't even made one to begin with.
+     */
     @FXML
     private Text changeCaptionMessage;
-    @FXML Button locationButton;
-    @FXML Button nameButton;
-    @FXML Button occasionButton;
+    /**
+     * VBox for dynamically added in tag types
+     */
     @FXML private VBox tagTypeBox;
+    /**
+     * Text field where user can type in a new tag name or type.
+     */
     @FXML TextField brandTag;
+    /**
+     * Button that dynamically adds a Button to tagTypeBox that, when clicked on, fills in the prefix of the newTag text field.
+     */
     @FXML Button makeNewTag;
+    /**
+     * Button that loads in Destination.fxml
+     */
     @FXML Button move;
+    /**
+     * Button that saves user data and quits application.
+     */
     @FXML Button quitButton;
     /**
      * Initializes the tag type buttons dynamically based on the user's

@@ -28,13 +28,23 @@ import java.util.Set;
  * view of a selected photo. It shows the image, its caption, timestamp,
  * and all associated tags. Provides navigation back to the options
  * screen and allows quitting of the application.
+ * Authored by Chloe Wolohan.
  */
 public class ShowOffController {
+    /**
+     * ImageView element that is displayed on ShowOff.fxml.
+     * It is the full version of the currently selected photo displayed separately.
+     */
     @FXML
     private ImageView largeImageView;
-
+    /**
+     * VBox that tags/caption/date are dynamically placed into.
+     */
     @FXML
     private VBox tagBox;
+    /**
+     * Button that saves user data and quits application.
+     */
     @FXML Button quitButton;
     /**
      * Initializes the photo display by loading the image, caption, tags,

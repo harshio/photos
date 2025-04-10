@@ -17,10 +17,22 @@ import java.util.ArrayList;
 /**
  * Controller for the album creation interface.
  * Allows users to input a name and create a new album.
+ * Authored by Harshi Oleti.
  */
 public class CreateAlbumController {
+    /**
+     * A text field that user types the name of
+     * the new album that user wants to create.
+     */
     @FXML TextField albumName;
+    /**
+     * A button that creates an Album object and
+     * stores it in userAlbums
+     */
     @FXML Button createAlbum;
+    /**
+     * Button that saves the user data and quits the application.
+     */
     @FXML Button quitButton;
     /**
      * Creates a new album with the user-specified name if valid and not a duplicate.
