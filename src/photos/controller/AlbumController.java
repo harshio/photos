@@ -139,7 +139,7 @@ public class AlbumController {
     }
     /**
      * Saves data and cleanly quits the application.
-     * @param e is the triggering event
+     * @param e is the triggering event from the quitButton button
      */
     public void quitApplication(ActionEvent e){
         photos.model.Users.saveUsersList();
@@ -150,7 +150,7 @@ public class AlbumController {
     }
     /**
      * Navigates back to the home page and also saves the oldest and newest dates of the album.
-     * @param e is the triggering event.
+     * @param e is the triggering event from the leave button.
      */
     public void leaveAlbum(ActionEvent e){
         //we have to calculate oldest date and newest date in here
@@ -211,7 +211,7 @@ public class AlbumController {
     }
     /**
      * Deletes the current album and returns to the home page.
-     * @param e is the triggering event.
+     * @param e is the triggering event from the delete button.
      */
     public void deleteAlbum(ActionEvent e){
         photos.model.Users.removeAlbum(photos.model.Users.currentUser, photos.model.Users.currentAlbum);
@@ -237,7 +237,7 @@ public class AlbumController {
      * Handles uploading a new photo to the album,
      * support both new and previously existing photos via
      * object reuse.
-     * @param e is the triggering event
+     * @param e is the triggering event from the add button
      */
     @FXML
     public void uploadPhoto(ActionEvent e) {
@@ -371,7 +371,7 @@ public class AlbumController {
     }
     /**
      * Shows next photo in album slideshow
-     * @param e is the triggering event
+     * @param e is the triggering event from the nextButton button
      */
     @FXML
     private void handleNext(ActionEvent e) {
@@ -383,7 +383,7 @@ public class AlbumController {
     }
     /**
      * Shows previous photo in album slideshow.
-     * @param e is the triggering event
+     * @param e is the triggering event from the prevButton button
      */
     @FXML
     private void handlePrev(ActionEvent e) {
@@ -424,7 +424,7 @@ public class AlbumController {
     /**
      * Renames current album if new name doesn't already exist.
      * Updates user model and current album reference.
-     * @param e is the triggering event
+     * @param e is the triggering event from the renameButton
      */
     public void renameAlbum(ActionEvent e){
         String user = photos.model.Users.currentUser;

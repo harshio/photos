@@ -76,7 +76,7 @@ public class DestinationController {
     }
     /**
      * Saves user data and quits application.
-     * @param e is the triggering event.
+     * @param e is the triggering event from the quitButton button.
      */
     public void quitApplication(ActionEvent e){
         photos.model.Users.saveUsersList();
@@ -87,7 +87,7 @@ public class DestinationController {
     }
     /**
      * Returns to the photo options screen (Option.fxml)
-     * @param e is the triggering event.
+     * @param e is the triggering event from the backButton button.
      */
     public void backToOptions(ActionEvent e){
         try {

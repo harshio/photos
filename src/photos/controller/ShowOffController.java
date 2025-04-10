@@ -80,7 +80,7 @@ public class ShowOffController {
     }
     /**
      * Saves user data to disk and quits application.
-     * @param e is the triggering event from the quitApplication button.
+     * @param e is the triggering event from the quitButton button.
      */
     public void quitApplication(ActionEvent e){
         photos.model.Users.saveUsersList();

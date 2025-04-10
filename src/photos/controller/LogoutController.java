@@ -24,7 +24,7 @@ public class LogoutController {
 	@FXML Button quitButton;
 	/**
 	 * Logs the user out by navigating back to the login screen.
-	 * @param e is the triggering event
+	 * @param e is the triggering event from the logOut button
 	 */
     public void logOut(ActionEvent e){
         try{
@@ -46,7 +46,7 @@ public class LogoutController {
     }
 	/**
 	 * Saves the users' data and subsequently quits the application.
-	 * @param e is the triggering event.
+	 * @param e is the triggering event from the quitButton button.
 	 */
 	public void quitApplication(ActionEvent e){
         photos.model.Users.saveUsersList();

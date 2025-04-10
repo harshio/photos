@@ -48,7 +48,7 @@ public class StockController {
     }
     /**
      * Navigates to TrueStockPage.fxml that displays the stock album
-     * @param e is the triggering event
+     * @param e is the triggering event from the returnButton button
      */
     public void loadInStockPage(ActionEvent e){
         try{
@@ -70,7 +70,7 @@ public class StockController {
     }
     /**
      * saves user data to disk and quits application.
-     * @param e is the triggering event
+     * @param e is the triggering event from the quitButton button
      */
     public void quitApplication(ActionEvent e){
         photos.model.Users.saveUsersList();

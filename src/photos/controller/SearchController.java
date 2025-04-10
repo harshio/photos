@@ -76,7 +76,7 @@ public class SearchController {
     }
     /**
      * saves user data and quits application
-     * @param e is the triggering event from the Quit Application button
+     * @param e is the triggering event from the quitButton button
      */
     public void quitApplication(ActionEvent e){
         photos.model.Users.saveUsersList();
@@ -130,7 +130,7 @@ public class SearchController {
     /**
      * Searches all user albums for photos taken within a specified date range.
      * Validates date format, updates the search results, and displays them. 
-     * @param e is the triggering event from the searchByDate button
+     * @param e is the triggering event from the searchDate button
      */
     public void searchByDate(ActionEvent e){
         searchResults.clear();
@@ -231,7 +231,7 @@ public class SearchController {
      * Search for all albums associated with the current user for photos
      * matching a single tag, or a combination of two tags using "and"/"or" logic.
      * Validates the query format and updates the view.
-     * @param e is the triggering event from the searchByDate button.
+     * @param e is the triggering event from the searchTag button.
      */
     public void searchByTag(ActionEvent e){
         searchResults.clear();
@@ -456,7 +456,7 @@ public class SearchController {
     /**
      * Creates a new album from the current search results.
      * Automatically names it "search compilation #n" and adds all results.
-     * @param e is the triggering event from the createAlbum button.
+     * @param e is the triggering event from the createButton button.
      */
     public void createAlbum(ActionEvent e){
         //Start by initializing an album
@@ -519,7 +519,7 @@ public class SearchController {
     }
     /**
      * Returns to the home page from the search screen.
-     * @param e is the triggering event from the return button
+     * @param e is the triggering event from the returnButton button
      */
     public void returnToHome(ActionEvent e){
         try {

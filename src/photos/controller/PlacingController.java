@@ -58,7 +58,7 @@ public class PlacingController {
      * Handles the "copy" action, adding the current photo to the
      * destination album if it does not already exist there. Successfully
      * prevents duplication.
-     * @param e is the triggering event from the copyButton.
+     * @param e is the triggering event from the copyButton button.
      */
     public void copy(ActionEvent e){
         Set<Photo> destPhotos = Users.userAlbums.get(Users.currentUser).get(DestinationController.destinationAlbum).getPhotos();
@@ -115,7 +115,7 @@ public class PlacingController {
     }
     /**
      * saves user data to disk and quits application.
-     * @param e is the triggering event from the "Quit Application" button.
+     * @param e is the triggering event from the quitButton button.
      */
     public void quitApplication(ActionEvent e){
         photos.model.Users.saveUsersList();
@@ -127,7 +127,7 @@ public class PlacingController {
     /**
      * Handles the "transfer" action, moving the current photo from the 
      * current album to the destination album. Also prevents duplicates.
-     * @param e is the triggering event from the transferButton
+     * @param e is the triggering event from the transferButton button
      */
     public void transfer(ActionEvent e){
         Set<Photo> destPhotos = Users.userAlbums.get(Users.currentUser).get(DestinationController.destinationAlbum).getPhotos();

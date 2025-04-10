@@ -70,7 +70,7 @@ public class BulkController {
     }
     /**
      * Saves user data and quits the application.
-     * @param e is the triggering event
+     * @param e is the triggering event from the quitButton button
      */
     public void quitApplication(ActionEvent e){
         photos.model.Users.saveUsersList();
@@ -81,7 +81,7 @@ public class BulkController {
     }
     /**
      * Opens the search interface.
-     * @param e is the triggering event.
+     * @param e is the triggering event from the searchButton button.
      */
     public void loadInSearch(ActionEvent e){
         try{
@@ -104,7 +104,7 @@ public class BulkController {
     }
     /**
      * Logs out the user and returns to the login page.
-     * @param e is the triggering event.
+     * @param e is the triggering event from the logOut button.
      */
     public void logOut(ActionEvent e){
         try{
@@ -127,7 +127,7 @@ public class BulkController {
     }
     /**
      * Opens the album creation page.
-     * @param e is the triggering event.
+     * @param e is the triggering event from the createButton button.
      */
     public void createAlbum(ActionEvent e){
         try{
@@ -151,7 +151,7 @@ public class BulkController {
     /**
      * Opens a selected album and loads in Album.fxml
      * to view said album.
-     * @param e is the triggering event
+     * @param e is the triggering event from any dynamically placed album button in the buttonContainer VBox
      */
     public void loadInAlbum(ActionEvent e){
         try{

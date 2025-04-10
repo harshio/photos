@@ -25,7 +25,7 @@ public class CreateAlbumController {
     /**
      * Creates a new album with the user-specified name if valid and not a duplicate.
      * Transitions to home page upon success.
-     * @param e is the triggering event.
+     * @param e is the triggering event from the createAlbum button.
      */
     public void createAlbum(ActionEvent e){
         try{
@@ -54,7 +54,7 @@ public class CreateAlbumController {
     }
     /**
      * Saves user data and quits the application.
-     * @param e is the triggering event.
+     * @param e is the triggering event from the quitButton button.
      */
     public void quitApplication(ActionEvent e){
         photos.model.Users.saveUsersList();

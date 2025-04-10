@@ -71,7 +71,7 @@ public class OptionsController {
     }
     /**
      * Quits the application after saving all user data
-     * @param e is the triggering event
+     * @param e is the triggering event from the quitButton button
      */
     public void quitApplication(ActionEvent e){
         photos.model.Users.saveUsersList();
@@ -112,7 +112,7 @@ public class OptionsController {
     }
     /**
      * Loads the fuller, separate photo display view.
-     * @param e is the triggering event
+     * @param e is the triggering event from the display button
      */
     public void displayPhoto(ActionEvent e){
         try{
@@ -137,7 +137,7 @@ public class OptionsController {
      * Deletes the currently viewed
      * photo from the album and returns to the
      * album page
-     * @param e is the triggering event
+     * @param e is the triggering event from the delete button
      */
     public void deletePhoto(ActionEvent e){
         photos.model.Users.removePhoto(photos.model.Users.currentUser, photos.model.Users.currentAlbum, photos.model.Users.currentPhoto);
@@ -162,7 +162,7 @@ public class OptionsController {
     }
     /**
      * Adds a tag to the current photo using the input from the tag field.
-     * @param e is the triggering event
+     * @param e is the triggering event from the addTag button
      */
     public void addTag(ActionEvent e){
         String[] properTags = newTag.getText().split(",");
@@ -175,7 +175,7 @@ public class OptionsController {
     }
     /**
      * Removes a tag from the current photo usinng the input from the tag field.
-     * @param e is the triggering event
+     * @param e is the triggering event from the dead button
      */
     public void deleteTag(ActionEvent e){
         String[] properTags = dying.getText().split(",");
@@ -188,7 +188,7 @@ public class OptionsController {
     }
     /**
      * Returns to the album page from the options screen.
-     * @param e is the triggering event.
+     * @param e is the triggering event from the loadInAlbum button.
      */
     public void loadInAlbum(ActionEvent e){
         try{
@@ -212,7 +212,7 @@ public class OptionsController {
     /**
      * Adds a caption to the currently selected photo,
      * only if it doesn't already have one.
-     * @param e is the triggering event.
+     * @param e is the triggering event from the addCaption button.
      */
     public void addCaption(ActionEvent e){
         if(photos.model.Users.getCaption(photos.model.Users.currentUser, photos.model.Users.currentAlbum, photos.model.Users.currentPhoto).equals("")){
@@ -230,7 +230,7 @@ public class OptionsController {
     /**
      * changes the caption of the current photo, only if one
      * already exists of course.
-     * @param e is the triggering event.
+     * @param e is the triggering event from the changeCaption button.
      */
     public void changeCaption(ActionEvent e){
         if(!photos.model.Users.getCaption(photos.model.Users.currentUser, photos.model.Users.currentAlbum, photos.model.Users.currentPhoto).equals("")){
@@ -257,7 +257,7 @@ public class OptionsController {
     }
     /**
      * adds a custom tag type to the user's tag list and UI.
-     * @param e is the triggering event.
+     * @param e is the triggering event from the makeNewTag button.
      */
     public void insertTag(ActionEvent e){
         Button insertedTag = new Button(brandTag.getText().trim());
@@ -271,7 +271,7 @@ public class OptionsController {
     /**
      * Loads the destination album selection page for copying
      * or transferring the currently selected photo.
-     * @param e is the triggering event.
+     * @param e is the triggering event from the move button.
      */
     public void loadInDestination(ActionEvent e){
         try{

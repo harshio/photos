@@ -104,7 +104,7 @@ public class PhotosController {
 	}
 	/**
 	 * Saves all user data and exits the application cleanly.
-	 * @param e is the triggering event from the quit application button.
+	 * @param e is the triggering event from the quitButton button.
 	 */
 	public void quitApplication(ActionEvent e){
         photos.model.Users.saveUsersList();
