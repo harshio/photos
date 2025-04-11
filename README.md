@@ -6,11 +6,14 @@ The final project is in the main branch; Chloe's initial commit is in the second
 
 First paste in:
 
+```bash
+
 javac \
 --module-path /ABSOLUTE/PATH/TO/javafx-sdk-21.0.6/lib \
 --add-modules javafx.controls,javafx.fxml \
 -d out \
 $(find src -name "*.java")
+```
 
 to create a directory called out where the compiled .class files are stored. Then paste in:
 
@@ -18,11 +21,13 @@ cp -r src/photos/view out/photos/
 
 so that /photos/view/Login.fxml is available in the runtime classpath. Then finally run the code with:
 
+```bash
 java \
 --module-path /ABSOLUTE/PATH/TO/javafx-sdk-21.0.6/lib \
 --add-modules javafx.controls,javafx.fxml \
 -cp out \
 photos.app.Photos
+```
 
 and the application should run without issue. You'll probably just need to compile one time and then you can just execute multiple times with the same .class files by repeatedly typing the third command into the terminal.
 
