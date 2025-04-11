@@ -287,31 +287,31 @@ public class SearchController {
         String tagRequest = tagQuery.getText().trim().toLowerCase();
         //If there's 0 "="s, you fail (write errorTag.setText("Invalid String") write tagQuery.setText("") write return;)
         if(!tagRequest.contains("=")){
-            errorTag.setText("Invalid String 1");
+            errorTag.setText("Invalid Query");
             tagQuery.setText("");
             return;
         }
         //Weird bizzare stuff
         if(tagRequest.contains(" and ") && tagRequest.contains(" or ")){
-            errorTag.setText("Invalid String 1");
+            errorTag.setText("Invalid Query");
             tagQuery.setText("");
             return;
         }
         //If there's more than 2 "="s, you fail
         if(tagRequest.chars().filter(c -> c == '=').count() > 2){
-            errorTag.setText("Invalid String 2");
+            errorTag.setText("Invalid Query");
             tagQuery.setText("");
             return;
         }
         //If there's 2 "="s, and there's no 'and' and there's no 'or' in the line, you fail
         if((tagRequest.chars().filter(c -> c == '=').count() == 2) && !tagRequest.contains("and") && !tagRequest.contains("or")){
-            errorTag.setText("Invalid String 3");
+            errorTag.setText("Invalid Query");
             tagQuery.setText("");
             return;
         }
         //If there's 'and' or an 'or', and there isn't 2 "="s, you fail
         if((tagRequest.contains(" and ") || tagRequest.contains(" or ")) && (tagRequest.chars().filter(c -> c == '=').count() != 2)){
-            errorTag.setText("Invalid String 4");
+            errorTag.setText("Invalid Query");
             tagQuery.setText("");
             return;
         }
@@ -319,7 +319,7 @@ public class SearchController {
         if(tagRequest.chars().filter(c -> c == '=').count() == 1){
             String[] partsOfTag = tagRequest.split("=");
             if(partsOfTag.length != 2){ 
-                errorTag.setText("Invalid String 5");
+                errorTag.setText("Invalid Query");
                 tagQuery.setText("");
                 return; //you should fail if there's one equals sign and it's at the end
             }
@@ -335,14 +335,14 @@ public class SearchController {
                 String normalized = tagRequest.trim().replaceAll("\\s+", " ");
                 String[] parts = normalized.split("\\band\\b");
                 if(parts.length != 2){
-                    errorTag.setText("Invalid String 6");
+                    errorTag.setText("Invalid Query");
                     tagQuery.setText("");
                     return;
                 }
                 //Rest of code
                 String[] tags = tagRequest.split("\\band\\b");
                 if(tags.length != 2){ 
-                    errorTag.setText("Invalid String 7");
+                    errorTag.setText("Invalid Query");
                     tagQuery.setText("");
                     return; //you should fail if there's some 'and' and it's at the end
                 }
@@ -351,7 +351,7 @@ public class SearchController {
 
                 String[] partsOfTag1 = tag1.split("=");
                 if(partsOfTag1.length != 2){ 
-                    errorTag.setText("Invalid String 8");
+                    errorTag.setText("Invalid Query");
                     tagQuery.setText("");
                     return; //you should fail if there's some 'and' and it's at the end
                 }
@@ -360,7 +360,7 @@ public class SearchController {
 
                 String[] partsOfTag2 = tag2.split("=");
                 if(partsOfTag2.length != 2){ 
-                    errorTag.setText("Invalid String 9");
+                    errorTag.setText("Invalid Query");
                     tagQuery.setText("");
                     return; //you should fail if there's some 'and' and it's at the end
                 }
@@ -376,14 +376,14 @@ public class SearchController {
                 String normalized = tagRequest.trim().replaceAll("\\s+", " ");
                 String[] parts = normalized.split("\\bor\\b");
                 if(parts.length != 2){
-                    errorTag.setText("Invalid String 10");
+                    errorTag.setText("Invalid Query");
                     tagQuery.setText("");
                     return;
                 }
                 //Rest of code
                 String[] tags = tagRequest.split("\\bor\\b");
                 if(tags.length != 2){ 
-                    errorTag.setText("Invalid String 11");
+                    errorTag.setText("Invalid Query");
                     tagQuery.setText("");
                     return; //you should fail if there's some 'and' and it's at the end
                 }
@@ -392,7 +392,7 @@ public class SearchController {
                 
                 String[] partsOfTag1 = tag1.split("=");
                 if(partsOfTag1.length != 2){ 
-                    errorTag.setText("Invalid String 12");
+                    errorTag.setText("Invalid Query");
                     tagQuery.setText("");
                     return; //you should fail if there's some 'and' and it's at the end
                 }
@@ -401,7 +401,7 @@ public class SearchController {
 
                 String[] partsOfTag2 = tag2.split("=");
                 if(partsOfTag2.length != 2){ 
-                    errorTag.setText("Invalid String 13");
+                    errorTag.setText("Invalid Query");
                     tagQuery.setText("");
                     return; //you should fail if there's some 'and' and it's at the end
                 }
