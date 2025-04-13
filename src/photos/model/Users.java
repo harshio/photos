@@ -62,7 +62,7 @@ public class Users {
      * A mapping of usernames to their custom-defined tag types.
      * Helps enforce tag type constraints for each individual user.
      */
-    public static Map<String, Set<String>> userTagTypes = new HashMap<>();
+    public static Map<String, Set<TagType>> userTagTypes = new HashMap<>();
     /**
      * Initializes the tag types map for each user.
      */
@@ -94,7 +94,7 @@ public class Users {
         if (!file.exists()) return;
 
         try (ObjectInputStream in = new ObjectInputStream(new FileInputStream(file))) {
-            userTagTypes = (Map<String, Set<String>>) in.readObject();
+            userTagTypes = (Map<String, Set<TagType>>) in.readObject();
         } catch (IOException | ClassNotFoundException e) {
             Alert alert = new Alert(Alert.AlertType.ERROR);
             alert.setTitle("Error");
@@ -106,13 +106,12 @@ public class Users {
     /**
      * adds a custom tag type for a specific user
      * @param username the user to add the tag type for
-     * @param tagType the tag type to add
+     * @param tagTypeName the tag type to add
      */
-    public static void addUserTagType(String username, String tagType){
-        if (username == null || tagType == null || tagType.isBlank()) return;
-
-        userTagTypes.computeIfAbsent(username, k -> new HashSet<>())
-                .add(tagType.toLowerCase());
+    public static void addUserTagType(String username, String tagTypeName, boolean restricted){
+        userTagTypes.computeIfAbsent(username, k -> new HashSet<>());
+        TagType newType = new TagType(tagTypeName, restricted);
+        userTagTypes.get(username).add(newType);
     }
 
     /**
@@ -129,6 +128,24 @@ public class Users {
             alert.showAndWait();
 		}
 	}
+
+    /**
+     * Method to check if a tag type is restricted for a certain username
+     * @param username username of user whose tags we're checking for restrictions
+     * @param tagTypeName tag type we're checking to see if restricted
+     * @return whether or not tag type is restricted
+     */
+    public static boolean isRestrictedTagType(String username, String tagTypeName) {
+        Set<TagType> types = userTagTypes.get(username);
+        if (types == null) return false;
+        for (TagType t : types) {
+            if (t.getName().equalsIgnoreCase(tagTypeName)) {
+                return t.isRestricted();
+            }
+        }
+        return false; // default if type is not defined
+    }
+    
 
     /**
      * Loads the usersList from disk

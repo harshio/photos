@@ -18,6 +18,7 @@ import javafx.collections.*;
 import java.io.*;
 //import javafx.scene.control.ListView; this import probably won't be used in this class but I'm paranoid
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.Set;
 /**
  * Controller for the photo options view,
@@ -91,7 +92,7 @@ public class OptionsController {
      */
     @FXML TextField brandTag;
     /**
-     * Button that dynamically adds a Button to tagTypeBox that, when clicked on, fills in the prefix of the newTag text field.
+     * Button that dynamically adds a Button to tagTypeBox that, when clicked on, fills in the prefix of the newTag text field. Only allows one tag
      */
     @FXML Button makeNewTag;
     /**
@@ -103,6 +104,10 @@ public class OptionsController {
      */
     @FXML Button quitButton;
     /**
+     * Button that dynamically adds a Button to tagTypeBox that, when clicked on, fills in the prefix of the newTag text field. Allows any number of tags.
+     */
+    @FXML Button restricted;
+    /**
      * Initializes the tag type buttons dynamically based on the user's
      * available tag types. Called automatically when the scene is loaded.
      */
@@ -111,16 +116,42 @@ public class OptionsController {
         tagTypeBox.getChildren().add(makeTagButton("location"));
         tagTypeBox.getChildren().add(makeTagButton("name"));
         tagTypeBox.getChildren().add(makeTagButton("occasion"));
-        Set<String> tagTypes = Users.userTagTypes.get(Users.currentUser);
+        Set<photos.model.TagType> tagTypes = photos.model.Users.userTagTypes.get(Users.currentUser);
 
         if (tagTypes != null) {
-            for (String tag : tagTypes) {
-                Button tagButton = new Button(tag);
-                tagButton.setOnAction(this::placeType); // reuse your existing method
-                tagTypeBox.getChildren().add(tagButton);
+            for (photos.model.TagType tag : tagTypes) {
+                tagTypeBox.getChildren().add(makeTagButton(tag.getName()));
             }
         }
     }
+
+    /**
+     * This is what the user does after pressing the button only allowing for one tag of the certain tag type.
+     * @param e the triggering event from the makeNewTag button
+     */
+    public void insertRestrictedTag(ActionEvent e) {
+        String tagName = brandTag.getText().trim().toLowerCase();
+        if (!tagName.isEmpty()) {
+            Users.addUserTagType(Users.currentUser, tagName, true);
+            Users.saveUserTagTypes();
+            tagTypeBox.getChildren().add(makeTagButton(tagName));
+            brandTag.setText("");
+        }
+    }
+    /**
+     * This is what the user does after pressing the button allowing for any number tags of the certain tag type.
+     * @param e the triggering event from the restricted button
+     */
+    public void insertUnrestrictedTag(ActionEvent e) {
+        String tagName = brandTag.getText().trim().toLowerCase();
+        if (!tagName.isEmpty()) {
+            Users.addUserTagType(Users.currentUser, tagName, false);
+            Users.saveUserTagTypes();
+            tagTypeBox.getChildren().add(makeTagButton(tagName));
+            brandTag.setText("");
+        }
+    }
+
     /**
      * Quits the application after saving all user data
      * @param e is the triggering event from the quitButton button
@@ -144,12 +175,10 @@ public class OptionsController {
         tagTypeBox.getChildren().add(makeTagButton("occasion"));
     
         // Load user-defined tag types
-        Set<String> tagTypes = Users.userTagTypes.get(Users.currentUser);
+        Set<photos.model.TagType> tagTypes = Users.userTagTypes.get(Users.currentUser);
         if (tagTypes != null) {
-            for (String tag : tagTypes) {
-                Button tagButton = new Button(tag);
-                tagButton.setOnAction(this::placeType);
-                tagTypeBox.getChildren().add(tagButton);
+            for (photos.model.TagType tag : tagTypes) {
+                tagTypeBox.getChildren().add(makeTagButton(tag.getName()));
             }
         }
     
@@ -218,9 +247,43 @@ public class OptionsController {
      */
     public void addTag(ActionEvent e){
         String[] properTags = newTag.getText().split(",");
-        String tagName = properTags[0].trim();
-        String tagValue = properTags[1].trim();
+        if(properTags.length < 2){
+            newTag.setText("");
+            return;
+        }
+        String tagName = properTags[0].trim().toLowerCase();
+        String tagValue = properTags[1].trim().toLowerCase();
         String bestFormat = tagName + ", " + tagValue;
+        if(tagName.equals("location") || tagName.equals("occasion")){
+            photos.model.Album a = photos.model.Users.userAlbums.get(Users.currentUser).get(Users.currentAlbum);
+            for(photos.model.Photo p: a.getPhotos()){
+                if(p.getPath().equals(Users.currentPhoto)){
+                    for(String t: p.getTags()){
+                        if(t.contains("location") && tagName.equals("location")){
+                            newTag.setText("");
+                            return;
+                        }
+                        else if(t.contains("occasion") && tagName.equals("occasion")){
+                            newTag.setText("");
+                            return;
+                        }
+                    }
+                }
+            }
+        }
+        if (Users.isRestrictedTagType(Users.currentUser, tagName)) {
+            photos.model.Album a = photos.model.Users.userAlbums.get(Users.currentUser).get(Users.currentAlbum);
+            for(photos.model.Photo p: a.getPhotos()){
+                if(p.getPath().equals(Users.currentPhoto)){
+                    for(String t: p.getTags()){
+                        if(t.contains(tagName)){
+                            newTag.setText("");
+                            return;
+                        }
+                    }
+                }
+            }
+        }
         photos.model.Users.addTag(photos.model.Users.currentUser, photos.model.Users.currentAlbum, photos.model.Users.currentPhoto, bestFormat.trim().toLowerCase());
         photos.model.Users.saveUserAlbums();
         newTag.setText("");
@@ -306,19 +369,6 @@ public class OptionsController {
     public void placeType(ActionEvent e){
         Button clicked = (Button) e.getSource();
         newTag.setText(clicked.getText() + ", ");
-    }
-    /**
-     * adds a custom tag type to the user's tag list and UI.
-     * @param e is the triggering event from the makeNewTag button.
-     */
-    public void insertTag(ActionEvent e){
-        Button insertedTag = new Button(brandTag.getText().trim());
-        //Then we'll add it to the appropriate hashmap and save
-        photos.model.Users.addUserTagType(photos.model.Users.currentUser, brandTag.getText().trim());
-        photos.model.Users.saveUserTagTypes();
-        insertedTag.setOnAction(this::placeType);
-        tagTypeBox.getChildren().add(insertedTag);
-        brandTag.setText("");
     }
     /**
      * Loads the destination album selection page for copying

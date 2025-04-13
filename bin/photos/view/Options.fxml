@@ -32,7 +32,8 @@
         <Text text="Ensure that the format of your tag is name, comma, then value." GridPane.rowIndex="11"/>
         <Text text="Type in your own tag type: " GridPane.rowIndex="13"/>
         <TextField fx:id="brandTag" promptText="e.g. emotion" GridPane.rowIndex="14" GridPane.columnIndex="0"/>
-        <Button fx:id="makeNewTag" text="Insert tag type" GridPane.rowIndex="14" GridPane.columnIndex="1" onAction="#insertTag"/>
+        <Button fx:id="makeNewTag" text="Only one tag allowed" GridPane.rowIndex="14" GridPane.columnIndex="1" onAction="#insertRestrictedTag"/>
+        <Button fx:id="restricted" text="Any number of tags allowed" GridPane.rowIndex="14" GridPane.columnIndex="2" onAction="#insertUnrestrictedTag"/>
         <Button fx:id="move" text="Copy/Transfer" GridPane.rowIndex="15" onAction="#loadInDestination"/>
         <Button fx:id="quitButton" text="Quit Application" GridPane.rowIndex="16" onAction="#quitApplication"/>
         <padding>
