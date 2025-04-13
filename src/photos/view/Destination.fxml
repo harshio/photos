@@ -19,6 +19,7 @@
         </VBox>
         <Button fx:id="backButton" text="Back to Options" GridPane.rowIndex="1" onAction="#backToOptions"/>
         <Button fx:id="quitButton" text="Quit Application" GridPane.rowIndex="2" onAction="#quitApplication"/>
+        <Text text="This is the list of albums to copy/transfer your selected photo to." GridPane.rowIndex="3"/>
         <padding>
             <Insets top="10" right="10" bottom="10" left="10"/>
         </padding>

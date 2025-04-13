@@ -23,7 +23,8 @@
     <VBox fx:id="createButton" xmlns:fx="http://javafx.com/fxml" GridPane.rowIndex="10" spacing="5">
     </VBox>
     <Button fx:id="returnButton" text="Return to Home" GridPane.rowIndex="12" onAction="#returnToHome"/>
-    <Button fx:id="quitButton" text="Quit Application" GridPane.rowIndex="13" onAction="#quitApplication"/>    
+    <Button fx:id="quitButton" text="Quit Application" GridPane.rowIndex="13" onAction="#quitApplication"/>
+    <Text text="Unlike in the album page, next and prev buttons will always be present, even if unneeded." GridPane.rowIndex="14"/>    
     <padding>
         <Insets top="10" right="10" bottom="10" left="10"/>
     </padding>

@@ -26,7 +26,7 @@
         <Button fx:id = "changeCaption" text= "Change caption" GridPane.rowIndex="5" GridPane.columnIndex="1" onAction="#changeCaption"/>
         <Text fx:id="changeCaptionMessage" text="" GridPane.rowIndex="5" GridPane.columnIndex="2"/>
         <Button fx:id = "loadInAlbum" text="Back to Album Page" GridPane.rowIndex="6" onAction="#loadInAlbum"/>
-        <Text text="Here's some useful tag types:" GridPane.rowIndex="8"/>
+        <Text text="Here's some useful tag types (click on any of these buttons to make adding a tag easier):" GridPane.rowIndex="8"/>
         <VBox fx:id="tagTypeBox" spacing="5" GridPane.rowIndex="9" GridPane.columnSpan="3">
         </VBox>
         <Text text="Ensure that the format of your tag is name, comma, then value." GridPane.rowIndex="11"/>
