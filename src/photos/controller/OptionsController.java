@@ -131,6 +131,21 @@ public class OptionsController {
      */
     public void insertRestrictedTag(ActionEvent e) {
         String tagName = brandTag.getText().trim().toLowerCase();
+        Set<photos.model.TagType> tagTypes = Users.userTagTypes.get(Users.currentUser);
+        if(tagTypes == null){
+            tagTypes = new HashSet<>();
+            Users.userTagTypes.put(Users.currentUser, tagTypes);
+        }
+        for(photos.model.TagType t: tagTypes){
+            if(t.getName().equals(tagName)){
+                brandTag.setText("");
+                return;
+            }
+        }
+        if(tagName.equals("location") || tagName.equals("name") || tagName.equals("occasion")){
+            brandTag.setText("");
+            return;
+        }
         if (!tagName.isEmpty()) {
             Users.addUserTagType(Users.currentUser, tagName, true);
             Users.saveUserTagTypes();
@@ -144,6 +159,21 @@ public class OptionsController {
      */
     public void insertUnrestrictedTag(ActionEvent e) {
         String tagName = brandTag.getText().trim().toLowerCase();
+        Set<photos.model.TagType> tagTypes = Users.userTagTypes.get(Users.currentUser);
+        if(tagTypes == null){
+            tagTypes = new HashSet<>();
+            Users.userTagTypes.put(Users.currentUser, tagTypes);
+        }
+        for(photos.model.TagType t: tagTypes){
+            if(t.getName().equals(tagName)){
+                brandTag.setText("");
+                return;
+            }
+        }
+        if(tagName.equals("location") || tagName.equals("name") || tagName.equals("occasion")){
+            brandTag.setText("");
+            return;
+        }
         if (!tagName.isEmpty()) {
             Users.addUserTagType(Users.currentUser, tagName, false);
             Users.saveUserTagTypes();
