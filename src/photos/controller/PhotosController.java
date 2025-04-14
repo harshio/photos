@@ -78,6 +78,10 @@ public class PhotosController {
 	 * Login.fxml
 	 */
 	@FXML Button returnButton;
+	/**
+	 * Button that loads in Logout.fxml, placed in both Admin.fxml and TrueStockPage.fxml
+	 */
+	@FXML Button logOut;
 
 	/*We can use userName.getText() to retrieve the string typed in by the user.
 	 * If it's "admin", we'll load the scene for that specific case, which is basically
@@ -243,7 +247,29 @@ public class PhotosController {
 		newUserName.setText("");
 		deadUserName.setText("");
 	}
+	/**
+     * Logs out the user and returns to the login page.
+     * @param e is the triggering event from the logOut button.
+     */
+    public void logOut(ActionEvent e){
+        try{
+            FXMLLoader loader = new FXMLLoader(getClass().getResource("/photos/view/Logout.fxml"));
+            Parent root = loader.load();
+            Stage stage = (Stage) ((Node) e.getSource()).getScene().getWindow();
+            stage.getScene().setRoot(root);
 
+            //For stage.setTitle(), we'll make sure to properly if-condition this one and only this one later.
+            stage.setTitle("Logout Page");
+            stage.show();
+        }
+        catch (IOException ex) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("Failed to Load Page");
+            alert.setContentText("Something went wrong while loading the page.\nDetails: " + ex.getMessage());
+            alert.showAndWait();
+        }
+    }
 	
 	/**
 	 * It loads the stock album page associated with the Stock.fxml view.

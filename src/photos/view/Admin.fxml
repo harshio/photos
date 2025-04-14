@@ -21,6 +21,7 @@
     <Button fx:id="deleteUser" text="Delete a user" GridPane.rowIndex="7" onAction="#deleteUser"/>
     <Button fx:id="returnButton" text="Return to Log In" GridPane.rowIndex="8" onAction="#returnLog"/>
     <Button fx:id="quitButton" text="Quit Application" GridPane.rowIndex="9" onAction="#quitApplication"/>
+    <Button fx:id = "logOut" text="Click this to log out" GridPane.rowIndex="10" onAction="#logOut"/>
     <padding>
         <Insets top="10" right="10" bottom="10" left="10"/>
     </padding>
